@@ -1,0 +1,423 @@
+/* line 194, ../images/scores/*.png */
+.scores-sprite, .scores-big_00, .scores-big_01, .scores-big_02, .scores-big_03, .scores-big_04, .scores-big_05, .scores-big_06, .scores-big_07, .scores-big_08, .scores-big_09, .scores-small_00, .scores-small_01, .scores-small_02, .scores-small_03, .scores-small_04, .scores-small_05, .scores-small_06, .scores-small_07, .scores-small_08, .scores-small_09 {
+  background: url('/images/../images/scores-s227876109c.png') no-repeat;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_00 {
+  background-position: 0 -585px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_01 {
+  background-position: 0 -520px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_02 {
+  background-position: 0 -195px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_03 {
+  background-position: 0 -260px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_04 {
+  background-position: 0 -65px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_05 {
+  background-position: 0 -130px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_06 {
+  background-position: 0 -325px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_07 {
+  background-position: 0 -455px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_08 {
+  background-position: 0 -390px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_09 {
+  background-position: 0 0;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_00 {
+  background-position: 0 -650px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_01 {
+  background-position: 0 -956px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_02 {
+  background-position: 0 -718px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_03 {
+  background-position: 0 -752px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_04 {
+  background-position: 0 -888px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_05 {
+  background-position: 0 -786px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_06 {
+  background-position: 0 -854px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_07 {
+  background-position: 0 -922px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_08 {
+  background-position: 0 -820px;
+}
+
+/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_09 {
+  background-position: 0 -684px;
+}
+
+/* line 9, ../sass/admin.scss */
+body {
+  background-image: -webkit-gradient(radial, circle, 0, circle, 100, color-stop(10px, #ffffff), color-stop(100%, transparent)), url('/images/../images/bg-pattern.jpg?1352393320');
+  background-image: -webkit-radial-gradient(circle, #ffffff 10px, transparent), url('/images/../images/bg-pattern.jpg?1352393320');
+  background-image: -moz-radial-gradient(circle, #ffffff 10px, transparent), url('/images/../images/bg-pattern.jpg?1352393320');
+  background-image: -o-radial-gradient(circle, #ffffff 10px, transparent), url('/images/../images/bg-pattern.jpg?1352393320');
+  background-image: radial-gradient(circle, #ffffff 10px, transparent), url('/images/../images/bg-pattern.jpg?1352393320');
+}
+
+/* line 15, ../sass/admin.scss */
+#baby {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 21, ../sass/admin.scss */
+#start {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 28, ../sass/admin.scss */
+#page {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 680px) {
+  /* line 38, ../sass/admin.scss */
+  body {
+    background-size: 980px 720px;
+  }
+
+  /* line 44, ../sass/admin.scss */
+  #baby {
+    margin-top: 3%;
+    width: 52.488281%;
+  }
+
+  /*team scores*/
+  /* line 58, ../sass/admin.scss */
+  #scoreTeam1Panel {
+    position: absolute;
+    left: 45.6%;
+    top: 69.3%;
+    height: 76px;
+    width: 96px;
+  }
+
+  /* line 65, ../sass/admin.scss */
+  #scoreTeam2Panel {
+    position: absolute;
+    left: 44.1%;
+    top: 25%;
+    height: 95px;
+    width: 118px;
+  }
+
+  /* line 72, ../sass/admin.scss */
+  #scoreTeam2Score {
+    position: absolute;
+    left: 45.9%;
+    top: 27.5%;
+    height: 66px;
+    width: 95px;
+    z-index: 2;
+  }
+
+  /* line 80, ../sass/admin.scss */
+  #scoreTeam1Score {
+    position: absolute;
+    left: 45.9%;
+    top: 69.4%;
+    height: 66px;
+    width: 95px;
+    z-index: 2;
+  }
+
+  /*player scores*/
+  /* line 90, ../sass/admin.scss */
+  #scorePlayer1 {
+    position: absolute;
+    left: 25.1%;
+    top: 5.9%;
+    height: 32px;
+    width: 50px;
+    z-index: 2;
+  }
+
+  /* line 98, ../sass/admin.scss */
+  #scorePlayer2 {
+    position: absolute;
+    left: 18.1%;
+    top: 53%;
+    height: 32px;
+    width: 50px;
+    z-index: 2;
+  }
+
+  /* line 106, ../sass/admin.scss */
+  #scorePlayer3 {
+    position: absolute;
+    left: 68%;
+    top: 5.9%;
+    height: 32px;
+    width: 50px;
+    z-index: 2;
+  }
+
+  /* line 114, ../sass/admin.scss */
+  #scorePlayer4 {
+    position: absolute;
+    left: 77%;
+    top: 53%;
+    height: 32px;
+    width: 50px;
+    z-index: 2;
+  }
+
+  /* line 124, ../sass/admin.scss */
+  #p1r1c1 {
+    position: absolute;
+    left: 18.5%;
+    top: 14.6%;
+  }
+
+  /* line 129, ../sass/admin.scss */
+  #p2r1c1 {
+    position: absolute;
+    left: 11.5%;
+    top: 61.6%;
+  }
+
+  /* line 134, ../sass/admin.scss */
+  #p3r1c1 {
+    position: absolute;
+    right: 20.5%;
+    top: 14.6%;
+  }
+
+  /* line 139, ../sass/admin.scss */
+  #p4r1c1 {
+    position: absolute;
+    right: 11.5%;
+    top: 61.6%;
+  }
+
+  /* line 144, ../sass/admin.scss */
+  #p1panel {
+    position: absolute;
+    left: 16.89%;
+    top: 4.6%;
+  }
+
+  /* line 149, ../sass/admin.scss */
+  #p2panel {
+    position: absolute;
+    left: 9.89%;
+    top: 51.6%;
+  }
+
+  /* line 154, ../sass/admin.scss */
+  #p3panel {
+    position: absolute;
+    right: 18.89%;
+    top: 4.6%;
+  }
+
+  /* line 159, ../sass/admin.scss */
+  #p4panel {
+    position: absolute;
+    right: 9.89%;
+    top: 51.6%;
+  }
+
+  /* line 165, ../sass/admin.scss */
+  #p1plus {
+    position: absolute;
+    left: 19%;
+    top: 7.6%;
+  }
+
+  /* line 170, ../sass/admin.scss */
+  #p1minus {
+    position: absolute;
+    left: 32.75%;
+    top: 8.6%;
+  }
+
+  /* line 175, ../sass/admin.scss */
+  #p2plus {
+    position: absolute;
+    left: 12%;
+    top: 54.6%;
+  }
+
+  /* line 180, ../sass/admin.scss */
+  #p2minus {
+    position: absolute;
+    left: 25.5%;
+    top: 55.6%;
+  }
+
+  /* line 185, ../sass/admin.scss */
+  #p3plus {
+    position: absolute;
+    right: 35%;
+    top: 7.6%;
+  }
+
+  /* line 190, ../sass/admin.scss */
+  #p3minus {
+    position: absolute;
+    right: 21.4%;
+    top: 8.6%;
+  }
+
+  /* line 195, ../sass/admin.scss */
+  #p4plus {
+    position: absolute;
+    left: 70.5%;
+    top: 54.6%;
+  }
+
+  /* line 200, ../sass/admin.scss */
+  #p4minus {
+    position: absolute;
+    right: 12.3%;
+    top: 55.6%;
+  }
+
+  /* line 206, ../sass/admin.scss */
+  #p1pic img {
+    position: absolute;
+    left: 21.5%;
+    width: 123px;
+    top: 19%;
+  }
+
+  /* line 212, ../sass/admin.scss */
+  #p2pic img {
+    position: absolute;
+    left: 14.5%;
+    width: 123px;
+    top: 66%;
+  }
+
+  /* line 218, ../sass/admin.scss */
+  #p3pic img {
+    position: absolute;
+    right: 23.6%;
+    width: 123px;
+    top: 19%;
+  }
+
+  /* line 224, ../sass/admin.scss */
+  #p4pic img {
+    position: absolute;
+    right: 14.6%;
+    width: 123px;
+    top: 66%;
+  }
+
+  /* line 231, ../sass/admin.scss */
+  #p1name {
+    position: absolute;
+    left: 25%;
+    width: 150px;
+    top: 40%;
+    font-family: "Interstate Bold, Times";
+    font-style: italic;
+    font-size: 20pt;
+    color: white;
+    font-weight: 600;
+  }
+
+  /* line 243, ../sass/admin.scss */
+  #p2name {
+    position: absolute;
+    left: 18%;
+    width: 150px;
+    top: 87%;
+    font-family: "Interstate Bold, Times";
+    font-style: italic;
+    font-size: 20pt;
+    color: white;
+    font-weight: 600;
+  }
+
+  /* line 255, ../sass/admin.scss */
+  #p3name {
+    position: absolute;
+    right: 17%;
+    width: 150px;
+    top: 40%;
+    font-family: "Interstate Bold, Times";
+    font-style: italic;
+    font-size: 20pt;
+    color: white;
+    font-weight: 600;
+  }
+
+  /* line 267, ../sass/admin.scss */
+  #p4name {
+    position: absolute;
+    right: 8%;
+    width: 150px;
+    top: 87%;
+    font-family: "Interstate Bold, Times";
+    font-style: italic;
+    font-size: 20pt;
+    color: white;
+    font-weight: 600;
+  }
+}

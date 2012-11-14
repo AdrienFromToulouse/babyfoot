@@ -1,0 +1,191 @@
+#baby{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#start{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#page{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* @media screen and (min-width: 600px){ */
+
+/*     #baby{ */
+/* 	margin-top: 37%; */
+/* 	width: 42.488281%; */
+/*     } */
+/*     #start{ */
+/* 	margin-top: -13%; */
+/*     } */
+ 
+/* } */
+
+/* @media screen and (min-width: 860px){ */
+
+/*     #baby{ */
+/* 	margin-top: 24.5%; */
+/* 	width: 40.488281%; */
+/*     } */
+/*     #start{ */
+/* 	margin-top: -11%; */
+/*     } */
+
+/* } */
+
+@media screen and (min-width: 1200px){
+  
+
+    #baby{
+	margin-top: 22%;
+	width: 35.488281%;
+    }
+    #start{
+    	margin-top: -6%;
+    }
+
+    #scoreTeam1Panel {
+	position: absolute;
+	left: 47%;
+	top: 69.6%;
+    }
+    #scoreTeam2Panel {
+	position: absolute;
+	left: 46.6%;
+	top: 32.6%;
+    }
+
+
+    #scoreTeam1Score {
+	position: absolute;
+	left: 47.4%;
+	top: 70.4%;
+	width: 110px;
+    }
+    #scoreTeam2Score {
+	position: absolute;
+	left: 48%;
+	top: 34.8%;
+    }
+
+
+    #p1r1c1 {
+	position: absolute;
+	left: 29.5%;
+	top: 45.6%;
+    }
+    #p2r1c1 {
+	position: absolute;
+	left: 26.5%;
+	top: 72.6%;
+    }
+    #p3r1c1 {
+	position: absolute;
+	left: 60.5%;
+	top: 45.6%;
+    }
+    #p4r1c1 {
+	position: absolute;
+	left: 63.5%;
+	top: 72.6%;
+    }
+    #p1panel {
+	position: absolute;
+	left: 28.89%;
+	top: 39.6%;
+    }
+    #p2panel {
+	position: absolute;
+	left: 25.89%;
+	top: 66.6%;
+    }
+    #p3panel {
+	position: absolute;
+	left: 59.89%;
+	top: 39.6%;
+    }
+    #p4panel {
+	position: absolute;
+	left: 62.89%;
+	top: 66.6%;
+    }
+
+
+    #p1plus {
+    	position: absolute;
+    	left: 30%;
+    	top: 41.6%;
+    }
+    #p1minus {
+    	position: absolute;
+    	left: 36.75%;
+    	top: 42.6%;
+    }
+    #p2plus {
+    	position: absolute;
+    	left: 27%;
+    	top: 68.6%;
+    }
+    #p2minus {
+    	position: absolute;
+    	left: 33.70%;
+    	top: 69.6%;
+    }
+    #p3plus {
+    	position: absolute;
+    	left: 61%;
+    	top: 41.6%;
+    }
+    #p3minus {
+    	position: absolute;
+    	left: 67.75%;
+    	top: 42.6%;
+    }
+    #p4plus {
+    	position: absolute;
+    	left: 64%;
+    	top: 68.6%;
+    }
+    #p4minus {
+    	position: absolute;
+    	left: 70.75%;
+    	top: 69.6%;
+    }
+
+    #p1pic img {
+	position: absolute;
+	left: 31%;
+	width: 123px;
+	top: 48.6%;
+    }
+    #p2pic img {
+	position: absolute;
+	left: 28%;
+	width: 123px;
+	top: 75.6%;
+    }
+    #p3pic img {
+	position: absolute;
+	left: 62.25%;
+	width: 123px;
+	top: 48.6%;
+    }
+    #p4pic img {
+	position: absolute;
+	left: 65.2%;
+	width: 123px;
+	top: 75.6%;
+    }
+}
+
+
+
+

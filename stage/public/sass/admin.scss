@@ -1,0 +1,280 @@
+@import "compass/utilities/sprites";
+@import "../images/scores/*.png";
+@include all-scores-sprites;
+@import "compass/css3/text-shadow";
+
+@import "compass/css3/images";
+
+
+body{
+    @include background-image(radial-gradient(circle, 
+					      #ffffff 10px,transparent),
+			      image-url('../images/bg-pattern.jpg'));
+}	
+
+#baby {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#start{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#page{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+@media screen and (min-width: 680px){
+
+    body{
+	background-size: 980px 720px;
+    }
+
+
+
+    #baby {
+	margin-top: 3%;
+	width: 52.488281%;
+    }
+
+    #start{
+
+
+
+    }
+   
+
+
+    /*team scores*/
+    #scoreTeam1Panel {
+	position: absolute;
+	left: 45.6%;
+	top: 69.3%;
+	height: 76px;
+	width: 96px;
+    }
+    #scoreTeam2Panel {
+	position: absolute;
+	left: 44.1%;
+	top: 25%;
+	height: 95px;
+	width: 118px;
+    }
+    #scoreTeam2Score {
+    	position: absolute;
+	left: 45.9%;
+	top: 27.5%;
+    	height: 66px;
+    	width: 95px;
+    	z-index: 2;
+    }
+    #scoreTeam1Score {
+    	position: absolute;
+	left: 45.9%;
+	top: 69.4%;
+    	height: 66px;
+    	width: 95px;
+    	z-index: 2;
+    }
+
+    /*player scores*/
+    #scorePlayer1 {
+    	position: absolute;
+	left: 25.1%;
+	top: 5.9%;
+    	height: 32px;
+    	width: 50px;
+    	z-index: 2;
+    }
+    #scorePlayer2 {
+    	position: absolute;
+	left: 18.1%;
+	top: 53%;
+    	height: 32px;
+    	width: 50px;
+    	z-index: 2;
+    }
+    #scorePlayer3 {
+    	position: absolute;
+	left: 68%;
+	top: 5.9%;
+    	height: 32px;
+    	width: 50px;
+    	z-index: 2;
+    }
+    #scorePlayer4 {
+    	position: absolute;
+	left: 77%;
+	top: 53%;
+    	height: 32px;
+    	width: 50px;
+    	z-index: 2;
+    }
+
+
+    #p1r1c1 {
+	position: absolute;
+	left: 18.5%;
+	top: 14.6%;
+    }
+    #p2r1c1 {
+	position: absolute;
+	left: 11.5%;
+	top: 61.6%;
+    }
+    #p3r1c1 {
+	position: absolute;
+	right: 20.5%;
+	top: 14.6%;
+    }
+    #p4r1c1 {
+	position: absolute;
+	right: 11.5%;
+	top: 61.6%;
+    }
+    #p1panel {
+	position: absolute;
+	left: 16.89%;
+	top: 4.6%;
+    }
+    #p2panel {
+	position: absolute;
+	left: 9.89%;
+	top: 51.6%;
+    }
+    #p3panel {
+	position: absolute;
+	right: 18.89%;
+	top: 4.6%;
+    }
+    #p4panel {
+    	position: absolute;
+ 	right: 9.89%;
+	top: 51.6%;
+    }
+
+    #p1plus {
+	position: absolute;
+	left: 19%;
+	top: 7.6%;
+    }
+    #p1minus {
+	position: absolute;
+	left: 32.75%;
+	top: 8.6%;
+    }
+    #p2plus {
+    	position: absolute;
+    	left: 12%;
+	top: 54.6%;
+    }
+    #p2minus {
+	position: absolute;
+	left: 25.5%;
+	top: 55.6%;
+    }
+    #p3plus {
+    	position: absolute;
+	right: 35%;
+	top: 7.6%;
+    }
+    #p3minus {
+	position: absolute;
+	right: 21.4%;
+	top: 8.6%;
+    }
+    #p4plus {
+	position: absolute;
+	left: 70.5%;
+	top: 54.6%;
+    }
+    #p4minus {
+	position: absolute;
+	right: 12.3%;
+	top: 55.6%;
+    }
+ 
+    #p1pic img {
+	position: absolute;
+	left: 21.5%;
+	width: 123px;
+	top: 19%;
+    }
+    #p2pic img {
+    	position: absolute;
+	left: 14.5%;
+	width: 123px;
+	top: 66%;
+    }
+    #p3pic img {
+	position: absolute;
+	right: 23.6%;
+	width: 123px;
+	top: 19%;
+    }
+    #p4pic img {
+	position: absolute;
+	right: 14.6%;
+	width: 123px;
+	top: 66%;
+    }
+
+    #p1name {
+	position: absolute;
+	left: 25%;
+	width: 150px;
+	top: 40%;
+	font-family: "Interstate Bold, Times";
+	font-style: italic;
+	font-size: 20pt;
+	color: white;
+	font-weight: 600;
+
+    }
+    #p2name {
+	position: absolute;
+	left: 18%;
+	width: 150px;
+	top: 87%;
+	font-family: "Interstate Bold, Times";
+	font-style: italic;
+	font-size: 20pt;
+	color: white;
+	font-weight: 600;
+
+    }
+    #p3name{
+	position: absolute;
+	right: 17%;
+	width: 150px;
+	top: 40%;
+	font-family: "Interstate Bold, Times";
+	font-style: italic;
+	font-size: 20pt;
+	color: white;
+	font-weight: 600;
+
+    }
+    #p4name{
+	position: absolute;
+	right: 8%;
+	width: 150px;
+	top: 87%;
+	font-family: "Interstate Bold, Times";
+	font-style: italic;
+	font-size: 20pt;
+	color: white;
+	font-weight: 600;
+
+    }
+
+}

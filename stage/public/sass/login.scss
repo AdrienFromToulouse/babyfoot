@@ -1,0 +1,84 @@
+@import "compass/reset";
+@import "compass/css3/text-shadow";
+
+/* @media screen and (orientation:landscape) { */
+/* } */
+
+
+body
+{
+    background: url('../images/bg-pattern.jpg');
+    /* background-repeat: no-repeat; */
+}
+
+
+#loginPage{
+
+    margin-top: 5%;
+    width: 512px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+
+
+
+    .grey_panel{
+
+	position: absolute;
+	top: 137px;
+	margin-left: -140px;
+
+	#grey_panel{
+	    width: 800px;
+	}
+
+	.logbutton{
+	    position: absolute;
+	    left: 112px;
+	    bottom: 233px;
+
+	    #logbut{
+		width: 592px;
+	    }
+	}
+
+
+	.logo_asiance{
+	    position: absolute;
+	    top: 550px;
+	    left: 297px;
+	}
+
+	h2{
+	    position: absolute;
+	    text-align: center;
+	    top: 207px;
+	    left:277px;
+	    font-weight: bold;
+	    font-size:57px;
+	    /* line-height: 146%; */
+	    /* text-transform:uppercase; */
+	    font-family: "Interstate";
+	    color: #FFFFFF;
+	    @include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 4px 8px 0, rgba(black, 0.2) 3px 3px 0); 	}
+
+	h1{
+	    position: absolute;
+	    text-align: center;
+	    top: 100px;
+	    left:225px;
+	    font-weight: bold;
+	    font-size:57px;
+	    /* line-height: 146%; */
+	    /* text-transform:uppercase; */
+	    font-family: "Interstate";
+	    color: #FFFFFF;
+	    @include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 4px 8px 0, rgba(black, 0.2) 3px 3px 0); 
+	}
+
+    }
+}
+
+
+
+
