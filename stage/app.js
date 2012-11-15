@@ -31,7 +31,7 @@ var app = express();
  * Config
  */
 app.configure(function(){
-    app.set('port', process.env.PORT || 3100);
+    app.set('port', process.env.PORT || 3300);
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
     app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
@@ -54,101 +54,14 @@ var bayeux = new faye.NodeAdapter({
 });
 
 
-
-var game_idx_ctxt = {
-    "started" : "",
-    "cmd" : "",
-    "change_team1": "", //count the nbrof changes in the team during a game
-    "change_team2": "",
-    //p1a p2a p3a p4a p1d p2d p3d p4d
-    "score" :    [0, 0, 0, 0, 0, 0, 0, 0],
-    "player" :   [{"imageP1": "", 
-		   "firstnameP1": ""},{
-		       "imageP2": "", 
-		       "firstnameP2": ""},{
-			   "imageP3": "", 
-			   "firstnameP3": ""},{
-			       "imageP4": "", 
-			       "firstnameP4": ""}]
-};
-
-
-
-/**
- * Init game_idx_ctxt.
- *
- */
-function initGame_ctxt(game_idx_ctxt){
-
-    game_idx_ctxt.player[0].imageP1 = '';
-    game_idx_ctxt.player[0].firstnameP1 = '';
-    game_idx_ctxt.player[1].imageP2 = '';
-    game_idx_ctxt.player[1].firstnameP2 ='';
-    game_idx_ctxt.player[2].imageP3 = '';
-    game_idx_ctxt.player[2].firstnameP3 ='';
-    game_idx_ctxt.player[3].imageP4 = '';
-    game_idx_ctxt.player[3].firstnameP4 ='';
-}
-
-
-/**
- * Convert logged_player message to game_idx_ctxt message.
- *
- */
-function logplayToGame_ctxt(logged_player){
-
-    switch(eval(logged_player.position)){
-
-    case 1:
-	// player one
-	game_idx_ctxt.player[0].imageP1 = '<img src="'+logged_player.picture+'">';
-	game_idx_ctxt.player[0].firstnameP1 =logged_player.first_name;
-	break;
-    case 2:
-	// player 2
-	game_idx_ctxt.player[1].imageP2 = '<img src="'+logged_player.picture+'">';
-	game_idx_ctxt.player[1].firstnameP2 =logged_player.first_name;
-	break;
-    case 3:
-	// player 3
-	game_idx_ctxt.player[2].imageP3 = '<img src="'+logged_player.picture+'">';
-	game_idx_ctxt.player[2].firstnameP3 =logged_player.first_name;
-	break;
-    case 4:
-	// player 4
-	game_idx_ctxt.player[3].imageP4 = '<img src="'+logged_player.picture+'">';
-	game_idx_ctxt.player[3].firstnameP4 =logged_player.first_name;
-	break;
-    default:
-	console.log("default");
-    }
-
-    return game_idx_ctxt;
-}
-
-
-
-
-/**
- * Capture websocket post from the player logging himself
- */
-app.post('/logged_player', function(req, res) {
-
-    bayeux.getClient().publish('/channel_admin',req.body);
-    res.send(req.body);
-
-//for now 
-    // var game_ctxt = logplayToGame_ctxt(req.body);
-    // bayeux.getClient().publish('/channel_index',game_ctxt);
-});
-
+var clients = new Array();
 
 /**
  * Development: export NODE_ENV=development or NODE_ENV=development node app
  */
 app.configure('development', function(){
 
-    console.log("STARTED IN development MODE");
+    console.log("ALL ON MOBILE STARTED IN development MODE");
     app.use(express.errorHandler());
 
     /**
@@ -179,43 +92,16 @@ app.configure('development', function(){
     app.get('/admin', admin.admin);
 });
 
+
 /**
  * Treat incoming message from admin and redispatch to index page
  */
-var subscription = bayeux.getClient().subscribe('/admin', function(message) {
-
-    switch(message.cmd)
-    {
-    case "start":
-	game.createNewGame();
-
-	break;
-    case "stop":
-	initGame_ctxt(game_idx_ctxt)
-
-	game.closeCurrentGame();
-
-	break;
-    case "updateScore":
-	game.updateScore(message);
-	player.updateScore(message);
-	break;
-    default:
-    }
-   
-    if(message.newsubscription == 1){
-
-	/** if new subscription read DB and send current data. 
-	 *  It will send the message to all the subscriters, even those already subscripted.
-	 */
-        player.getCurrentPlayers(bayeux);
-    }
-    else{
-	/* just forward the admin message */
-	bayeux.getClient().publish('/channel_index',message);
-    }
+var subscription = bayeux.getClient().subscribe('/controller', function(message) {
+ 
+    console.log("[MESSAGE]:" + message);
+  
+	//bayeux.getClient().publish('/channel_index',message);
 });
-
 
 subscription.callback(function() {
     console.log('Subscription is now active!');
@@ -224,6 +110,44 @@ subscription.callback(function() {
 subscription.errback(function(error) {
     console.log(error.message);
 });
+
+
+bayeux.bind('subscribe', function(clientId, channel) {
+    console.log('[SUBSCRIBE] ' + clientId + ' -> ' + channel);
+
+    clients.push( {clientId: clientId , channel: channel} );
+});
+
+
+bayeux.bind('unsubscribe', function(clientId, channel) {
+    console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
+
+    for( var i=0 ; i < clients.length ; i++) {
+        if( clients[i].clientId == clientId ) {
+            clients.splice(i, 1);
+	    console.log('[UNSUBSCRIBED CLIENT] ' + clientId);
+            break;
+        }
+    }
+    for( var i=0 ; i < clients.length ; i++ ){
+
+	console.log('[NEW CLIENT ARRAY AFTER DELETE'+ i + ']' + clients[0].clientId);
+    }
+
+});
+
+
+bayeux.bind('publish', function(clientId, channel, data) {
+    console.log('[PUBLISH] ' + clientId + ' -> ' + channel + ' -> ' + data);
+    
+    for( var i=0 ; i < clients.length ; i++ ){
+
+	console.log('[CLIENT '+ i + '] ' + clients[0].clientId);
+
+	//bayeux.getClient().publish(channel,game_ctxt);
+    }
+});
+
 
 
 /**

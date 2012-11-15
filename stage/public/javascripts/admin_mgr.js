@@ -36,7 +36,7 @@ var client = new Faye.Client('/faye');
 
 function admin_send(buffer_out){
 
-    var publication = client.publish('/admin', buffer_out);
+    var publication = client.publish('/controller', buffer_out);
 
     publication.callback(function() {
 	console.log('Message received by server!');
@@ -48,44 +48,43 @@ function admin_send(buffer_out){
 }
 
 
-
-var subscription = client.subscribe('/channel_admin', function(message) {
+var subscription = client.subscribe('/player/'+id, function(message) {
 
     // for(i=0 ; i<4 ; i++){
 
-	switch(eval(message.position))
-	{
-	case 1:
-	    // player one
-  	    var htmlString = '<img src="'+message.picture+'">';
-  	    $("#p1pic").html(htmlString);
-  	    htmlString = '<span>'+message.first_name+'</span>';
-  	    $("#p1name").html(htmlString);	
-	    break;
-	case 2:
-	    // player 2
-  	    htmlString = '<img src="'+message.picture+'">';
-  	    $("#p2pic").html(htmlString);
-  	    htmlString = '<span>'+message.first_name+'</span>';
-  	    $("#p2name").html(htmlString);
-	    break;
-	case 3:
-	    // player 3
-  	    htmlString = '<img src="'+message.picture+'">';
-  	    $("#p3pic").html(htmlString);
-  	    htmlString = '<span>'+message.first_name+'</span>';
-  	    $("#p3name").html(htmlString);
-	    break;
-	case 4:
-	    // player 4
-  	    htmlString = '<img src="'+message.picture+'">';
-  	    $("#p4pic").html(htmlString);
-  	    htmlString = '<span>'+message.first_name+'</span>';
-  	    $("#p4name").html(htmlString);
-	    break;
-	default:
-	    console.log("default");
-	}
+	// switch(eval(message.position))
+	// {
+	// case 1:
+	//     // player one
+  	//     var htmlString = '<img src="'+message.picture+'">';
+  	//     $("#p1pic").html(htmlString);
+  	//     htmlString = '<span>'+message.first_name+'</span>';
+  	//     $("#p1name").html(htmlString);	
+	//     break;
+	// case 2:
+	//     // player 2
+  	//     htmlString = '<img src="'+message.picture+'">';
+  	//     $("#p2pic").html(htmlString);
+  	//     htmlString = '<span>'+message.first_name+'</span>';
+  	//     $("#p2name").html(htmlString);
+	//     break;
+	// case 3:
+	//     // player 3
+  	//     htmlString = '<img src="'+message.picture+'">';
+  	//     $("#p3pic").html(htmlString);
+  	//     htmlString = '<span>'+message.first_name+'</span>';
+  	//     $("#p3name").html(htmlString);
+	//     break;
+	// case 4:
+	//     // player 4
+  	//     htmlString = '<img src="'+message.picture+'">';
+  	//     $("#p4pic").html(htmlString);
+  	//     htmlString = '<span>'+message.first_name+'</span>';
+  	//     $("#p4name").html(htmlString);
+	//     break;
+	// default:
+	//     console.log("default");
+	// }
     // }
 });
 
@@ -211,7 +210,7 @@ function updateScore(game_ctxt){
  * Init
  */
 $().ready(function() {
-    admin_init();
+  //  admin_init();
 });
 
 $(function() {
