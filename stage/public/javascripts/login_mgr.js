@@ -2,38 +2,10 @@
  * This module manages the player's page.
  *
  */
-
-
-
+ 
 /**
- * ICD
+ * New client instance.
  */
-var player_to_controller = {
-
-    "started" : "",
-    "cmd" : "",
-    "change_team1": "", //count the nbrof changes in the team during a game
-    "change_team2": "",
-    //p1a p2a p3a p4a p1d p2d p3d p4d
-    "score" :    [0, 0, 0, 0, 0, 0, 0, 0],
-    "gamelle" :  [0, 0, 0, 0, 0, 0, 0, 0],
-    "cendrier" : [0, 0, 0, 0, 0, 0, 0, 0],
-    "pissette" : [0, 0, 0, 0, 0, 0, 0, 0],
-    "reprise" :  [0, 0, 0, 0, 0, 0, 0, 0],
-    "player" :   [{"imageP1": "", 
-    		   "firstnameP1": ""},
-    		  {"imageP2": "", 
-    		   "firstnameP2": ""},
-    		  {"imageP3": "", 
-    		   "firstnameP3": ""},
-    		  {"imageP4": "", 
-    		   "firstnameP4": ""}]
-};
-
-
-
-
-/* client instance */
 var client = new Faye.Client('/faye');
 
 
@@ -44,7 +16,7 @@ var client = new Faye.Client('/faye');
  */
 function login_send(buffer_out){
 
-    var publication = client.publish('/controller', buffer_out);
+    var publication = client.publish('/controller/logplayer', buffer_out);
 
     publication.callback(function() {
 	console.log('Message received by server!');
@@ -93,22 +65,28 @@ function savePlayerNPost(response){
     	    "babyId": babyId
     	};
 
+
 	login_send(player);
 
-	var subscription = client.subscribe('/player/'+position+'/baby/'+babyId, function(message) {
-
-	    console.log(message);
-
-	});
-	subscription.callback(function() {
-	    console.log('Subscription is now active!');
-	});
-
-	subscription.errback(function(error) {
-	    alert(error.message);
-	});
-
-	var params = {};
+    	// player = JSON.stringify(player);
+	// /* add player to the database*/
+ 	// $.ajax({
+    	//     url: "/login",
+    	//     type: "POST",
+    	//     dataType: "json",
+    	//     data: player,
+    	//     contentType: "application/json",
+    	//     cache: false,
+    	//     timeout: 5000,
+    	//     complete: function() {
+    	//     },
+    	//     success: function(data) {
+    	//     },
+    	//     error: function() {
+    	//     },
+    	// });
+	
+    	var params = {};
 	params['message'] = 'I am playing Babyfoot right NOW! Watch me live on LiveGameUp! channel number: '+babyId;
 	params['name'] = "LiveGameUp!";
 
@@ -156,18 +134,18 @@ window.fbAsyncInit = function() {
 
     	if(response.status == "connected"){
 
-	    $("#logbut").remove();
-	    // $('.logbutton').append("<h2>GO TO PLAY!!</h2>");
-
-
-	    $('.logbutton').css('left', '218px');
-	    $('.logbutton').css('bottom', '271px');
-
-	    $('.logbutton').append("<img id='hf' src='../images/hf.png' alt='have_fun''>");
-
-
-
 	    savePlayerNPost(response);
+
+	    $("#logbut").remove();
+	 
+	    $('.logbutton').css('left', '310px');
+	    $('.logbutton').css('bottom', '210px');
+
+	    var position = getURLParameter('p');
+	    var babyId  = getURLParameter('b');
+
+	    $('.logbutton').append("<a href='/admin?babyId="+babyId+"&position="+position+"'><img id='hf' src='../images/btn_start.png' alt='have_fun'></a>");
+
 	    
     	} else if (response.status === 'not_authorized') {
     	    // the user is logged in to Facebook, 

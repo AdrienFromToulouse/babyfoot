@@ -35,7 +35,7 @@ exports.create_Schema = function(){
 	},
 
 	logged_at: Number,
-	channel: Number,
+	babyId: Number,
 	gameID: String,
 	//_game_id : { type: Schema.Types.ObjectId, ref: 'game' },
 
@@ -262,3 +262,69 @@ exports.updateScore = function(message){
 
 
 
+/**
+ * Add player to the DB.
+ */
+exports.addPlayer = function(player_logged){
+
+
+    var playerSchema = createSchema();
+
+    /*
+     * Connect and write DB
+     */
+    db = mongoose.createConnection('localhost', 'asiance_babyfoot');
+
+    /* 
+     * Declare new player
+     */
+    var Player = db.model('Player', playerSchema);
+    var player = new Player;
+   
+    db.once('open', function (err, db) {
+ 
+	player.personal.name = player_logged.name;
+
+	player.personal.fb_id = player_logged.fb_id;
+	player.personal.first_name = player_logged.first_name;
+	player.personal.last_name = player_logged.last_name;
+	player.personal.name = player_logged.name;
+	player.personal.gender = player_logged.gender;
+	player.personal.locale = player_logged.locale;
+	player.personal.link = player_logged.link;
+	player.personal.picture = player_logged.picture;
+	player.personal.email = player_logged.email; 
+
+	player.logged_at = new Date().getTime();
+	player.babyId = player_logged.babyId;
+	player.position = player_logged.position;
+
+	if( (player_logged.position == 1) || (player_logged.position == 2) ){
+	    player.team = 1;
+	}
+	else{
+	    player.team = 2;
+	}
+	player.stats.score_attack = 0;
+	player.stats.score_defense = 0;
+	player.stats.gamelles = 0;
+	player.stats.pissettes = 0;
+	player.stats.reprises = 0;
+	player.stats.cendriers = 0;
+
+	player.save(function (err) {
+    	    if(err){
+    		console.log('ERROR');
+    	    }
+	    console.log("[INFO] player logged saved");
+	    mongoose.disconnect();
+	});
+
+
+
+	// For debug
+	// Player.find(function (err, players) {
+    	//     console.log(players);
+	// });
+    });
+};

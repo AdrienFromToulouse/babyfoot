@@ -79,12 +79,10 @@ app.configure('development', function(){
   	}
     });
 
-    // var NBROF_CHANNELS = 4;
     /**
      * Login
      */
     app.get('/login', login.show);
-    app.post('/login', login.addPlayer); // add player to the database
 
     /**
      * Admin
@@ -94,35 +92,52 @@ app.configure('development', function(){
 
 
 /**
+ * Write the databse with player's data from login page.
+ */
+var subscription_log = bayeux.getClient().subscribe('/controller/logplayer', function(player_logged) {
+
+    player.addPlayer(player_logged);
+
+});
+
+subscription_log.callback(function() {
+    console.log('Subscription_init is now active!');
+});
+
+subscription_log.errback(function(error) {
+    console.log(error.message);
+});
+
+/**
  * Forwards message to other players with the same babyID.
  * Forwards message to the index page.
  */
-var subscription = bayeux.getClient().subscribe('/controller', function(player_to_controller) {
-    
-    console.log("[MESSAGE]:" + player_to_controller);
+var subscription = bayeux.getClient().subscribe('/controller', function(game_ctxt) {
 
-    switch(eval(player_to_controller.position))
+    //TODO here update database
+    //database: takes player according to game id and strated set to true
+    //reset started to false
+    switch(eval(game_ctxt.position))
     {
     case 1:
-	bayeux.getClient().publish('/player/2/baby/'+player_to_controller.babyId, player_to_controller);
-	bayeux.getClient().publish('/player/3/baby/'+player_to_controller.babyId, player_to_controller);
-	bayeux.getClient().publish('/player/4/baby/'+player_to_controller.babyId, player_to_controller);
+	bayeux.getClient().publish('/player/2/baby/'+game_ctxt.babyId, game_ctxt);
+	bayeux.getClient().publish('/player/3/baby/'+game_ctxt.babyId, game_ctxt);
+	bayeux.getClient().publish('/player/4/baby/'+game_ctxt.babyId, game_ctxt);
 	break;
     case 2:
-	bayeux.getClient().publish('/player/1/baby/'+player_to_controller.babyId, player_to_controller);
-	bayeux.getClient().publish('/player/3/baby/'+player_to_controller.babyId, player_to_controller);
-	bayeux.getClient().publish('/player/4/baby/'+player_to_controller.babyId, player_to_controller);
+	bayeux.getClient().publish('/player/1/baby/'+game_ctxt.babyId, game_ctxt);
+	bayeux.getClient().publish('/player/3/baby/'+game_ctxt.babyId, game_ctxt);
+	bayeux.getClient().publish('/player/4/baby/'+game_ctxt.babyId, game_ctxt);
 	break;
     case 3:
-	bayeux.getClient().publish('/player/1/baby/'+player_to_controller.babyId, player_to_controller);
-	bayeux.getClient().publish('/player/2/baby/'+player_to_controller.babyId, player_to_controller);
-	bayeux.getClient().publish('/player/4/baby/'+player_to_controller.babyId, player_to_controller);
-
+	bayeux.getClient().publish('/player/1/baby/'+game_ctxt.babyId, game_ctxt);
+	bayeux.getClient().publish('/player/2/baby/'+game_ctxt.babyId, game_ctxt);
+	bayeux.getClient().publish('/player/4/baby/'+game_ctxt.babyId, game_ctxt);
 	break;
     case 4:
-	bayeux.getClient().publish('/player/1/baby/'+player_to_controller.babyId, player_to_controller);
-	bayeux.getClient().publish('/player/2/baby/'+player_to_controller.babyId, player_to_controller);
-	bayeux.getClient().publish('/player/3/baby/'+player_to_controller.babyId, player_to_controller);
+	bayeux.getClient().publish('/player/1/baby/'+game_ctxt.babyId, game_ctxt);
+	bayeux.getClient().publish('/player/2/baby/'+game_ctxt.babyId, game_ctxt);
+	bayeux.getClient().publish('/player/3/baby/'+game_ctxt.babyId, game_ctxt);
 	break;
     default:
 
@@ -147,6 +162,10 @@ bayeux.bind('subscribe', function(clientId, channel) {
 
 bayeux.bind('unsubscribe', function(clientId, channel) {
     console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
+
+    //TODO: set the started status to false
+    //updatePlayer(game.ctxt.player_ready = false);
+
     for( var i=0 ; i < clients.length ; i++) {
         if( clients[i].clientId == clientId ) {
             clients.splice(i, 1);

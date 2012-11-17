@@ -9,9 +9,15 @@ var P3_DEFENSER = 6;
 var P4_DEFENSER = 7; 
 
 
+/**
+ * Data model send to controller.
+ */
 var game_ctxt = {
-    "started" : "",
+
     "cmd" : "",
+    "babyId" : "",
+    "position" : "",
+    "player_ready" : "",
     "change_team1": "", //count the nbrof changes in the team during a game
     "change_team2": "",
     //p1a p2a p3a p4a p1d p2d p3d p4d
@@ -30,8 +36,30 @@ var game_ctxt = {
     		   "firstnameP4": ""}]
 };
 
+
+/**
+ * Get the current URL parameters (one by one).
+ *
+ * @param[in] - name: parameter name.
+ */
+function getURLParameter(name) {
+    return decodeURI(
+	(RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+    );
+}
+
+
+/**
+ * New client instance.
+ */
 var client = new Faye.Client('/faye');
 
+
+/**
+ * Sends to the controller.
+ *
+ * @param[in] - buffer_out: data to send.
+ */
 function admin_send(buffer_out){
 
     var publication = client.publish('/controller', buffer_out);
@@ -45,49 +73,55 @@ function admin_send(buffer_out){
     });
 }
 
-var id = 2;
-var subscription = client.subscribe('/player/'+id, function(message) {
 
-    // for(i=0 ; i<4 ; i++){
+/**
+ * Main
+ */
+var babyId = getURLParameter("babyId");
+var position = getURLParameter("position");
 
-	// switch(eval(message.position))
-	// {
-	// case 1:
-	//     // player one
-  	//     var htmlString = '<img src="'+message.picture+'">';
-  	//     $("#p1pic").html(htmlString);
-  	//     htmlString = '<span>'+message.first_name+'</span>';
-  	//     $("#p1name").html(htmlString);	
-	//     break;
-	// case 2:
-	//     // player 2
-  	//     htmlString = '<img src="'+message.picture+'">';
-  	//     $("#p2pic").html(htmlString);
-  	//     htmlString = '<span>'+message.first_name+'</span>';
-  	//     $("#p2name").html(htmlString);
-	//     break;
-	// case 3:
-	//     // player 3
-  	//     htmlString = '<img src="'+message.picture+'">';
-  	//     $("#p3pic").html(htmlString);
-  	//     htmlString = '<span>'+message.first_name+'</span>';
-  	//     $("#p3name").html(htmlString);
-	//     break;
-	// case 4:
-	//     // player 4
-  	//     htmlString = '<img src="'+message.picture+'">';
-  	//     $("#p4pic").html(htmlString);
-  	//     htmlString = '<span>'+message.first_name+'</span>';
-  	//     $("#p4name").html(htmlString);
-	//     break;
-	// default:
-	//     console.log("default");
-	// }
-    // }
+game_ctxt.babyId = babyId;
+game_ctxt.position = position;
+game_ctxt.player_ready = true;
+
+
+var subscription = client.subscribe('/player/'+position+'/baby/'+babyId, function(game_ctxt) {
+
+    var htmlString = "";
+
+    switch(eval(game_ctxt.position))
+    {
+    case 1:
+  	htmlString = '<img src="'+game_ctxt.picture+'">';
+  	$("#p1pic").html(htmlString);
+  	htmlString = '<span>'+game_ctxt.first_name+'</span>';
+  	$("#p1name").html(htmlString);	
+	break;
+    case 2:
+  	htmlString = '<img src="'+game_ctxt.picture+'">';
+  	$("#p2pic").html(htmlString);
+  	htmlString = '<span>'+game_ctxt.first_name+'</span>';
+  	$("#p2name").html(htmlString);
+	break;
+    case 3:
+  	htmlString = '<img src="'+game_ctxt.picture+'">';
+  	$("#p3pic").html(htmlString);
+  	htmlString = '<span>'+game_ctxt.first_name+'</span>';
+  	$("#p3name").html(htmlString);
+	break;
+    case 4:
+  	htmlString = '<img src="'+game_ctxt.picture+'">';
+  	$("#p4pic").html(htmlString);
+  	htmlString = '<span>'+game_ctxt.first_name+'</span>';
+  	$("#p4name").html(htmlString);
+	break;
+    default:
+	console.log("default");
+    }
 });
 
 subscription.callback(function() {
-    console.log('Subscription is now active!');
+    console.log('Subscription admin is now active!');
 });
 
 subscription.errback(function(error) {
@@ -98,7 +132,10 @@ subscription.errback(function(error) {
 
 function admin_init(){
 
-    game_ctxt.started = 0;
+    game_ctxt.babyId = babyId;
+    game_ctxt.position = position;
+
+    game_ctxt.player_ready = false;
 
     game_ctxt.score[P1_ATTACKER] = 0;
     game_ctxt.score[P2_ATTACKER] = 0;
@@ -182,7 +219,7 @@ function admin_init(){
 }
 
 function updateScore(game_ctxt){
-   
+    
     var score_t1 = game_ctxt.score[P1_ATTACKER] + game_ctxt.score[P1_DEFENSER] + game_ctxt.score[P2_ATTACKER] + game_ctxt.score[P2_DEFENSER];
     var score_t2 = game_ctxt.score[P3_ATTACKER] + game_ctxt.score[P3_DEFENSER] + game_ctxt.score[P4_ATTACKER] + game_ctxt.score[P4_DEFENSER];
 
@@ -208,11 +245,11 @@ function updateScore(game_ctxt){
  * Init
  */
 $().ready(function() {
-  //  admin_init();
+    //  admin_init();
 });
 
 $(function() {
-     /* PLUS */
+    /* PLUS */
     $('#p1plus').on('click touchstart', function(e) {
 	if(game_ctxt.started != 0){
 	    /*NO CHANGE*/
@@ -366,7 +403,7 @@ $(function() {
 
 	    $('button#change-t1').removeAttr('disabled');
 	    $('button#change-t2').removeAttr('disabled');
-	
+	    
 	    // player 1
   	    game_ctxt.player[0].imageP1 = $("#p1pic").html();
   	    game_ctxt.player[0].firstnameP1 = $("td#p1r2c1").html();	

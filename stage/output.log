@@ -1,0 +1,46 @@
+STARTED IN development MODE
+Subscription is now active!
+Express server listening on port 3100
+[90mGET / [32m200 [90m46ms - 4.38kb[0m
+[90mGET /stylesheets/main.css [36m304 [90m20ms[0m
+[90mGET /javascripts/index_mgr.js [36m304 [90m3ms[0m
+[90mGET /javascripts/jquery-1.8.0.min.js [36m304 [90m2ms[0m
+[90mGET /stylesheets/main_fb.css [36m304 [90m2ms[0m
+[90mGET /images/grey_panel.png [36m304 [90m1ms[0m
+[90mGET /images/bg-pattern.jpg?1352393320 [36m304 [90m1ms[0m
+[90mGET /images/scores-s227876109c.png [36m304 [90m1ms[0m
+[90mGET / [36m304 [90m19ms[0m
+[90mGET /stylesheets/main.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/main_fb.css [36m304 [90m1ms[0m
+[90mGET /javascripts/index_mgr.js [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery-1.8.0.min.js [36m304 [90m0ms[0m
+[90mGET /images/bg-pattern.jpg?1352393320 [36m304 [90m1ms[0m
+[90mGET /images/grey_panel.png [36m304 [90m1ms[0m
+[90mGET /images/scores-s227876109c.png [36m304 [90m1ms[0m
+[90mGET / [32m200 [90m21ms - 4.38kb[0m
+[90mGET /stylesheets/main.css [32m200 [90m6ms - 11.25kb[0m
+[90mGET /stylesheets/main_fb.css [32m200 [90m2ms - 548[0m
+[90mGET /javascripts/index_mgr.js [32m200 [90m1ms - 2.61kb[0m
+[90mGET /javascripts/jquery-1.8.0.min.js [32m200 [90m8ms - 90.39kb[0m
+[90mGET /images/bg-pattern.jpg?1352393320 [32m200 [90m2ms - 61.43kb[0m
+[90mGET /images/grey_panel.png [32m200 [90m25ms - 186.55kb[0m
+[90mGET /images/scores-s227876109c.png [32m200 [90m0ms - 43.75kb[0m
+[90mGET / [32m200 [90m21ms - 4.38kb[0m
+[90mGET /images/grey_panel.png [32m206 [90m756ms - 186.55kb[0m
+[90mGET / [36m304 [90m19ms[0m
+[90mGET /stylesheets/main.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/main_fb.css [36m304 [90m3ms[0m
+[90mGET /javascripts/index_mgr.js [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery-1.8.0.min.js [36m304 [90m1ms[0m
+[90mGET /images/bg-pattern.jpg?1352393320 [36m304 [90m1ms[0m
+[90mGET /images/grey_panel.png [36m304 [90m0ms[0m
+[90mGET /images/scores-s227876109c.png [36m304 [90m0ms[0m
+[90mGET / [36m304 [90m18ms[0m
+[90mGET /stylesheets/main.css [36m304 [90m2ms[0m
+[90mGET /javascripts/index_mgr.js [36m304 [90m3ms[0m
+[90mGET /javascripts/jquery-1.8.0.min.js [36m304 [90m1ms[0m
+[90mGET /stylesheets/main_fb.css [36m304 [90m1ms[0m
+[90mGET /images/bg-pattern.jpg?1352393320 [36m304 [90m1ms[0m
+[90mGET /images/grey_panel.png [36m304 [90m1ms[0m
+[90mGET /images/scores-s227876109c.png [36m304 [90m0ms[0m
+[90mGET /images/asiance.jpg [32m200 [90m4ms - 3.61kb[0m
