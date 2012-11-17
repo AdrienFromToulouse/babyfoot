@@ -1,32 +1,54 @@
+/**
+ * This module manages the player's page.
+ *
+ */
 
-var console;
 
-if (!(!!console && !!console.log)) {
-    console = {
-	log: function() {}
-    };
+/* client instance */
+var client = new Faye.Client('/faye');
+
+
+/**
+ * Publish to /contoller channel.
+ *
+ * @param[in] - buffer_out: buffer to send.
+ */
+function login_send(buffer_out){
+
+    var publication = client.publish('/controller', buffer_out);
+
+    publication.callback(function() {
+	console.log('Message received by server!');
+    });
+
+    publication.errback(function(error) {
+	console.log('There was a problem: ' + error.message);
+    });
 }
 
 
+/**
+ * Get the current URL parameters (one by one).
+ *
+ * @param[in] - name: parameter name.
+ */
 function getURLParameter(name) {
     return decodeURI(
 	(RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
     );
 }
 
-
+/**
+ * Send player data to /controller to be saved and post on FB wall.
+ *
+ * @param[in] - response: facebook response.
+ */
 function savePlayerNPost(response){
 
     FB.api('/me', function(response) {
 
 	var position = getURLParameter('p');
-	var channel = 01; /* channel = [01 02 ... 12 13]*/
-
-    	/*ENABLED WHEN THERE WILL BE MORE CHANNELS TO MANY DATA FOR THE NFC TAG AS IS*/
-    	// var regex = /http\:\/\/baby-foot\.asiance-dev\.com:3100\/login\?position=(\w{1})\&channel=(\w{2})/;
-    	// var url = document.URL;
-    	// var position = document.URL.match(regex)[1];
-    	// var channel = document.URL.match(regex)[2]; /* channel = [01 02 ... 12 13]*/
+	var babyId  = getURLParameter('b');
 
     	var player = {
     	    "fb_id": response.id,
@@ -39,47 +61,26 @@ function savePlayerNPost(response){
     	    "picture": "https://graph.facebook.com/" + response.id + "/picture",
     	    "email": response.email,
     	    "position": position,
-    	    "channel": channel,
+    	    "babyId": babyId
     	};
 
-    	player = JSON.stringify(player);
-	
+	login_send(player);
 
- 	$.ajax({
-    	    url: "/login",
-    	    type: "POST",
-    	    dataType: "json",
-    	    data: player,
-    	    contentType: "application/json",
-    	    cache: false,
-    	    timeout: 5000,
-    	    complete: function() {
-    	    },
-    	    success: function(data) {
-    	    },
-    	    error: function() {
-    	    },
-    	});
+	var subscription = client.subscribe('/player/'+position+'/baby/'+babyId, function(message) {
 
+	    console.log(message);
 
-    	$.ajax({
-    	    url: "/logged_player",
-    	    type: "POST",
-    	    dataType: "json",
-    	    data: player,
-    	    contentType: "application/json",
-    	    cache: false,
-    	    timeout: 5000,
-    	    complete: function() {
-    	    },
-    	    success: function(data) {
-    	    },
-    	    error: function() {
-    	    },
-    	});
+	});
+	subscription.callback(function() {
+	    console.log('Subscription is now active!');
+	});
+
+	subscription.errback(function(error) {
+	    alert(error.message);
+	});
 
 	var params = {};
-	params['message'] = 'I am playing Babyfoot right NOW! Watch me live on LiveGameUp!';
+	params['message'] = 'I am playing Babyfoot right NOW! Watch me live on LiveGameUp! channel number: '+babyId;
 	params['name'] = "LiveGameUp!";
 
 	if(response.gender == "male"){
@@ -97,17 +98,17 @@ function savePlayerNPost(response){
 	params['picture'] = 'http://livegameup.asiance-dev.com:3100/images/asiance.jpg';
 	params['caption'] = 'Watch me live playing Babyfoot!!';
 
-	FB.api('/me/feed', 'post', params, function(response) {
+	// FB.api('/me/feed', 'post', params, function(response) {
 
-    	    if (!response || response.error) { 
+    	//     if (!response || response.error) { 
 
-    		var errorID = new RegExp("#506");
+    	// 	var errorID = new RegExp("#506");
 		
-    		if(errorID.exec(response.error.message) == "#506"){
-    		}
-    	    } else { 
-    	    } 
-	});
+    	// 	if(errorID.exec(response.error.message) == "#506"){
+    	// 	}
+    	//     } else { 
+    	//     } 
+	// });
     });
 }
 

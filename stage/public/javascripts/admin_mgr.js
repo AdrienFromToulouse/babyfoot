@@ -30,8 +30,6 @@ var game_ctxt = {
     		   "firstnameP4": ""}]
 };
 
-
-
 var client = new Faye.Client('/faye');
 
 function admin_send(buffer_out){
@@ -47,7 +45,7 @@ function admin_send(buffer_out){
     });
 }
 
-
+var id = 2;
 var subscription = client.subscribe('/player/'+id, function(message) {
 
     // for(i=0 ; i<4 ; i++){

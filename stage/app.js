@@ -94,13 +94,41 @@ app.configure('development', function(){
 
 
 /**
- * Treat incoming message from admin and redispatch to index page
+ * Forwards message to other players with the same babyID.
+ * Forwards message to the index page.
  */
 var subscription = bayeux.getClient().subscribe('/controller', function(message) {
- 
+    
     console.log("[MESSAGE]:" + message);
-  
-	//bayeux.getClient().publish('/channel_index',message);
+
+    switch(eval(message.position))
+    {
+    case 1:
+	bayeux.getClient().publish('/player/2/baby/'+message.babyId, message);
+	bayeux.getClient().publish('/player/3/baby/'+message.babyId, message);
+	bayeux.getClient().publish('/player/4/baby/'+message.babyId, message);
+	break;
+    case 2:
+	bayeux.getClient().publish('/player/1/baby/'+message.babyId, message);
+	bayeux.getClient().publish('/player/3/baby/'+message.babyId, message);
+	bayeux.getClient().publish('/player/4/baby/'+message.babyId, message);
+	break;
+    case 3:
+	bayeux.getClient().publish('/player/1/baby/'+message.babyId, message);
+	bayeux.getClient().publish('/player/2/baby/'+message.babyId, message);
+	bayeux.getClient().publish('/player/4/baby/'+message.babyId, message);
+
+	break;
+    case 4:
+	bayeux.getClient().publish('/player/1/baby/'+message.babyId, message);
+	bayeux.getClient().publish('/player/2/baby/'+message.babyId, message);
+	bayeux.getClient().publish('/player/3/baby/'+message.babyId, message);
+	break;
+    default:
+
+    }
+
+    bayeux.getClient().publish('/index',message);
 });
 
 subscription.callback(function() {
@@ -114,14 +142,11 @@ subscription.errback(function(error) {
 
 bayeux.bind('subscribe', function(clientId, channel) {
     console.log('[SUBSCRIBE] ' + clientId + ' -> ' + channel);
-
     clients.push( {clientId: clientId , channel: channel} );
 });
 
-
 bayeux.bind('unsubscribe', function(clientId, channel) {
     console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
-
     for( var i=0 ; i < clients.length ; i++) {
         if( clients[i].clientId == clientId ) {
             clients.splice(i, 1);
@@ -131,21 +156,16 @@ bayeux.bind('unsubscribe', function(clientId, channel) {
     }
     for( var i=0 ; i < clients.length ; i++ ){
 
-	console.log('[NEW CLIENT ARRAY AFTER DELETE'+ i + ']' + clients[0].clientId);
+	console.log('[NEW CLIENT ARRAY AFTER DELETE'+ i + ']' + clients[i].clientId);
     }
-
 });
-
 
 bayeux.bind('publish', function(clientId, channel, data) {
     console.log('[PUBLISH] ' + clientId + ' -> ' + channel + ' -> ' + data);
-    
-    for( var i=0 ; i < clients.length ; i++ ){
-
-	console.log('[CLIENT '+ i + '] ' + clients[0].clientId);
-
-	//bayeux.getClient().publish(channel,game_ctxt);
-    }
+    // for( var i=0 ; i < clients.length ; i++ ){
+    // 	console.log('[CLIENT '+ i + '] ' + clients[0].clientId);
+    // 	//bayeux.getClient().publish(channel,game_ctxt);
+    // }
 });
 
 
