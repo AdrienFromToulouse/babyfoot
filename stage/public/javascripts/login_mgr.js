@@ -4,6 +4,35 @@
  */
 
 
+
+/**
+ * ICD
+ */
+var player_to_controller = {
+
+    "started" : "",
+    "cmd" : "",
+    "change_team1": "", //count the nbrof changes in the team during a game
+    "change_team2": "",
+    //p1a p2a p3a p4a p1d p2d p3d p4d
+    "score" :    [0, 0, 0, 0, 0, 0, 0, 0],
+    "gamelle" :  [0, 0, 0, 0, 0, 0, 0, 0],
+    "cendrier" : [0, 0, 0, 0, 0, 0, 0, 0],
+    "pissette" : [0, 0, 0, 0, 0, 0, 0, 0],
+    "reprise" :  [0, 0, 0, 0, 0, 0, 0, 0],
+    "player" :   [{"imageP1": "", 
+    		   "firstnameP1": ""},
+    		  {"imageP2": "", 
+    		   "firstnameP2": ""},
+    		  {"imageP3": "", 
+    		   "firstnameP3": ""},
+    		  {"imageP4": "", 
+    		   "firstnameP4": ""}]
+};
+
+
+
+
 /* client instance */
 var client = new Faye.Client('/faye');
 

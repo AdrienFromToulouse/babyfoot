@@ -97,38 +97,38 @@ app.configure('development', function(){
  * Forwards message to other players with the same babyID.
  * Forwards message to the index page.
  */
-var subscription = bayeux.getClient().subscribe('/controller', function(message) {
+var subscription = bayeux.getClient().subscribe('/controller', function(player_to_controller) {
     
-    console.log("[MESSAGE]:" + message);
+    console.log("[MESSAGE]:" + player_to_controller);
 
-    switch(eval(message.position))
+    switch(eval(player_to_controller.position))
     {
     case 1:
-	bayeux.getClient().publish('/player/2/baby/'+message.babyId, message);
-	bayeux.getClient().publish('/player/3/baby/'+message.babyId, message);
-	bayeux.getClient().publish('/player/4/baby/'+message.babyId, message);
+	bayeux.getClient().publish('/player/2/baby/'+player_to_controller.babyId, player_to_controller);
+	bayeux.getClient().publish('/player/3/baby/'+player_to_controller.babyId, player_to_controller);
+	bayeux.getClient().publish('/player/4/baby/'+player_to_controller.babyId, player_to_controller);
 	break;
     case 2:
-	bayeux.getClient().publish('/player/1/baby/'+message.babyId, message);
-	bayeux.getClient().publish('/player/3/baby/'+message.babyId, message);
-	bayeux.getClient().publish('/player/4/baby/'+message.babyId, message);
+	bayeux.getClient().publish('/player/1/baby/'+player_to_controller.babyId, player_to_controller);
+	bayeux.getClient().publish('/player/3/baby/'+player_to_controller.babyId, player_to_controller);
+	bayeux.getClient().publish('/player/4/baby/'+player_to_controller.babyId, player_to_controller);
 	break;
     case 3:
-	bayeux.getClient().publish('/player/1/baby/'+message.babyId, message);
-	bayeux.getClient().publish('/player/2/baby/'+message.babyId, message);
-	bayeux.getClient().publish('/player/4/baby/'+message.babyId, message);
+	bayeux.getClient().publish('/player/1/baby/'+player_to_controller.babyId, player_to_controller);
+	bayeux.getClient().publish('/player/2/baby/'+player_to_controller.babyId, player_to_controller);
+	bayeux.getClient().publish('/player/4/baby/'+player_to_controller.babyId, player_to_controller);
 
 	break;
     case 4:
-	bayeux.getClient().publish('/player/1/baby/'+message.babyId, message);
-	bayeux.getClient().publish('/player/2/baby/'+message.babyId, message);
-	bayeux.getClient().publish('/player/3/baby/'+message.babyId, message);
+	bayeux.getClient().publish('/player/1/baby/'+player_to_controller.babyId, player_to_controller);
+	bayeux.getClient().publish('/player/2/baby/'+player_to_controller.babyId, player_to_controller);
+	bayeux.getClient().publish('/player/3/baby/'+player_to_controller.babyId, player_to_controller);
 	break;
     default:
 
     }
 
-    bayeux.getClient().publish('/index',message);
+//    bayeux.getClient().publish('/index',controller_to_public);
 });
 
 subscription.callback(function() {
