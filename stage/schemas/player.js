@@ -34,10 +34,10 @@ exports.create_Schema = function(){
 	    email: String
 	},
 
+	ready: { type: Boolean, default: true },//page is already loaded so its true...
 	logged_at: Number,
 	babyId: Number,
 	gameID: String,
-	//_game_id : { type: Schema.Types.ObjectId, ref: 'game' },
 
 	position: Number,
 	team: String,
@@ -268,6 +268,10 @@ exports.updateScore = function(message){
 exports.addPlayer = function(player_logged){
 
 
+    console.log(player_logged.babyId);
+    console.log(player_logged.babyId);
+    console.log(player_logged.babyId);
+
     var playerSchema = createSchema();
 
     /*
@@ -337,13 +341,57 @@ exports.addPlayer = function(player_logged){
  */
 exports.getAplayer = function(req, res){
 
-    console.log("OK");
+    var playerSchema = createSchema();
 
+    db = mongoose.createConnection('localhost', 'asiance_babyfoot');
 
+    var Player = db.model('Player', playerSchema);
+    
+    db.once('open', function () {
 
+	var query = Player.findOne({'position': req.body.position, 
+				    // 'ready': true, 
+				    'babyId': req.body.babyId, 
+				     personal: {'fb_id': req.body.fb_id}
+				   });
 
-    res.header("Access-Control-Allow-Origin", "*"); 
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.send("tt");
+    	query.exec(function (err, player) {
+	    
+	    console.log(err);
 
+	    mongoose.disconnect();
+
+	    res.header("Access-Control-Allow-Origin", "*"); 
+	    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	    res.send(player);
+	});
+    });
 }
+
+
+/**
+ * To switch from not ready to ready.
+ */
+exports.updatePlayerStatus = function(req, res, status){
+    
+    var ready_req = (status == true) ? false : true;
+
+    var playerSchema = createSchema();
+
+    console.log("update score player");
+
+    db = mongoose.createConnection('localhost', 'asiance_babyfoot');
+
+    var Player = db.model('Player', playerSchema);
+
+    db.once('open', function () {
+
+	var query = Player.find({position: req.position, babyId: req.babyId, ready: ready_req}).sort({ logged_at: 'desc'}).limit(4);
+    	query.exec(function (err, player) {
+    	    if (err) { console.log(err); }
+
+	    player.update({"ready": status });
+	    mongoose.disconnect();
+    	});
+    });
+};

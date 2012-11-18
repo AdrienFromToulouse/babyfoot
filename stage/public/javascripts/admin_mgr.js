@@ -39,124 +39,22 @@ var game_ctxt = {
 };
 
 
-/**
- * Get the current URL parameters (one by one).
- *
- * @param[in] - name: parameter name.
- */
-function getURLParameter(name) {
-    return decodeURI(
-	(RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
-    );
-}
 
 
-/**
- * New client instance.
- */
-var client = new Faye.Client('/faye');
+var me = babyAdmin.init_connection();
+
+babyAdmin.subscript(me);
+
+/* init  my profile */
+babyAdmin.init_ctxt();
 
 
-/**
- * Sends to the controller.
- *
- * @param[in] - buffer_out: data to send.
- */
-function admin_send(buffer_out){
-
-    var publication = client.publish('/controller', buffer_out);
-
-    publication.callback(function() {
-	console.log('Message received by server!');
-    });
-
-    publication.errback(function(error) {
-	console.log('There was a problem: ' + error.message);
-    });
-}
-
-
-/**
- * Main
- */
-var babyId = getURLParameter("babyId");
-var position = getURLParameter("position");
-
-game_ctxt.babyId = babyId;
-game_ctxt.position = position;
-game_ctxt.player_ready = true;
-
-
-var datareq = {"babyId": babyId, "position": position };
-
-
-$.ajax({
-    url: "/player/getme",
-//    type: "GET",
-    dataType: "json",
-    data: datareq,
-    contentType: "application/json",
-    cache: false,
-    timeout: 5000,
-    complete: function() {
-    },
-    success: function(theplayer) {
-
-	console.log(theplayer);
-
-    },
-    error: function() {
-	console.log("error");
-
-    },
-});
+//babyAdmin.send(me,game_ctxt);
 
 
 
 
-var subscription = client.subscribe('/player/'+position+'/baby/'+babyId, function(game_ctxt) {
 
-    
-    var htmlString = "";
-
-    switch(eval(game_ctxt.position))
-    {
-    case 1:
-  	htmlString = '<img src="'+game_ctxt.picture+'">';
-  	$("#p1pic").html(htmlString);
-  	htmlString = '<span>'+game_ctxt.first_name+'</span>';
-  	$("#p1name").html(htmlString);	
-	break;
-    case 2:
-  	htmlString = '<img src="'+game_ctxt.picture+'">';
-  	$("#p2pic").html(htmlString);
-  	htmlString = '<span>'+game_ctxt.first_name+'</span>';
-  	$("#p2name").html(htmlString);
-	break;
-    case 3:
-  	htmlString = '<img src="'+game_ctxt.picture+'">';
-  	$("#p3pic").html(htmlString);
-  	htmlString = '<span>'+game_ctxt.first_name+'</span>';
-  	$("#p3name").html(htmlString);
-	break;
-    case 4:
-  	htmlString = '<img src="'+game_ctxt.picture+'">';
-  	$("#p4pic").html(htmlString);
-  	htmlString = '<span>'+game_ctxt.first_name+'</span>';
-  	$("#p4name").html(htmlString);
-	break;
-    default:
-	console.log("default");
-    }
-});
-
-subscription.callback(function() {
-    console.log('Subscription admin is now active!');
-});
-
-subscription.errback(function(error) {
-    alert(error.message);
-});
 
 
 
@@ -232,7 +130,7 @@ function admin_init(){
     /**/
     game_ctxt.cmd = "init";
 
-    admin_send(game_ctxt);
+    babyAdmin.send(client,game_ctxt);
 
     $('#p1plus').attr('disabled', 'disabled');
     $('#p2plus').attr('disabled', 'disabled');
@@ -280,139 +178,139 @@ $().ready(function() {
 
 $(function() {
     /* PLUS */
-    $('#p1plus').on('click touchstart', function(e) {
-	if(game_ctxt.started != 0){
-	    /*NO CHANGE*/
-	    if(game_ctxt.change_team1 % 2 == 0){
-		e.preventDefault(); game_ctxt.score[P1_DEFENSER]++; game_ctxt.cmd = "updateScore";
-		admin_send(game_ctxt);
-		updateScore(game_ctxt);
-	    }else{
-		e.preventDefault(); game_ctxt.score[P1_ATTACKER]++; game_ctxt.cmd = "updateScore";
-		admin_send(game_ctxt);
-		updateScore(game_ctxt);
-	    }
-	}
-    });
-    $('#p2plus').on('click touchstart', function(e) {
-	if(game_ctxt.started != 0){
-	    if(game_ctxt.change_team1%2 == 0){
-		e.preventDefault(); game_ctxt.score[P2_ATTACKER]++; game_ctxt.cmd = "updateScore";
-		admin_send(game_ctxt);
-		updateScore(game_ctxt);
-	    }else{
-		e.preventDefault(); game_ctxt.score[P2_DEFENSER]++; game_ctxt.cmd = "updateScore";
-		admin_send(game_ctxt);
-		updateScore(game_ctxt);
-	    }
-	}
-    });
-    $('#p3plus').on('click touchstart', function(e) {
-	if(game_ctxt.started != 0){
-	    if(game_ctxt.change_team2%2 == 0){
-		e.preventDefault(); game_ctxt.score[P3_ATTACKER]++; game_ctxt.cmd = "updateScore";
-		admin_send(game_ctxt);
-		updateScore(game_ctxt);
-	    }else{
-		e.preventDefault(); game_ctxt.score[P3_DEFENSER]++; game_ctxt.cmd = "updateScore";
-		admin_send(game_ctxt);
-		updateScore(game_ctxt);
-	    }
-	}
-    });
-    $('#p4plus').on('click touchstart', function(e) {
-	if(game_ctxt.started != 0){
-	    if(game_ctxt.change_team2%2 == 0){
-		e.preventDefault(); game_ctxt.score[P4_DEFENSER]++; game_ctxt.cmd = "updateScore";
-		admin_send(game_ctxt);
-		updateScore(game_ctxt);
-	    }else{
-		e.preventDefault(); game_ctxt.score[P4_ATTACKER]++; game_ctxt.cmd = "updateScore";
-		admin_send(game_ctxt);
-		updateScore(game_ctxt);
-	    }
-	}
-    });
+    // $('#p1plus').on('click touchstart', function(e) {
+    // 	if(game_ctxt.started != 0){
+    // 	    /*NO CHANGE*/
+    // 	    if(game_ctxt.change_team1 % 2 == 0){
+    // 		e.preventDefault(); game_ctxt.score[P1_DEFENSER]++; game_ctxt.cmd = "updateScore";
+    // 		admin_send(game_ctxt);
+    // 		updateScore(game_ctxt);
+    // 	    }else{
+    // 		e.preventDefault(); game_ctxt.score[P1_ATTACKER]++; game_ctxt.cmd = "updateScore";
+    // 		admin_send(game_ctxt);
+    // 		updateScore(game_ctxt);
+    // 	    }
+    // 	}
+    // });
+    // $('#p2plus').on('click touchstart', function(e) {
+    // 	if(game_ctxt.started != 0){
+    // 	    if(game_ctxt.change_team1%2 == 0){
+    // 		e.preventDefault(); game_ctxt.score[P2_ATTACKER]++; game_ctxt.cmd = "updateScore";
+    // 		admin_send(game_ctxt);
+    // 		updateScore(game_ctxt);
+    // 	    }else{
+    // 		e.preventDefault(); game_ctxt.score[P2_DEFENSER]++; game_ctxt.cmd = "updateScore";
+    // 		admin_send(game_ctxt);
+    // 		updateScore(game_ctxt);
+    // 	    }
+    // 	}
+    // });
+    // $('#p3plus').on('click touchstart', function(e) {
+    // 	if(game_ctxt.started != 0){
+    // 	    if(game_ctxt.change_team2%2 == 0){
+    // 		e.preventDefault(); game_ctxt.score[P3_ATTACKER]++; game_ctxt.cmd = "updateScore";
+    // 		admin_send(game_ctxt);
+    // 		updateScore(game_ctxt);
+    // 	    }else{
+    // 		e.preventDefault(); game_ctxt.score[P3_DEFENSER]++; game_ctxt.cmd = "updateScore";
+    // 		admin_send(game_ctxt);
+    // 		updateScore(game_ctxt);
+    // 	    }
+    // 	}
+    // });
+    // $('#p4plus').on('click touchstart', function(e) {
+    // 	if(game_ctxt.started != 0){
+    // 	    if(game_ctxt.change_team2%2 == 0){
+    // 		e.preventDefault(); game_ctxt.score[P4_DEFENSER]++; game_ctxt.cmd = "updateScore";
+    // 		admin_send(game_ctxt);
+    // 		updateScore(game_ctxt);
+    // 	    }else{
+    // 		e.preventDefault(); game_ctxt.score[P4_ATTACKER]++; game_ctxt.cmd = "updateScore";
+    // 		admin_send(game_ctxt);
+    // 		updateScore(game_ctxt);
+    // 	    }
+    // 	}
+    // });
 
-    /* LESS */
-    $('#p1minus').on('click touchstart', function(e) {
-	if(game_ctxt.started != 0){
-	    e.preventDefault(); game_ctxt.score[P1_ATTACKER]--; game_ctxt.cmd = "updateScore";
-	    admin_send(game_ctxt);
-	    updateScore(game_ctxt);
-	}
-    });
-    $('#p2minus').on('click touchstart', function(e) {
-	if(game_ctxt.started != 0){
-	    e.preventDefault(); game_ctxt.score[P2_ATTACKER]--; game_ctxt.cmd = "updateScore";
-	    admin_send(game_ctxt);
-	    updateScore(game_ctxt);
-	}
-    });
-    $('#p3minus').on('click touchstart', function(e) {
-	if(game_ctxt.started != 0){
-	    e.preventDefault(); game_ctxt.score[P3_ATTACKER]--; game_ctxt.cmd = "updateScore";
-	    admin_send(game_ctxt);
-	    updateScore(game_ctxt);
-	}
-    });
-    $('#p4minus').on('click touchstart', function(e) {
-	if(game_ctxt.started != 0){
-	    e.preventDefault(); game_ctxt.score[P4_ATTACKER]--; game_ctxt.cmd = "updateScore";
-	    admin_send(game_ctxt);
-	    updateScore(game_ctxt);
-	}
-    });
+    // /* LESS */
+    // $('#p1minus').on('click touchstart', function(e) {
+    // 	if(game_ctxt.started != 0){
+    // 	    e.preventDefault(); game_ctxt.score[P1_ATTACKER]--; game_ctxt.cmd = "updateScore";
+    // 	    admin_send(game_ctxt);
+    // 	    updateScore(game_ctxt);
+    // 	}
+    // });
+    // $('#p2minus').on('click touchstart', function(e) {
+    // 	if(game_ctxt.started != 0){
+    // 	    e.preventDefault(); game_ctxt.score[P2_ATTACKER]--; game_ctxt.cmd = "updateScore";
+    // 	    admin_send(game_ctxt);
+    // 	    updateScore(game_ctxt);
+    // 	}
+    // });
+    // $('#p3minus').on('click touchstart', function(e) {
+    // 	if(game_ctxt.started != 0){
+    // 	    e.preventDefault(); game_ctxt.score[P3_ATTACKER]--; game_ctxt.cmd = "updateScore";
+    // 	    admin_send(game_ctxt);
+    // 	    updateScore(game_ctxt);
+    // 	}
+    // });
+    // $('#p4minus').on('click touchstart', function(e) {
+    // 	if(game_ctxt.started != 0){
+    // 	    e.preventDefault(); game_ctxt.score[P4_ATTACKER]--; game_ctxt.cmd = "updateScore";
+    // 	    admin_send(game_ctxt);
+    // 	    updateScore(game_ctxt);
+    // 	}
+    // });
 
-    /* CHANGE */
-    $('button#change-t1').click(function(e) {
-	if(game_ctxt.started != 0){
-	    e.preventDefault(); game_ctxt.change_team1++; game_ctxt.cmd = "changeTeam1";
-	    admin_send(game_ctxt);
-	}
-    });
-    $('button#change-t2').click(function(e) {
-	if(game_ctxt.started != 0){
-	    e.preventDefault(); game_ctxt.change_team2++; game_ctxt.cmd = "changeTeam2";
-	    admin_send(game_ctxt);
-	}
-    });
+    // /* CHANGE */
+    // $('button#change-t1').click(function(e) {
+    // 	if(game_ctxt.started != 0){
+    // 	    e.preventDefault(); game_ctxt.change_team1++; game_ctxt.cmd = "changeTeam1";
+    // 	    admin_send(game_ctxt);
+    // 	}
+    // });
+    // $('button#change-t2').click(function(e) {
+    // 	if(game_ctxt.started != 0){
+    // 	    e.preventDefault(); game_ctxt.change_team2++; game_ctxt.cmd = "changeTeam2";
+    // 	    admin_send(game_ctxt);
+    // 	}
+    // });
 
-    /* GAMELLE */
-    $('button#gamelle-t1p1').click(function(e) {
-	e.preventDefault(); game_ctxt.gamelle[0]++; game_ctxt.cmd = "updateGamelle";
-	admin_send(game_ctxt);
-    });
-    $('button#gamelle-t1p2').click(function(e) {
-	e.preventDefault(); game_ctxt.gamelle[1]++; game_ctxt.cmd = "updateGamelle";
-	admin_send(game_ctxt);
-    });
-    $('button#gamelle-t2p1').click(function(e) {
-	e.preventDefault(); game_ctxt.gamelle[2]++; game_ctxt.cmd = "updateGamelle";
-	admin_send(game_ctxt);
-    });
-    $('button#gamelle-t2p2').click(function(e) {
-	e.preventDefault(); game_ctxt.gamelle[3]++; game_ctxt.cmd = "updateGamelle";
-	admin_send(game_ctxt);
-    });
+    // /* GAMELLE */
+    // $('button#gamelle-t1p1').click(function(e) {
+    // 	e.preventDefault(); game_ctxt.gamelle[0]++; game_ctxt.cmd = "updateGamelle";
+    // 	admin_send(game_ctxt);
+    // });
+    // $('button#gamelle-t1p2').click(function(e) {
+    // 	e.preventDefault(); game_ctxt.gamelle[1]++; game_ctxt.cmd = "updateGamelle";
+    // 	admin_send(game_ctxt);
+    // });
+    // $('button#gamelle-t2p1').click(function(e) {
+    // 	e.preventDefault(); game_ctxt.gamelle[2]++; game_ctxt.cmd = "updateGamelle";
+    // 	admin_send(game_ctxt);
+    // });
+    // $('button#gamelle-t2p2').click(function(e) {
+    // 	e.preventDefault(); game_ctxt.gamelle[3]++; game_ctxt.cmd = "updateGamelle";
+    // 	admin_send(game_ctxt);
+    // });
 
-    /* PISSETTE */
-    $('button#pissette-t1p1').click(function(e) {
-	e.preventDefault(); game_ctxt.pissette[0]++; game_ctxt.cmd = "updatePissette";
-	admin_send(game_ctxt);
-    });
-    $('button#pissette-t1p2').click(function(e) {
-	e.preventDefault(); game_ctxt.pissette[1]++; game_ctxt.cmd = "updatePissette";
-	admin_send(game_ctxt);
-    });
-    $('button#pissette-t2p1').click(function(e) {
-	e.preventDefault(); game_ctxt.pissette[2]++; game_ctxt.cmd = "updatePissette";
-	admin_send(game_ctxt);
-    });
-    $('button#pissette-t2p2').click(function(e) {
-	e.preventDefault(); game_ctxt.pissette[3]++; game_ctxt.cmd = "updatePissette";
-	admin_send(game_ctxt);
-    });
+    // /* PISSETTE */
+    // $('button#pissette-t1p1').click(function(e) {
+    // 	e.preventDefault(); game_ctxt.pissette[0]++; game_ctxt.cmd = "updatePissette";
+    // 	admin_send(game_ctxt);
+    // });
+    // $('button#pissette-t1p2').click(function(e) {
+    // 	e.preventDefault(); game_ctxt.pissette[1]++; game_ctxt.cmd = "updatePissette";
+    // 	admin_send(game_ctxt);
+    // });
+    // $('button#pissette-t2p1').click(function(e) {
+    // 	e.preventDefault(); game_ctxt.pissette[2]++; game_ctxt.cmd = "updatePissette";
+    // 	admin_send(game_ctxt);
+    // });
+    // $('button#pissette-t2p2').click(function(e) {
+    // 	e.preventDefault(); game_ctxt.pissette[3]++; game_ctxt.cmd = "updatePissette";
+    // 	admin_send(game_ctxt);
+    // });
 
     $('#start').on('click touchstart', function(e) {
 
@@ -452,22 +350,23 @@ $(function() {
 
 	    game_ctxt.cmd = "start";
 
-	    admin_send(game_ctxt);
+//	    admin_send(game_ctxt);
+	    babyAdmin.send(client,game_ctxt);
 
 
 	    $("#start").attr("src","../images/btn_stop.png" );
 
-	    // alert("getting started");
+	    alert("getting started");
 	}
 	else{
-	    // alert("getting stopped");
+	    alert("getting stopped");
 
 	    $("#start").attr("src","../images/btn_start.png" );
 
 	    admin_init();
 	    game_ctxt.cmd = "stop";
 
-	    admin_send(game_ctxt);
+	    // admin_send(game_ctxt);
 	    updateScore(game_ctxt);
 	}
     });

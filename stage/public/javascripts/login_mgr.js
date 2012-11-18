@@ -66,25 +66,9 @@ function savePlayerNPost(response){
     	};
 
 
+	/* to be saved in database */
 	login_send(player);
 
-    	// player = JSON.stringify(player);
-	// /* add player to the database*/
- 	// $.ajax({
-    	//     url: "/login",
-    	//     type: "POST",
-    	//     dataType: "json",
-    	//     data: player,
-    	//     contentType: "application/json",
-    	//     cache: false,
-    	//     timeout: 5000,
-    	//     complete: function() {
-    	//     },
-    	//     success: function(data) {
-    	//     },
-    	//     error: function() {
-    	//     },
-    	// });
 	
     	var params = {};
 	params['message'] = 'I am playing Babyfoot right NOW! Watch me live on LiveGameUp! channel number: '+babyId;
@@ -105,17 +89,21 @@ function savePlayerNPost(response){
 	params['picture'] = 'http://livegameup.asiance-dev.com:3100/images/asiance.jpg';
 	params['caption'] = 'Watch me live playing Babyfoot!!';
 
-	// FB.api('/me/feed', 'post', params, function(response) {
+ 	FB.api('/me/feed', 'post', params, function(response) {
 
-    	//     if (!response || response.error) { 
+    	    if (!response || response.error) { 
 
-    	// 	var errorID = new RegExp("#506");
+    		var errorID = new RegExp("#506");
+		alert("Sorry, you can't access the game. Try again later.");
 		
-    	// 	if(errorID.exec(response.error.message) == "#506"){
-    	// 	}
-    	//     } else { 
-    	//     } 
-	// });
+    		if(errorID.exec(response.error.message) == "#506"){
+    		}
+    	    } else {
+
+		window.location = "/admin?babyId="+babyId+"&position="+position+"&fbId="+response.id;
+
+    	    } 
+	});
     });
 }
 

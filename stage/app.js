@@ -93,11 +93,11 @@ app.configure('development', function(){
     /**
      * READ one specific player
      */
-    app.get('/player/getme', function(req, res){
-	console.log("ooooooooooooooo");
+    app.post('/player/getme', function(req, res){
+  
 
-	res.send("ok");
-    	//player.getAplayer(req, res);
+  	player.getAplayer(req, res);
+//	res.send(req.body);
     });
 
 
@@ -109,6 +109,7 @@ app.configure('development', function(){
  */
 var subscription_log = bayeux.getClient().subscribe('/controller/logplayer', function(player_logged) {
 
+    console.log("ADD PLAYER _______________");
     player.addPlayer(player_logged);
 
 });
@@ -127,6 +128,8 @@ subscription_log.errback(function(error) {
  */
 var subscription = bayeux.getClient().subscribe('/controller', function(game_ctxt) {
 
+
+    console.log("HERE");
     //TODO here update database
     //database: takes player according to game id and strated set to true
     //reset started to false
