@@ -9,6 +9,8 @@ var P3_DEFENSER = 6;
 var P4_DEFENSER = 7; 
 
 
+
+
 /**
  * Data model send to controller.
  */
