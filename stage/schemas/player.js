@@ -328,3 +328,22 @@ exports.addPlayer = function(player_logged){
 	// });
     });
 };
+
+
+
+
+/**
+ * 
+ */
+exports.getAplayer = function(req, res){
+
+    console.log("OK");
+
+
+
+
+    res.header("Access-Control-Allow-Origin", "*"); 
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.send("tt");
+
+}

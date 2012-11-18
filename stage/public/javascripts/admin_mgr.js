@@ -85,8 +85,36 @@ game_ctxt.position = position;
 game_ctxt.player_ready = true;
 
 
+var datareq = {"babyId": babyId, "position": position };
+
+
+$.ajax({
+    url: "/player/getme",
+//    type: "GET",
+    dataType: "json",
+    data: datareq,
+    contentType: "application/json",
+    cache: false,
+    timeout: 5000,
+    complete: function() {
+    },
+    success: function(theplayer) {
+
+	console.log(theplayer);
+
+    },
+    error: function() {
+	console.log("error");
+
+    },
+});
+
+
+
+
 var subscription = client.subscribe('/player/'+position+'/baby/'+babyId, function(game_ctxt) {
 
+    
     var htmlString = "";
 
     switch(eval(game_ctxt.position))

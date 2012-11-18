@@ -88,6 +88,19 @@ app.configure('development', function(){
      * Admin
      */
     app.get('/admin', admin.admin);
+
+
+    /**
+     * READ one specific player
+     */
+    app.get('/player/getme', function(req, res){
+	console.log("ooooooooooooooo");
+
+	res.send("ok");
+    	//player.getAplayer(req, res);
+    });
+
+
 });
 
 
