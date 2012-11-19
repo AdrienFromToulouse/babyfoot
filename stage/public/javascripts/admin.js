@@ -1,7 +1,7 @@
 var babyAdmin = {
 
 
-    //    SEOUL : 4,
+    MY_PROFILE : "",
 
     /**
      * Get the current URL parameters (one by one).
@@ -33,7 +33,7 @@ var babyAdmin = {
      * Init the player (me) context (picture, name)...
      *	
      */
-    init_ctxt : function()
+    init_ctxt : function(client)
     {
 	var babyId = this.getURLParameter("babyId");
 	var position = this.getURLParameter("position");
@@ -57,14 +57,17 @@ var babyAdmin = {
 	    },
 	    success: function(me) {
 
-		console.log(me);
+		babyAdmin.MY_PROFILE = me;
 
-		// var htmlString = "";
+		var htmlString = "";
 
-		// 	htmlString = '<img src="'+me.personal.picture+'">';
-		// 	$("#mypic").html(htmlString);
-		// 	htmlString = '<span>'+me.personal.first_name+'</span>';
-		// 	$("#myname").html(htmlString);	
+		htmlString = '<img src="'+me.personal.picture+'">';
+		$("#mypic").html(htmlString);
+		htmlString = '<span>'+me.personal.first_name+'</span>';
+		$("#myname").html(htmlString);	
+
+		/* send my profile to the other players */
+		babyAdmin.send(client,babyAdmin.MY_PROFILE);
 	    },
 	    error: function() {
 		console.log("error");

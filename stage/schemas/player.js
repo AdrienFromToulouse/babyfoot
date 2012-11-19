@@ -17,90 +17,54 @@ var P4_DEFENSER = 7;
 
 
 
-exports.create_Schema = function(){
+/**
+ * Defines the schema of a player.
+ *
+ */
+var playerSchema = new mongoose.Schema({
 
-    var playerSchema = new mongoose.Schema({
+    personal:{
 
-	personal:{
+	fb_id: String,
+ 	first_name: String,
+	last_name: String,
+	name: String,
+	gender: String,
+	locale: String,
+	link: String,
+	picture: String,
+	email: String
+    },
 
-	    fb_id: String,
- 	    first_name: String,
-	    last_name: String,
-	    name: String,
-	    gender: String,
-	    locale: String,
-	    link: String,
-	    picture: String,
-	    email: String
-	},
+    ready: { type: Boolean, default: true },//page is already loaded so its true...
+    logged_at: Number,
+    babyId: Number,
+    gameID: String,
 
-	ready: { type: Boolean, default: true },//page is already loaded so its true...
-	logged_at: Number,
-	babyId: Number,
-	gameID: String,
+    position: Number,
+    team: String,
 
-	position: Number,
-	team: String,
+    stats:{
+	score_attack: Number,  //scored as attacker
+	score_defense: Number, //scored as defenser
+	gamelles: Number,
+	pissettes: Number,
+	reprises: Number,
+	cendriers: Number
+    }
+});
 
-	stats:{
-	    score_attack: Number,  //scored as attacker
-	    score_defense: Number, //scored as defenser
-	    gamelles: Number,
-	    pissettes: Number,
-	    reprises: Number,
-	    cendriers: Number
-	}
-    });
-
-    return playerSchema;
-}
 
 /**
- * Define the schema
+ * Used in tests.
+ *
  */
-function createSchema(){
-
-    var playerSchema = new mongoose.Schema({
-
-	personal:{
-
-	    fb_id: String,
- 	    first_name: String,
-	    last_name: String,
-	    name: String,
-	    gender: String,
-	    locale: String,
-	    link: String,
-	    picture: String,
-	    email: String
-	},
-
-	logged_at: Number,
-	channel: Number,
-	gameID: String,
-	//_game_id : { type: Schema.Types.ObjectId, ref: 'game' },
-
-	position: Number,
-	team: String,
-
-	stats:{
-	    score_attack: Number,  //scored as attacker
-	    score_defense: Number, //scored as defenser
-	    gamelles: Number,
-	    pissettes: Number,
-	    reprises: Number,
-	    cendriers: Number
-	}
-    });
-
-    return playerSchema;
-}
-
-
 exports.getSchema = function(){
-
-    return createSchema();
+    return playerSchema;
 };
+
+
+
 
 
 /**
@@ -125,11 +89,11 @@ exports.getCurrentPlayers = function(bayeux){
     		       "firstnameP4": ""}]
     };
 
-    var playerSchema = createSchema();
-
     db = mongoose.createConnection('localhost', 'asiance_babyfoot');
 
     var Player = db.model('Player', playerSchema);
+    var player = new Player;
+
     
     db.once('open', function () {
 
@@ -192,6 +156,9 @@ exports.updateScore = function(message){
     db = mongoose.createConnection('localhost', 'asiance_babyfoot');
 
     var Player = db.model('Player', playerSchema);
+
+    var player = new Player;
+
 
     db.once('open', function () {
 
@@ -271,9 +238,6 @@ exports.addPlayer = function(player_logged){
     console.log(player_logged.babyId);
     console.log(player_logged.babyId);
     console.log(player_logged.babyId);
-
-    var playerSchema = createSchema();
-
     /*
      * Connect and write DB
      */
@@ -283,8 +247,9 @@ exports.addPlayer = function(player_logged){
      * Declare new player
      */
     var Player = db.model('Player', playerSchema);
-    var player = new Player;
    
+    var player = new Player;
+
     db.once('open', function (err, db) {
  
 	player.personal.name = player_logged.name;
@@ -337,28 +302,25 @@ exports.addPlayer = function(player_logged){
 
 
 /**
- * 
+ * After login it retrieve all the data corresponding to the current player (me)
+ *
  */
 exports.getAplayer = function(req, res){
 
-    var playerSchema = createSchema();
-
     db = mongoose.createConnection('localhost', 'asiance_babyfoot');
 
+    // var Player = new PlayerModel;
     var Player = db.model('Player', playerSchema);
     
     db.once('open', function () {
 
-	var query = Player.findOne({'position': req.body.position, 
-				    // 'ready': true, 
-				    'babyId': req.body.babyId, 
-				     personal: {'fb_id': req.body.fb_id}
+	var query = Player.findOne({position: req.body.position, 
+				    ready: true, 
+				    babyId: req.body.babyId, 
 				   });
 
     	query.exec(function (err, player) {
 	    
-	    console.log(err);
-
 	    mongoose.disconnect();
 
 	    res.header("Access-Control-Allow-Origin", "*"); 

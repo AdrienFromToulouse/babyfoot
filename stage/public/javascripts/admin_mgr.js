@@ -46,10 +46,14 @@ var me = babyAdmin.init_connection();
 babyAdmin.subscript(me);
 
 /* init  my profile */
-babyAdmin.init_ctxt();
+babyAdmin.init_ctxt(me);
 
 
-//babyAdmin.send(me,game_ctxt);
+
+
+
+
+
 
 
 

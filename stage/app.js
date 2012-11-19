@@ -95,9 +95,7 @@ app.configure('development', function(){
      */
     app.post('/player/getme', function(req, res){
   
-
   	player.getAplayer(req, res);
-//	res.send(req.body);
     });
 
 
@@ -129,7 +127,10 @@ subscription_log.errback(function(error) {
 var subscription = bayeux.getClient().subscribe('/controller', function(game_ctxt) {
 
 
-    console.log("HERE");
+    console.log("HERE IS CONTROLLER");
+
+    console.log(game_ctxt);
+
     //TODO here update database
     //database: takes player according to game id and strated set to true
     //reset started to false
