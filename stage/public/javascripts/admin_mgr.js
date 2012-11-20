@@ -45,7 +45,7 @@ var me = babyAdmin.init_connection();
 
 babyAdmin.subscript(me);
 
-/* init  my profile */
+/* init my profile */
 babyAdmin.init_ctxt(me);
 
 

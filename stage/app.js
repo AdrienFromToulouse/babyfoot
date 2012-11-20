@@ -107,7 +107,6 @@ app.configure('development', function(){
  */
 var subscription_log = bayeux.getClient().subscribe('/controller/logplayer', function(player_logged) {
 
-    console.log("ADD PLAYER _______________");
     player.addPlayer(player_logged);
 
 });
