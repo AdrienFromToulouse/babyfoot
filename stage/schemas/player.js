@@ -338,8 +338,6 @@ exports.updatePlayerStatus = function(req, res, status){
     
     var ready_req = (status == true) ? false : true;
 
-    var playerSchema = createSchema();
-
     console.log("update score player");
 
     db = mongoose.createConnection('localhost', 'asiance_babyfoot');
@@ -352,8 +350,27 @@ exports.updatePlayerStatus = function(req, res, status){
     	query.exec(function (err, player) {
     	    if (err) { console.log(err); }
 
-	    player.update({"ready": status });
+	    //player.update({"ready": status });
 	    mongoose.disconnect();
     	});
+    });
+};
+
+/**
+ * To switch from ready to notready.
+ */
+exports.unsubscriptPlayer = function(babyId, position){
+    
+
+    console.log("unsubscript  player");
+
+    db = mongoose.createConnection('localhost', 'asiance_babyfoot');
+
+    var Player = db.model('Player', playerSchema);
+
+    db.once('open', function () {
+
+	Player.update({position: position, babyId: babyId, ready: true},{"ready": false },
+		      function(){mongoose.disconnect();});
     });
 };

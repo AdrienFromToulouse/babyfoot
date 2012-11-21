@@ -179,20 +179,24 @@ bayeux.bind('subscribe', function(clientId, channel) {
 bayeux.bind('unsubscribe', function(clientId, channel) {
     console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
 
-    //TODO: set the started status to false
-    //updatePlayer(game.ctxt.player_ready = false);
+    var elem = channel.split('/');
 
-    for( var i=0 ; i < clients.length ; i++) {
-        if( clients[i].clientId == clientId ) {
-            clients.splice(i, 1);
-	    console.log('[UNSUBSCRIBED CLIENT] ' + clientId);
-            break;
-        }
-    }
-    for( var i=0 ; i < clients.length ; i++ ){
+    position = elem[2] - 0;
+    babyId = elem[4] - 0;
 
-	console.log('[NEW CLIENT ARRAY AFTER DELETE'+ i + ']' + clients[i].clientId);
-    }
+    /* Set the started status to false */
+    player.unsubscriptPlayer(babyId, position);
+    // for( var i=0 ; i < clients.length ; i++) {
+    //     if( clients[i].clientId == clientId ) {
+    //         clients.splice(i, 1);
+    // 	    console.log('[UNSUBSCRIBED CLIENT] ' + clientId);
+    //         break;
+    //     }
+    // }
+    // for( var i=0 ; i < clients.length ; i++ ){
+
+    // 	console.log('[NEW CLIENT ARRAY AFTER DELETE'+ i + ']' + clients[i].clientId);
+    // }
 });
 
 bayeux.bind('publish', function(clientId, channel, data) {
