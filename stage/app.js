@@ -97,8 +97,6 @@ app.configure('development', function(){
   
   	player.getAplayer(req, res);
     });
-
-
 });
 
 
@@ -126,16 +124,20 @@ subscription_log.errback(function(error) {
 var subscription = bayeux.getClient().subscribe('/controller', function(game_ctxt) {
 
 
-    console.log("HERE IS CONTROLLER");
+    /*get all ready players to start game (change status and create game) */
 
-    console.log(game_ctxt);
+    console.log("HERE IS CONTROLLER");
+    
+    player.updatePlayerScore(game_ctxt.babyId,
+			     game_ctxt.position, 
+			     game_ctxt.score);
 
     //TODO here update database
-    //database: takes player according to game id and strated set to true
+    //database: takes player according to game id and started set to true
     //reset started to false
     switch(eval(game_ctxt.position))
     {
-    case 1:
+    case 1: 
 	bayeux.getClient().publish('/player/2/baby/'+game_ctxt.babyId, game_ctxt);
 	bayeux.getClient().publish('/player/3/baby/'+game_ctxt.babyId, game_ctxt);
 	bayeux.getClient().publish('/player/4/baby/'+game_ctxt.babyId, game_ctxt);
@@ -184,8 +186,13 @@ bayeux.bind('unsubscribe', function(clientId, channel) {
     position = elem[2] - 0;
     babyId = elem[4] - 0;
 
+
+    console.log(elem[3]);
+
     /* Set the started status to false */
-    player.unsubscriptPlayer(babyId, position);
+    if(elem[3] == 'baby'){
+	player.unsubscriptPlayer(babyId, position);
+    }
     // for( var i=0 ; i < clients.length ; i++) {
     //     if( clients[i].clientId == clientId ) {
     //         clients.splice(i, 1);

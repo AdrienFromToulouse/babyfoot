@@ -1,7 +1,12 @@
 var babyAdmin = {
 
+    MyGameCtxt = {
 
-    MY_PROFILE : "",
+	"babyId" : "",
+	"position" : "",
+	"ready" : "",
+	"score" : "",
+    },
 
     /**
      * Get the current URL parameters (one by one).
@@ -13,9 +18,6 @@ var babyAdmin = {
 	    (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
 	);
     },
-
-
-
 
     /**
      *
@@ -57,8 +59,6 @@ var babyAdmin = {
 	    },
 	    success: function(me) {
 
-		babyAdmin.MY_PROFILE = me;
-
 		var htmlString = "";
 
 		htmlString = '<img src="'+me.personal.picture+'">';
@@ -66,8 +66,12 @@ var babyAdmin = {
 		htmlString = '<span>'+me.personal.first_name+'</span>';
 		$("#myname").html(htmlString);	
 
+		babyAdmin.MyGameCtxt.position = me.position;
+		babyAdmin.MyGameCtxt.babyId = me.babyId;
+		babyAdmin.MyGameCtxt.score = me.stats.score;
+
 		/* send my profile to the other players */
-		babyAdmin.send(client,babyAdmin.MY_PROFILE);
+		babyAdmin.send(client, babyAdmin.MyGameCtxt);
 	    },
 	    error: function() {
 		console.log("error");
@@ -149,5 +153,4 @@ var babyAdmin = {
 	    alert(error.message);
 	});
     },
-
 };

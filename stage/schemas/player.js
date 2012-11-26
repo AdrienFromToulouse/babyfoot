@@ -45,12 +45,7 @@ var playerSchema = new mongoose.Schema({
     team: String,
 
     stats:{
-	score_attack: Number,  //scored as attacker
-	score_defense: Number, //scored as defenser
-	gamelles: Number,
-	pissettes: Number,
-	reprises: Number,
-	cendriers: Number
+	score: Number,
     }
 });
 
@@ -233,11 +228,6 @@ exports.updateScore = function(message){
  * Add player to the DB.
  */
 exports.addPlayer = function(player_logged){
-
-
-    console.log(player_logged.babyId);
-    console.log(player_logged.babyId);
-    console.log(player_logged.babyId);
     /*
      * Connect and write DB
      */
@@ -288,13 +278,6 @@ exports.addPlayer = function(player_logged){
 	    console.log("[INFO] player logged saved");
 	    mongoose.disconnect();
 	});
-
-
-
-	// For debug
-	// Player.find(function (err, players) {
-    	//     console.log(players);
-	// });
     });
 };
 
@@ -302,7 +285,7 @@ exports.addPlayer = function(player_logged){
 
 
 /**
- * After login it retrieve all the data corresponding to the current player (me)
+ * After login it retrieves all the data corresponding to the current player (me)
  *
  */
 exports.getAplayer = function(req, res){
@@ -359,7 +342,8 @@ exports.updatePlayerStatus = function(req, res, status){
 /**
  * To switch from ready to notready.
  */
-exports.unsubscriptPlayer = function(babyId, position){
+exports.unsubscriptPlayer = function(babyId,
+				     position){
     
 
     console.log("unsubscript  player");
@@ -374,3 +358,30 @@ exports.unsubscriptPlayer = function(babyId, position){
 		      function(){mongoose.disconnect();});
     });
 };
+
+/**
+ * Update current player: score etc etc....
+ */
+exports.updatePlayerScore = function(babyId,
+				     position, 
+				     score){
+
+    console.log("update me");
+
+    db = mongoose.createConnection('localhost', 'asiance_babyfoot');
+
+    var Player = db.model('Player', playerSchema);
+
+    db.once('open', function () {
+
+	Player.update({position: position, babyId: babyId, ready: true},
+		      {stats: {	"score":  score}},
+		      function(){mongoose.disconnect();});
+    });
+};
+
+
+
+
+
+
