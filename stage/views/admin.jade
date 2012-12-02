@@ -11,9 +11,8 @@ html(xmlns="http://www.w3.org/1999/xhtml")
     link(href="/stylesheets/ie.css", media="screen, projection", rel="stylesheet", type="text/css")
     <![endif]-->
 
-    link(rel='stylesheet', href='/stylesheets/admin.css')
+    // link(rel='stylesheet', href='/stylesheets/admin.css')
     script(type='text/javascript', src='/javascripts/jquery-1.8.0.min.js')
-    // script(type="text/javascript", src="/javascripts/jquery.backstretch.min.js")
     script(type='text/javascript', src='/faye/browser/faye-browser.js')
 
     script(type='text/javascript', src='/javascripts/admin.js')
@@ -27,60 +26,40 @@ html(xmlns="http://www.w3.org/1999/xhtml")
 
   #page
 
-    #startStop
-      img#start(src="../images/btn_start.png", alt="startstop")
+    
+      #plus
 
-    #team1
-      div#scoreTeam1Score
-      img#scoreTeam1Panel(src="../images/team1score.png", alt="team1score")
+      #minus
 
-    #team2
-      div#scoreTeam2Score
-      img#scoreTeam2Panel(src="../images/team2score.png", alt="team2score")
+      #me.player
+        .pbody
+          #myscore 
+          .photo
+        .pfooter
+          p
 
-    #player1
-      div#scorePlayer1
-      img#p1r1c1(src="../images/pxty.png", alt="player")
-      #mypic
-      #myname
-      img#p1panel(src="../images/redteam.png", alt="redteam")
-      img#p1plus(src="../images/plus.png", alt="plus")
-      img#p1minus(src="../images/minus.png", alt="minus")
+      #myco.player
+        .pbody
+          #mycoscore
+          .photo
+        .pfooter
+          p
+
+      #adv1.player
+        .pbody
+          #adv1score 
+          .photo
+        .pfooter
+          p
+
+      #adv2.player
+        .pbody
+          #adv2score
+          .photo
+        .pfooter
+          p
 
 
+      #score_team1
 
-    // #player1
-    //   div#scorePlayer1
-    //   img#p1r1c1(src="../images/pxty.png", alt="player")
-    //   #p1pic
-    //   #p1name
-    //   img#p1panel(src="../images/redteam.png", alt="redteam")
-    //   img#p1plus(src="../images/plus.png", alt="plus")
-    //   img#p1minus(src="../images/minus.png", alt="minus")
-
-    #player2
-      div#scorePlayer2
-      img#p2r1c1(src="../images/pxty.png", alt="")
-      #p2pic
-      #p2name
-      img#p2panel(src="../images/redteam.png", alt="")
-      img#p2plus(src="../images/plus.png", alt="plus")
-      img#p2minus(src="../images/minus.png", alt="")
-  
-    #player3
-      div#scorePlayer3
-      img#p3r1c1(src="../images/pxtyblue.png", alt="")
-      #p3pic
-      #p3name
-      img#p3panel(src="../images/blueteam.png", alt="")
-      img#p3plus(src="../images/plus.png", alt="")
-      img#p3minus(src="../images/minus.png", alt="")
-
-    #player4
-      div#scorePlayer4
-      img#p4r1c1(src="../images/pxtyblue.png", alt="")
-      #p4pic
-      #p4name
-      img#p4panel(src="../images/blueteam.png", alt="")
-      img#p4plus(src="../images/plus.png", alt="")
-      img#p4minus(src="../images/minus.png", alt="")
+      #score_team2

@@ -125,16 +125,13 @@ var subscription = bayeux.getClient().subscribe('/controller', function(game_ctx
 
 
     /*get all ready players to start game (change status and create game) */
-
-    console.log("HERE IS CONTROLLER");
-    
+   
+    /* update the DB of the current player */ 
     player.updatePlayerScore(game_ctxt.babyId,
 			     game_ctxt.position, 
 			     game_ctxt.score);
 
-    //TODO here update database
-    //database: takes player according to game id and started set to true
-    //reset started to false
+    /* and then send his context to the others */
     switch(eval(game_ctxt.position))
     {
     case 1: 
@@ -161,6 +158,8 @@ var subscription = bayeux.getClient().subscribe('/controller', function(game_ctx
 
     }
 
+    /*get all ready players and compute the global context to be send
+      or update a global context based in index ICD?*/
 //    bayeux.getClient().publish('/index',controller_to_public);
 });
 
