@@ -39,11 +39,9 @@ function admin_send(buffer_out){
     var publication = client.publish('/admin', buffer_out);
 
     publication.callback(function() {
-	console.log('Message received by server!');
     });
 
     publication.errback(function(error) {
-	console.log('There was a problem: ' + error.message);
     });
 }
 
@@ -90,7 +88,7 @@ var subscription = client.subscribe('/channel_admin', function(message) {
 });
 
 subscription.callback(function() {
-    console.log('Subscription is now active!');
+
 });
 
 subscription.errback(function(error) {
