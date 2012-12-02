@@ -18,8 +18,6 @@ exports.show = function(req, res){
 /*-----------------------------------------------------------*/
 exports.addPlayer = function(req, res){
 
-    console.log("addPlayer "+req.body.name);
-
     /*
      * includes
      */
@@ -42,14 +40,8 @@ exports.addPlayer = function(req, res){
     var playerSchema = player.getSchema();
     var Player = db.model('Player', playerSchema);
     var player = new Player;
-   
-    db.on('error', console.error.bind(console, 'connection add player error:'));
-    db.on('close', console.error.bind(console, 'closed:'));
-    db.on('open', console.error.bind(console, 'opened:'));
 
     db.once('open', function (err, db) {
-
-	console.log("saved");
 
 	player.personal.name = req.body.name;
 
@@ -83,7 +75,6 @@ exports.addPlayer = function(req, res){
 
 	player.save(function (err) {
     	    if(err){
-    		console.log('ERROR');
     	    }
 	    mongoose.disconnect();
 	});
