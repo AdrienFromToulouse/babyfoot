@@ -54,7 +54,7 @@ var playerSchema = new mongoose.Schema({
  * Used in tests.
  *
  */
-exports.getSchema = function(){
+getSchema = function(){
     return playerSchema;
 };
 
@@ -66,73 +66,46 @@ exports.getSchema = function(){
  * When a new Index page client connect...
  *
  */
-exports.getCurrentPlayers = function(bayeux){
+exports.getCurrentPlayers = function(bayeux, position, babyId){
 
     var message = {
-    	"score" :    [0, 0, 0, 0, 0, 0, 0, 0],
-    	"gamelle" :  [0, 0, 0, 0, 0, 0, 0, 0],
-    	"cendrier" : [0, 0, 0, 0, 0, 0, 0, 0],
-    	"pissette" : [0, 0, 0, 0, 0, 0, 0, 0],
-    	"reprise" :  [0, 0, 0, 0, 0, 0, 0, 0],
-    	"player" :   [{"imageP1": "", 
-    		       "firstnameP1": ""},
-    		      {"imageP2": "", 
-    		       "firstnameP2": ""},
-    		      {"imageP3": "", 
-    		       "firstnameP3": ""},
-    		      {"imageP4": "", 
-    		       "firstnameP4": ""}]
+    	"score" :   "",
+    	"name" :  "",
+	"picture": "",
+	"position": "",
+	"babyId": ""
     };
+
+
 
     db = mongoose.createConnection('localhost', 'asiance_babyfoot');
 
     var Player = db.model('Player', playerSchema);
     var player = new Player;
-
     
     db.once('open', function () {
 
+    console.log("GET CURRENT PLAYERS");
 
-	var query = Player.find().sort({ logged_at: 'desc'}).limit(4);
+	var query = Player.find({ ready: true }).limit(4);
     	query.exec(function (err, players) {
 
-	    for(i = 0 ; i < PLYR_NBROF_PLAYER ; i++){
+		console.log("LENGTH "+players.length);
 
-    		if(players[i]){
+	    for(i = 0 ; i < players.length ; i++){
 
-		    switch(players[i].position)
-		    {
-		    case 1:
-			message.player[players[i].position-1].imageP1 = '<img src="'+players[i].personal.picture+'">';
-			message.player[players[i].position-1].firstnameP1 = players[i].personal.first_name;
-			message.score[P1_ATTACKER] = players[i].stats.score_attack;
-			message.score[P1_DEFENSER] = players[i].stats.score_defense;
-			break;
-		    case 2:
-			message.player[players[i].position-1].imageP2 = '<img src="'+players[i].personal.picture+'">';
-			message.player[players[i].position-1].firstnameP2 = players[i].personal.first_name;
-			message.score[P2_ATTACKER] = players[i].stats.score_attack;
-			message.score[P2_DEFENSER] = players[i].stats.score_defense;
-			break;
-		    case 3:
-			message.player[players[i].position-1].imageP3 = '<img src="'+players[i].personal.picture+'">';
-			message.player[players[i].position-1].firstnameP3 = players[i].personal.first_name;
-			message.score[P3_ATTACKER] = players[i].stats.score_attack;
-			message.score[P3_DEFENSER] = players[i].stats.score_defense;
-			break;
-		    case 4:
-			message.player[players[i].position-1].imageP4 = '<img src="'+players[i].personal.picture+'">';
-			message.player[players[i].position-1].firstnameP4 = players[i].personal.first_name;
-			message.score[P4_ATTACKER] = players[i].stats.score_attack;
-			message.score[P4_DEFENSER] = players[i].stats.score_defense;
-			break;
-		    default:
-			break;
-		    }
-		}
-		bayeux.getClient().publish('/channel_index',message);
-		mongoose.disconnect();
+//    		if(players[i]){
+
+		message.picture = players[i].personal.picture;
+		message.name = players[i].personal.name;
+		message.score = players[i].stats.score;
+		message.position = players[i].position;
+		message.babyId = players[i].babyId;
+
+
+		bayeux.getClient().publish('/player/'+position+'/baby/'+babyId, message);
     	    }
+	    mongoose.disconnect();
 	});
     });
 };
@@ -255,6 +228,7 @@ exports.addPlayer = function(player_logged){
 	player.personal.email = player_logged.email; 
 
 	player.logged_at = new Date().getTime();
+
 	player.babyId = player_logged.babyId;
 	player.position = player_logged.position;
 
@@ -264,19 +238,15 @@ exports.addPlayer = function(player_logged){
 	else{
 	    player.team = 2;
 	}
-	player.stats.score_attack = 0;
-	player.stats.score_defense = 0;
-	player.stats.gamelles = 0;
-	player.stats.pissettes = 0;
-	player.stats.reprises = 0;
-	player.stats.cendriers = 0;
+	player.stats.score = 0;
 
 	player.save(function (err) {
     	    if(err){
     		console.log('ERROR');
-    	    }
-	    console.log("[INFO] player logged saved");
-	    mongoose.disconnect();
+		mongoose.disconnect();
+    	    }else{
+		console.log("[INFO] player logged saved");
+		mongoose.disconnect();}
 	});
     });
 };
