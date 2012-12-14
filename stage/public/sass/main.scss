@@ -6,6 +6,13 @@
 
 @import "compass/css3/images";
 
+
+
+/*JUST TO TEST*/
+@import "../images/test/*.png";
+@include all-scores-sprites;
+
+
 body{
     @include background-image(radial-gradient(circle, 
 					      #ffffff 150px,transparent),

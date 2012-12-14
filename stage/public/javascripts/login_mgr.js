@@ -85,8 +85,8 @@ function savePlayerNPost(response){
 	else{
 	    params['description'] = 'Watch '+response.first_name+' playing Babyfoot! Go ahead and support him!';
 	}
-	params['link'] = 'http://livegameup.asiance-dev.com:3100/';
-	params['picture'] = 'http://livegameup.asiance-dev.com:3100/images/asiance.jpg';
+	params['link'] = 'http://livegameup.asiance-dev.com:3300/';
+	params['picture'] = 'http://livegameup.asiance-dev.com:3300/images/asiance.jpg';
 	params['caption'] = 'Watch me live playing Babyfoot!!';
 
  	FB.api('/me/feed', 'post', params, function(response) {
@@ -99,8 +99,8 @@ function savePlayerNPost(response){
     		if(errorID.exec(response.error.message) == "#506"){
     		}
     	    } else {
-
-		window.location = "/admin?babyId="+babyId+"&position="+position+"&fbId="+response.id;
+		/* thanks to the facebook delay the player has enough time to be saved before the redirect*/
+	 	window.location = "/admin?babyId="+babyId+"&position="+position+"&fbId="+response.id;
 
     	    } 
 	});

@@ -124,12 +124,16 @@ subscription_log.errback(function(error) {
 var subscription = bayeux.getClient().subscribe('/controller', function(game_ctxt) {
 
 
-    /*get all ready players to start game (change status and create game) */
-   
     /* update the DB of the current player */ 
-    player.updatePlayerScore(game_ctxt.babyId,
-			     game_ctxt.position, 
-			     game_ctxt.score);
+    /* FOUND ANOTHER WAY BECAUSE TO SLOW SO THE ONSUBSCRIPT EVENT CALLING GET CURRENT PLAYER IS EMPTY */
+    // player.updatePlayerScore(game_ctxt.babyId,
+    // 			     game_ctxt.position, 
+    // 			     game_ctxt.score);
+
+
+    /* get all ready players */
+//    player.getCurrentPlayers(bayeux);
+
 
     /* and then send his context to the others */
     switch(eval(game_ctxt.position))
@@ -155,7 +159,6 @@ var subscription = bayeux.getClient().subscribe('/controller', function(game_ctx
 	bayeux.getClient().publish('/player/3/baby/'+game_ctxt.babyId, game_ctxt);
 	break;
     default:
-
     }
 
     /*get all ready players and compute the global context to be send
@@ -173,20 +176,26 @@ subscription.errback(function(error) {
 
 
 bayeux.bind('subscribe', function(clientId, channel) {
-    console.log('[SUBSCRIBE] ' + clientId + ' -> ' + channel);
-    clients.push( {clientId: clientId , channel: channel} );
+//    console.log('[SUBSCRIBE] ' + clientId + ' -> ' + channel);
+
+    /* whatever the case-sensitive */
+    if( channel.match(/player/i) ){
+
+	var elem = channel.split('/');
+	var position = elem[2] - 0;
+	var babyId = elem[4] - 0;
+
+	player.getCurrentPlayers(bayeux, position, babyId);
+    }
 });
 
 bayeux.bind('unsubscribe', function(clientId, channel) {
-    console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
+  //  console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
 
     var elem = channel.split('/');
 
-    position = elem[2] - 0;
-    babyId = elem[4] - 0;
-
-
-    console.log(elem[3]);
+    var position = elem[2] - 0;
+    var babyId = elem[4] - 0;
 
     /* Set the started status to false */
     if(elem[3] == 'baby'){

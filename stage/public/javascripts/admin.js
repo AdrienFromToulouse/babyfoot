@@ -6,7 +6,7 @@ var babyAdmin = {
 	"position" : "",
 	"ready" : "",
 	"score" : "",
-	"pic" : "",
+	"picture" : "",
 	"name" : "",
 	"partner_position" : ""
     },
@@ -64,6 +64,8 @@ var babyAdmin = {
 
 		var htmlString = "";
 
+		console.log(me);
+
 		htmlString = '<img src="'+me.personal.picture+'">';
 		$("#me .photo").html(htmlString);
 		htmlString = '<span>'+me.personal.first_name+'</span>';
@@ -74,7 +76,7 @@ var babyAdmin = {
 		babyAdmin.MyGameCtxt.position = me.position;
 		babyAdmin.MyGameCtxt.babyId = me.babyId;
 		babyAdmin.MyGameCtxt.score = me.stats.score;
-		babyAdmin.MyGameCtxt.pic = me.personal.picture;
+		babyAdmin.MyGameCtxt.picture = me.personal.picture;
 		babyAdmin.MyGameCtxt.name = me.personal.first_name;
 
 		babyAdmin.WhoIsMyPartner(me.position);
@@ -120,38 +122,54 @@ var babyAdmin = {
 
 	var subscription = client.subscribe('/player/'+position+'/baby/'+babyId, function(game_ctxt) {
 
+	    console.log(game_ctxt);
+
 	    /* if the player is my partner */
 	    if( game_ctxt.position == babyAdmin.MyGameCtxt.partner_position ){
+
+		console.log("is my partner");
+
 		babyAdmin.updateMyPartner(game_ctxt);
 	    }
-	    /* this player is not my partner */
-	    else{
+	    /* this player is not my partner and its not even me*/
+	    else if(game_ctxt.position != babyAdmin.MyGameCtxt.position){
  
 		var htmlString = "";
 
 		switch(eval(game_ctxt.position))
 		{
 		case 1:
-		    htmlString = '<img src="'+game_ctxt.pic+'">';
+		console.log("is not my partner pos1");
+
+		    htmlString = '<img src="'+game_ctxt.picture+'">';
 		    $("#adv1 .photo").html(htmlString);
 		    htmlString = '<span>'+game_ctxt.name+'</span>';
 		    $("#adv1 .pfooter").html(htmlString);	
 		    /*TODO: update score also*/
 		    break;
 		case 2:
-		    htmlString = '<img src="'+game_ctxt.pic+'">';
+		console.log("is not my partner pos2");
+
+
+		    htmlString = '<img src="'+game_ctxt.picture+'">';
 		    $("#adv2 .photo").html(htmlString);
 		    htmlString = '<span>'+game_ctxt.name+'</span>';
 		    $("#adv2 .pfooter").html(htmlString);
 		    break;
 		case 3:
-		    htmlString = '<img src="'+game_ctxt.pic+'">';
+
+		console.log("is not my partner pos3");
+
+		    htmlString = '<img src="'+game_ctxt.picture+'">';
 		    $("#adv1 .photo").html(htmlString);
 		    htmlString = '<span>'+game_ctxt.name+'</span>';
 		    $("#adv1 .pfooter").html(htmlString);
 		    break;
 		case 4:
-		    htmlString = '<img src="'+game_ctxt.pic+'">';
+		console.log("is not my partner pos4");
+
+
+		    htmlString = '<img src="'+game_ctxt.picture+'">';
 		    $("#adv2 .photo").html(htmlString);
 		    htmlString = '<span>'+game_ctxt.name+'</span>';
 		    $("#adv2 .pfooter").html(htmlString);
@@ -209,7 +227,7 @@ var babyAdmin = {
 	var babyId = this.getURLParameter("babyId");
 	var position = this.getURLParameter("position");
 	
-  	var htmlString = '<img src="'+myPartner.pic+'">';
+  	var htmlString = '<img src="'+myPartner.picture+'">';
 	$("#myco .photo").html(htmlString);
 	htmlString = '<span>'+myPartner.name+'</span>';
 	$("#myco .pfooter").html(htmlString);

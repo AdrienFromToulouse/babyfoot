@@ -1,280 +1,215 @@
+@import "compass/reset";
 @import "compass/utilities/sprites";
 @import "../images/scores/*.png";
 @include all-scores-sprites;
 @import "compass/css3/text-shadow";
-
 @import "compass/css3/images";
-
 
 body{
     @include background-image(radial-gradient(circle, 
-					      #ffffff 10px,transparent),
+					      #ffffff 200px,transparent),
 			      image-url('../images/bg-pattern.jpg'));
 }	
 
-#baby {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#start{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 
 #page{
-    width: 90%;
-    margin-left: auto;
+    width: 1010px;
+    margin-top: 4%;
     margin-right: auto;
-}
+    margin-left: auto;
+    position: relative;
 
-
-
-@media screen and (min-width: 680px){
-
-    body{
-	background-size: 980px 720px;
-    }
-
-
-
-    #baby {
-	margin-top: 3%;
-	width: 52.488281%;
-    }
-
-    #start{
-
-
-
-    }
-   
-
-
-    /*team scores*/
-    #scoreTeam1Panel {
-	position: absolute;
-	left: 45.6%;
-	top: 69.3%;
-	height: 76px;
-	width: 96px;
-    }
-    #scoreTeam2Panel {
-	position: absolute;
-	left: 44.1%;
-	top: 25%;
-	height: 95px;
-	width: 118px;
-    }
-    #scoreTeam2Score {
+    h1{
     	position: absolute;
-	left: 45.9%;
-	top: 27.5%;
-    	height: 66px;
-    	width: 95px;
-    	z-index: 2;
+    	text-align: center;
+    	left:19%;
+    	font-weight: bold;
+    	font-size:57px;
+    	/* text-transform:uppercase; */
+    	font-family: "Interstate";
+    	color: #FFFFFF;
+    	@include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 4px 8px 0, rgba(black, 0.2) 3px 3px 0);
     }
-    #scoreTeam1Score {
+
+
+    div.panel{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: -10%;
+    }
+    #panel_img{
+	margin-top: 5%;
+	width: 100%;
+    }
+    
+
+    div.player {
+	position: absolute;
+	top: 142px;
+
+	.photo img{	
+	    width: 147px;
+	    height: 147px;
+	}
+
+	.pbody{
+	    width: 98px;
+	}
+
+
+
+	.pheader1,.pheader2,.pfooter3,.pfooter4{
+	    @include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 2px 2px 0, rgba(black, 0.2) 3px 3px 0);
+
+	}
+
+	.pheader1,.pheader2{
+	    margin-left: 129px;
+	    margin-top: 62px;
+	    text-align: center;
+	    font-weight: bold;
+	    font-size:14px;
+	    text-transform:uppercase;
+	    font-style:italic;
+	    font-family: "Interstate";
+	    color: #FFFFFF;
+	}
+	.pheader2{
+	    margin-left: 319px;
+	    margin-top: 62px;
+	}
+
+	&#player1 {
+	    left: 99px;
+
+
+	    #score1{
+		position: absolute;
+		left: 22px;
+		top: 153px;
+		width: 51px;
+		height: 35px;
+	    }
+	    .photo{
+		width: 158px;
+		height: 158px;
+		position: absolute;
+		left: 83px;
+		top: 95px;
+	    }
+
+	}
+	&#player2 {
+	    left: 390px;
+	    
+	    #score2{
+		position: absolute;
+		left: 433px;
+		top: 153px;
+		width: 51px;
+		height: 35px;
+	    }
+	    .photo{
+		width: 158px;
+		height: 158px;
+		position: absolute;
+		left: 274px;
+		top: 95px;
+	    }
+
+	}
+
+
+	.pfooter3,.pfooter4{
+	    margin-left: 216px;
+	    margin-top: 576px;
+	    text-align: center;
+	    font-weight: bold;
+	    font-size:14px;
+	    text-transform:uppercase;
+	    font-style:italic;
+	    font-family: "Interstate";
+	    color: #FFFFFF;
+	}
+
+	.pfooter4{
+	    margin-left: 700px;
+	    margin-top: 576px;
+	}
+
+
+	&#player3 {
+	    top: 500px;
+	    left: 10px;
+
+	    #score3{
+		position: absolute;
+		left: 111px;
+		top: 470px;
+		width: 51px;
+		height: 35px;
+	    }
+	    .photo{
+		position: absolute;
+		left: 172px;
+		top: 412px;
+	    }
+
+	}
+	&#player4 {
+	    top: 500px;
+	    left: 10px;
+
+	    #score4{
+		width: 51px;
+		height: 35px;
+		position: absolute;
+		left: 814px;
+		top: 470px;
+	    }
+	    .photo{
+		width: 158px;
+		height: 158px;
+		position: absolute;
+		left: 654px;
+		top: 412px;
+	    }
+	}
+    }
+    div#score_team1{
+	width: 90px;
+	height: 66px;
+	position: absolute;
+	left: 452px;
+	top: 258px;
+    }
+    div#score_team2{
+	width: 90px;
+	height: 66px;
+	position: absolute;
+	left: 452px;
+	top: 975px;
+    }
+    div#screen{
+	position: absolute;
+	top: 418px;
+	left: 129px;
+
+	#stream_vid{
+	    width: 434px;
+	    height: 273px;
+	}
+    }
+
+    .fb_iframe_widget{
     	position: absolute;
-	left: 45.9%;
-	top: 69.4%;
-    	height: 66px;
-    	width: 95px;
-    	z-index: 2;
-    }
+	left: 98px;
+    	top: 1235px;
+    	height: 670px !important;
+    	overflow-y: hidden !important;
+    	overflow-x:hidden !important;
+	margin-top: 10px;  
 
-    /*player scores*/
-    #scorePlayer1 {
-    	position: absolute;
-	left: 25.1%;
-	top: 5.9%;
-    	height: 32px;
-    	width: 50px;
-    	z-index: 2;
-    }
-    #scorePlayer2 {
-    	position: absolute;
-	left: 18.1%;
-	top: 53%;
-    	height: 32px;
-    	width: 50px;
-    	z-index: 2;
-    }
-    #scorePlayer3 {
-    	position: absolute;
-	left: 68%;
-	top: 5.9%;
-    	height: 32px;
-    	width: 50px;
-    	z-index: 2;
-    }
-    #scorePlayer4 {
-    	position: absolute;
-	left: 77%;
-	top: 53%;
-    	height: 32px;
-    	width: 50px;
-    	z-index: 2;
-    }
-
-
-    #p1r1c1 {
-	position: absolute;
-	left: 18.5%;
-	top: 14.6%;
-    }
-    #p2r1c1 {
-	position: absolute;
-	left: 11.5%;
-	top: 61.6%;
-    }
-    #p3r1c1 {
-	position: absolute;
-	right: 20.5%;
-	top: 14.6%;
-    }
-    #p4r1c1 {
-	position: absolute;
-	right: 11.5%;
-	top: 61.6%;
-    }
-    #p1panel {
-	position: absolute;
-	left: 16.89%;
-	top: 4.6%;
-    }
-    #p2panel {
-	position: absolute;
-	left: 9.89%;
-	top: 51.6%;
-    }
-    #p3panel {
-	position: absolute;
-	right: 18.89%;
-	top: 4.6%;
-    }
-    #p4panel {
-    	position: absolute;
- 	right: 9.89%;
-	top: 51.6%;
-    }
-
-    #p1plus {
-	position: absolute;
-	left: 19%;
-	top: 7.6%;
-    }
-    #p1minus {
-	position: absolute;
-	left: 32.75%;
-	top: 8.6%;
-    }
-    #p2plus {
-    	position: absolute;
-    	left: 12%;
-	top: 54.6%;
-    }
-    #p2minus {
-	position: absolute;
-	left: 25.5%;
-	top: 55.6%;
-    }
-    #p3plus {
-    	position: absolute;
-	right: 35%;
-	top: 7.6%;
-    }
-    #p3minus {
-	position: absolute;
-	right: 21.4%;
-	top: 8.6%;
-    }
-    #p4plus {
-	position: absolute;
-	left: 70.5%;
-	top: 54.6%;
-    }
-    #p4minus {
-	position: absolute;
-	right: 12.3%;
-	top: 55.6%;
-    }
- 
-    #p1pic img {
-	position: absolute;
-	left: 21.5%;
-	width: 123px;
-	top: 19%;
-    }
-    #p2pic img {
-    	position: absolute;
-	left: 14.5%;
-	width: 123px;
-	top: 66%;
-    }
-    #p3pic img {
-	position: absolute;
-	right: 23.6%;
-	width: 123px;
-	top: 19%;
-    }
-    #p4pic img {
-	position: absolute;
-	right: 14.6%;
-	width: 123px;
-	top: 66%;
-    }
-
-    #p1name {
-	position: absolute;
-	left: 25%;
-	width: 150px;
-	top: 40%;
-	font-family: "Interstate Bold, Times";
-	font-style: italic;
-	font-size: 20pt;
-	color: white;
-	font-weight: 600;
-
-    }
-    #p2name {
-	position: absolute;
-	left: 18%;
-	width: 150px;
-	top: 87%;
-	font-family: "Interstate Bold, Times";
-	font-style: italic;
-	font-size: 20pt;
-	color: white;
-	font-weight: 600;
-
-    }
-    #p3name{
-	position: absolute;
-	right: 17%;
-	width: 150px;
-	top: 40%;
-	font-family: "Interstate Bold, Times";
-	font-style: italic;
-	font-size: 20pt;
-	color: white;
-	font-weight: 600;
-
-    }
-    #p4name{
-	position: absolute;
-	right: 8%;
-	width: 150px;
-	top: 87%;
-	font-family: "Interstate Bold, Times";
-	font-style: italic;
-	font-size: 20pt;
-	color: white;
-	font-weight: 600;
-
-    }
-
+      }
 }
