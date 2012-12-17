@@ -1,4 +1,4 @@
-/* line 17, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,45 +20,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -68,116 +68,222 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   background: url('/images/../images/scores-s227876109c.png') no-repeat;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-big_00 {
   background-position: 0 -585px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-big_01 {
   background-position: 0 -520px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-big_02 {
   background-position: 0 -195px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-big_03 {
   background-position: 0 -260px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-big_04 {
   background-position: 0 -65px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-big_05 {
   background-position: 0 -130px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-big_06 {
   background-position: 0 -325px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-big_07 {
   background-position: 0 -455px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-big_08 {
   background-position: 0 -390px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-big_09 {
   background-position: 0 0;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-small_00 {
   background-position: 0 -650px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-small_01 {
   background-position: 0 -956px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-small_02 {
   background-position: 0 -718px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-small_03 {
   background-position: 0 -752px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-small_04 {
   background-position: 0 -888px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-small_05 {
   background-position: 0 -786px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-small_06 {
   background-position: 0 -854px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-small_07 {
   background-position: 0 -922px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-small_08 {
   background-position: 0 -820px;
 }
 
-/* line 60, ../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
 .scores-small_09 {
   background-position: 0 -684px;
 }
 
-/* line 9, ../sass/main.scss */
-body {
-  background-image: -webkit-gradient(radial, circle, 0, circle, 100, color-stop(150px, #ffffff), color-stop(100%, transparent)), url('/images/../images/bg-pattern.jpg?1352393320');
-  background-image: -webkit-radial-gradient(circle, #ffffff 150px, transparent), url('/images/../images/bg-pattern.jpg?1352393320');
-  background-image: -moz-radial-gradient(circle, #ffffff 150px, transparent), url('/images/../images/bg-pattern.jpg?1352393320');
-  background-image: -o-radial-gradient(circle, #ffffff 150px, transparent), url('/images/../images/bg-pattern.jpg?1352393320');
-  background-image: radial-gradient(circle, #ffffff 150px, transparent), url('/images/../images/bg-pattern.jpg?1352393320');
+/*JUST TO TEST*/
+/* line 90, ../images/test/*.png */
+.test-sprite {
+  background: url('/images/../images/test-sdd29175e5c.png') no-repeat;
 }
 
-/* line 17, ../sass/main.scss */
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_00 {
+  background-position: 0 -585px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_01 {
+  background-position: 0 -520px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_02 {
+  background-position: 0 -195px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_03 {
+  background-position: 0 -260px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_04 {
+  background-position: 0 -65px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_05 {
+  background-position: 0 -130px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_06 {
+  background-position: 0 -325px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_07 {
+  background-position: 0 -455px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_08 {
+  background-position: 0 -390px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-big_09 {
+  background-position: 0 0;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_00 {
+  background-position: 0 -650px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_01 {
+  background-position: 0 -956px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_02 {
+  background-position: 0 -718px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_03 {
+  background-position: 0 -752px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_04 {
+  background-position: 0 -888px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_05 {
+  background-position: 0 -786px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_06 {
+  background-position: 0 -854px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_07 {
+  background-position: 0 -922px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_08 {
+  background-position: 0 -820px;
+}
+
+/* line 60, ../../../../../../lib/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.scores-small_09 {
+  background-position: 0 -684px;
+}
+
+/* line 16, ../sass/main.scss */
+body {
+  background-image: -webkit-gradient(radial, circle, 0, circle, 100, color-stop(150px, #ffffff), color-stop(100%, transparent)), url('/images/../images/bg-pattern.jpg?1352956908');
+  background-image: -webkit-radial-gradient(circle, #ffffff 150px, transparent), url('/images/../images/bg-pattern.jpg?1352956908');
+  background-image: -moz-radial-gradient(circle, #ffffff 150px, transparent), url('/images/../images/bg-pattern.jpg?1352956908');
+  background-image: -o-radial-gradient(circle, #ffffff 150px, transparent), url('/images/../images/bg-pattern.jpg?1352956908');
+  background-image: radial-gradient(circle, #ffffff 150px, transparent), url('/images/../images/bg-pattern.jpg?1352956908');
+}
+
+/* line 24, ../sass/main.scss */
 #page {
   width: 1030px;
   margin-top: 4%;
@@ -185,13 +291,13 @@ body {
   margin-left: auto;
   position: relative;
 }
-/* line 24, ../sass/main.scss */
+/* line 31, ../sass/main.scss */
 #page #social {
   position: absolute;
   right: 117px;
   top: 136px;
 }
-/* line 29, ../sass/main.scss */
+/* line 36, ../sass/main.scss */
 #page h1 {
   position: absolute;
   text-align: center;
@@ -203,22 +309,22 @@ body {
   color: #FFFFFF;
   text-shadow: rgba(0, 0, 0, 0.2) 1px 1px 0, rgba(0, 0, 0, 0.2) 4px 8px 0, rgba(0, 0, 0, 0.2) 3px 3px 0;
 }
-/* line 42, ../sass/main.scss */
+/* line 49, ../sass/main.scss */
 #page div.panel {
   margin-left: auto;
   margin-right: auto;
   margin-top: -10%;
 }
-/* line 48, ../sass/main.scss */
+/* line 55, ../sass/main.scss */
 #page div.player {
   position: absolute;
   top: 142px;
 }
-/* line 52, ../sass/main.scss */
+/* line 59, ../sass/main.scss */
 #page div.player .pheader1, #page div.player .pheader2, #page div.player .pfooter3, #page div.player .pfooter4 {
   text-shadow: rgba(0, 0, 0, 0.2) 1px 1px 0, rgba(0, 0, 0, 0.2) 2px 2px 0, rgba(0, 0, 0, 0.2) 3px 3px 0;
 }
-/* line 57, ../sass/main.scss */
+/* line 64, ../sass/main.scss */
 #page div.player .pheader1, #page div.player .pheader2 {
   margin-left: -6px;
   margin-top: 28px;
@@ -230,25 +336,25 @@ body {
   font-family: "Interstate";
   color: #FFFFFF;
 }
-/* line 68, ../sass/main.scss */
+/* line 75, ../sass/main.scss */
 #page div.player .pheader2 {
   margin-left: -6px;
   margin-top: 28px;
 }
-/* line 74, ../sass/main.scss */
+/* line 81, ../sass/main.scss */
 #page div.player .photo img {
   width: 80px;
   height: 80px;
 }
-/* line 79, ../sass/main.scss */
+/* line 86, ../sass/main.scss */
 #page div.player .pbody {
   width: 98px;
 }
-/* line 83, ../sass/main.scss */
+/* line 90, ../sass/main.scss */
 #page div.player#player1 {
   left: 99px;
 }
-/* line 85, ../sass/main.scss */
+/* line 92, ../sass/main.scss */
 #page div.player#player1 #score1 {
   position: absolute;
   left: -50px;
@@ -256,7 +362,7 @@ body {
   width: 51px;
   height: 35px;
 }
-/* line 92, ../sass/main.scss */
+/* line 99, ../sass/main.scss */
 #page div.player#player1 .photo {
   width: 80px;
   height: 80px;
@@ -264,11 +370,11 @@ body {
   left: 14px;
   top: 56px;
 }
-/* line 101, ../sass/main.scss */
+/* line 108, ../sass/main.scss */
 #page div.player#player2 {
   left: 390px;
 }
-/* line 103, ../sass/main.scss */
+/* line 110, ../sass/main.scss */
 #page div.player#player2 #score2 {
   position: absolute;
   left: 108px;
@@ -276,7 +382,7 @@ body {
   width: 51px;
   height: 35px;
 }
-/* line 110, ../sass/main.scss */
+/* line 117, ../sass/main.scss */
 #page div.player#player2 .photo {
   width: 80px;
   height: 80px;
@@ -284,7 +390,7 @@ body {
   left: 12px;
   top: 56px;
 }
-/* line 120, ../sass/main.scss */
+/* line 127, ../sass/main.scss */
 #page div.player .pfooter3, #page div.player .pfooter4 {
   margin-left: 106px;
   margin-top: 198px;
@@ -296,17 +402,17 @@ body {
   font-family: "Interstate";
   color: #FFFFFF;
 }
-/* line 132, ../sass/main.scss */
+/* line 139, ../sass/main.scss */
 #page div.player .pfooter4 {
   margin-left: 700px;
   margin-left: 395px;
 }
-/* line 138, ../sass/main.scss */
+/* line 145, ../sass/main.scss */
 #page div.player#player3 {
   top: 500px;
   left: 10px;
 }
-/* line 141, ../sass/main.scss */
+/* line 148, ../sass/main.scss */
 #page div.player#player3 #score3 {
   position: absolute;
   left: 37px;
@@ -314,18 +420,18 @@ body {
   width: 51px;
   height: 35px;
 }
-/* line 148, ../sass/main.scss */
+/* line 155, ../sass/main.scss */
 #page div.player#player3 .photo {
   position: absolute;
   left: 103px;
   top: 103px;
 }
-/* line 155, ../sass/main.scss */
+/* line 162, ../sass/main.scss */
 #page div.player#player4 {
   top: 500px;
   left: 10px;
 }
-/* line 158, ../sass/main.scss */
+/* line 165, ../sass/main.scss */
 #page div.player#player4 #score4 {
   width: 51px;
   height: 35px;
@@ -333,7 +439,7 @@ body {
   left: 488px;
   top: 120px;
 }
-/* line 165, ../sass/main.scss */
+/* line 172, ../sass/main.scss */
 #page div.player#player4 .photo {
   width: 80px;
   height: 80px;
@@ -341,12 +447,12 @@ body {
   left: 392px;
   top: 103px;
 }
-/* line 172, ../sass/main.scss */
+/* line 179, ../sass/main.scss */
 #page div.player#player4 .pfooter {
   margin-left: 396px;
   margin-top: 198px;
 }
-/* line 178, ../sass/main.scss */
+/* line 185, ../sass/main.scss */
 #page div#score_team1 {
   width: 90px;
   height: 66px;
@@ -354,7 +460,7 @@ body {
   left: 253px;
   top: 193px;
 }
-/* line 185, ../sass/main.scss */
+/* line 192, ../sass/main.scss */
 #page div#score_team2 {
   width: 90px;
   height: 66px;
@@ -362,18 +468,18 @@ body {
   left: 253px;
   top: 621px;
 }
-/* line 192, ../sass/main.scss */
+/* line 199, ../sass/main.scss */
 #page div#screen {
   position: absolute;
   top: 304px;
   left: 82px;
 }
-/* line 197, ../sass/main.scss */
+/* line 204, ../sass/main.scss */
 #page div#screen #stream_vid {
   width: 434px;
   height: 273px;
 }
-/* line 203, ../sass/main.scss */
+/* line 210, ../sass/main.scss */
 #page .fb_iframe_widget {
   position: absolute;
   left: 56%;

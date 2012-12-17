@@ -1,0 +1,133 @@
+@import "compass/reset";
+@import "compass/utilities/sprites";
+@import "../images/scores/*.png";
+@include all-scores-sprites;
+@import "compass/css3/text-shadow";
+@import "compass/css3/images";
+
+body{
+    /* @include background-image(radial-gradient(circle,  */
+    /* 					      #ffffff 200px,transparent), */
+    /* 			      image-url('../images/bg-pattern.jpg')); */
+}	
+
+
+
+#page{
+    width: 1010px;
+    margin-top: 4%;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+
+    /* h1{ */
+    /* 	position: absolute; */
+    /* 	text-align: center; */
+    /* 	left:19%; */
+    /* 	font-weight: bold; */
+    /* 	font-size:57px; */
+    /* 	/\* text-transform:uppercase; *\/ */
+    /* 	font-family: "Interstate"; */
+    /* 	color: #FFFFFF; */
+    /* 	@include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 4px 8px 0, rgba(black, 0.2) 3px 3px 0); */
+    
+
+
+    /* div.panel{ */
+    /* 	margin-left: auto; */
+    /* 	margin-right: auto; */
+    /* 	margin-top: -10%; */
+    /* } */
+    /* #panel_img{ */
+    /* 	margin-top: 5%; */
+    /* 	width: 100%; */
+    /* } */
+
+
+    #plus{
+	position: absolute;
+	left: 150px;
+	top: 100px;
+    }
+    #minus{
+	position: absolute;
+	left: 150px;
+	top: 120px;
+    }
+
+
+    
+    #me{
+	position: absolute;
+	left: 293px;
+	top: 127px;
+	width: 51px;
+	height: 35px;
+
+	#myscore{
+    	    position: absolute;
+    	    left: 0px;
+    	    top: 135px;
+    	    width: 51px;
+    	    height: 35px;
+	}
+    }
+    #myco{
+	position: absolute;
+	left: 220px;
+	top: 50px;
+	width: 51px;
+	height: 35px;
+
+	#mycoscore{
+    	    position: absolute;
+    	    top: 77px;
+    	    width: 51px;
+    	    height: 35px;
+	}
+    }
+    #adv1{
+	position: absolute;
+	left: 398px;
+	top: 50px;
+	width: 51px;
+	height: 35px;
+
+        #adv1score{
+    	    position: absolute;
+    	    top: 77px;
+	    width: 51px;
+    	    height: 35px;
+	}
+    }
+    #adv2{
+	position: absolute;
+	left: 476px;
+	top: 50px;
+	width: 51px;
+	height: 35px;
+
+        #adv2score{
+    	    position: absolute;
+	    top: 77px;
+    	    width: 51px;
+    	    height: 35px;
+	}
+    }
+
+    #score_team1{
+	position: absolute;
+	top: 300px;
+	left: 100px;
+	width: 88px;
+	height: 60px;
+    }
+
+    #score_team2{
+	position: absolute;
+	top: 300px;
+	left: 420px;
+	width: 88px;
+	height: 60px;
+    }
+}

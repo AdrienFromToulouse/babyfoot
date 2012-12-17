@@ -7,13 +7,13 @@ $().ready(function() {
 	$('#plus').on('click touchstart', function(e) {
     	    e.preventDefault(); babyAdmin.MyGameCtxt.score++;
     	    babyAdmin.send(me, babyAdmin.MyGameCtxt);
-	    updateScore(babyAdmin.MyGameCtxt);
+	    babyAdmin.updateScore(babyAdmin.MyGameCtxt);
 	});
 	
 	$('#minus').on('click touchstart', function(e) {
     	    e.preventDefault(); babyAdmin.MyGameCtxt.score--;
     	    babyAdmin.send(me, babyAdmin.MyGameCtxt);
-	    updateScore(babyAdmin.MyGameCtxt);
+	    babyAdmin.updateScore(babyAdmin.MyGameCtxt);
 	});
     });
 

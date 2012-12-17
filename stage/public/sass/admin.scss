@@ -6,9 +6,9 @@
 @import "compass/css3/images";
 
 body{
-    @include background-image(radial-gradient(circle, 
-					      #ffffff 200px,transparent),
-			      image-url('../images/bg-pattern.jpg'));
+    /* @include background-image(radial-gradient(circle,  */
+    /* 					      #ffffff 200px,transparent), */
+    /* 			      image-url('../images/bg-pattern.jpg')); */
 }	
 
 
@@ -20,196 +20,114 @@ body{
     margin-left: auto;
     position: relative;
 
-    h1{
-    	position: absolute;
-    	text-align: center;
-    	left:19%;
-    	font-weight: bold;
-    	font-size:57px;
-    	/* text-transform:uppercase; */
-    	font-family: "Interstate";
-    	color: #FFFFFF;
-    	@include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 4px 8px 0, rgba(black, 0.2) 3px 3px 0);
-    }
-
-
-    div.panel{
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: -10%;
-    }
-    #panel_img{
-	margin-top: 5%;
-	width: 100%;
-    }
+    /* h1{ */
+    /* 	position: absolute; */
+    /* 	text-align: center; */
+    /* 	left:19%; */
+    /* 	font-weight: bold; */
+    /* 	font-size:57px; */
+    /* 	/\* text-transform:uppercase; *\/ */
+    /* 	font-family: "Interstate"; */
+    /* 	color: #FFFFFF; */
+    /* 	@include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 4px 8px 0, rgba(black, 0.2) 3px 3px 0); */
     
 
-    div.player {
+
+    /* div.panel{ */
+    /* 	margin-left: auto; */
+    /* 	margin-right: auto; */
+    /* 	margin-top: -10%; */
+    /* } */
+    /* #panel_img{ */
+    /* 	margin-top: 5%; */
+    /* 	width: 100%; */
+    /* } */
+
+
+    #plus{
 	position: absolute;
-	top: 142px;
-
-	.photo img{	
-	    width: 147px;
-	    height: 147px;
-	}
-
-	.pbody{
-	    width: 98px;
-	}
+	left: 150px;
+	top: 100px;
+    }
+    #minus{
+	position: absolute;
+	left: 150px;
+	top: 120px;
+    }
 
 
+    
+    #me{
+	position: absolute;
+	left: 293px;
+	top: 127px;
+	width: 51px;
+	height: 35px;
 
-	.pheader1,.pheader2,.pfooter3,.pfooter4{
-	    @include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 2px 2px 0, rgba(black, 0.2) 3px 3px 0);
-
-	}
-
-	.pheader1,.pheader2{
-	    margin-left: 129px;
-	    margin-top: 62px;
-	    text-align: center;
-	    font-weight: bold;
-	    font-size:14px;
-	    text-transform:uppercase;
-	    font-style:italic;
-	    font-family: "Interstate";
-	    color: #FFFFFF;
-	}
-	.pheader2{
-	    margin-left: 319px;
-	    margin-top: 62px;
-	}
-
-	&#player1 {
-	    left: 99px;
-
-
-	    #score1{
-		position: absolute;
-		left: 22px;
-		top: 153px;
-		width: 51px;
-		height: 35px;
-	    }
-	    .photo{
-		width: 158px;
-		height: 158px;
-		position: absolute;
-		left: 83px;
-		top: 95px;
-	    }
-
-	}
-	&#player2 {
-	    left: 390px;
-	    
-	    #score2{
-		position: absolute;
-		left: 433px;
-		top: 153px;
-		width: 51px;
-		height: 35px;
-	    }
-	    .photo{
-		width: 158px;
-		height: 158px;
-		position: absolute;
-		left: 274px;
-		top: 95px;
-	    }
-
-	}
-
-
-	.pfooter3,.pfooter4{
-	    margin-left: 216px;
-	    margin-top: 576px;
-	    text-align: center;
-	    font-weight: bold;
-	    font-size:14px;
-	    text-transform:uppercase;
-	    font-style:italic;
-	    font-family: "Interstate";
-	    color: #FFFFFF;
-	}
-
-	.pfooter4{
-	    margin-left: 700px;
-	    margin-top: 576px;
-	}
-
-
-	&#player3 {
-	    top: 500px;
-	    left: 10px;
-
-	    #score3{
-		position: absolute;
-		left: 111px;
-		top: 470px;
-		width: 51px;
-		height: 35px;
-	    }
-	    .photo{
-		position: absolute;
-		left: 172px;
-		top: 412px;
-	    }
-
-	}
-	&#player4 {
-	    top: 500px;
-	    left: 10px;
-
-	    #score4{
-		width: 51px;
-		height: 35px;
-		position: absolute;
-		left: 814px;
-		top: 470px;
-	    }
-	    .photo{
-		width: 158px;
-		height: 158px;
-		position: absolute;
-		left: 654px;
-		top: 412px;
-	    }
+	#myscore{
+    	    position: absolute;
+    	    left: 0px;
+    	    top: 135px;
+    	    width: 51px;
+    	    height: 35px;
 	}
     }
-    div#score_team1{
-	width: 90px;
-	height: 66px;
+    #myco{
 	position: absolute;
-	left: 452px;
-	top: 258px;
-    }
-    div#score_team2{
-	width: 90px;
-	height: 66px;
-	position: absolute;
-	left: 452px;
-	top: 975px;
-    }
-    div#screen{
-	position: absolute;
-	top: 418px;
-	left: 129px;
+	left: 220px;
+	top: 50px;
+	width: 51px;
+	height: 35px;
 
-	#stream_vid{
-	    width: 434px;
-	    height: 273px;
+	#mycoscore{
+    	    position: absolute;
+    	    top: 77px;
+    	    width: 51px;
+    	    height: 35px;
+	}
+    }
+    #adv1{
+	position: absolute;
+	left: 398px;
+	top: 50px;
+	width: 51px;
+	height: 35px;
+
+        #adv1score{
+    	    position: absolute;
+    	    top: 77px;
+	    width: 51px;
+    	    height: 35px;
+	}
+    }
+    #adv2{
+	position: absolute;
+	left: 476px;
+	top: 50px;
+	width: 51px;
+	height: 35px;
+
+        #adv2score{
+    	    position: absolute;
+	    top: 77px;
+    	    width: 51px;
+    	    height: 35px;
 	}
     }
 
-    .fb_iframe_widget{
-    	position: absolute;
-	left: 98px;
-    	top: 1235px;
-    	height: 670px !important;
-    	overflow-y: hidden !important;
-    	overflow-x:hidden !important;
-	margin-top: 10px;  
+    #score_team1{
+	position: absolute;
+	top: 300px;
+	left: 100px;
+	width: 88px;
+	height: 60px;
+    }
 
-      }
+    #score_team2{
+	position: absolute;
+	top: 300px;
+	left: 420px;
+	width: 88px;
+	height: 60px;
+    }
 }

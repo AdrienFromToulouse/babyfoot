@@ -4,6 +4,22 @@
  *
  */
 
+/* player scores */
+/** 
+ * due to the asynchrone stuffs it is impossible to 
+ * write the database each time a score is changed...
+ * so its done on unsubscript of the player.
+ */ 
+var score = [[0,0,0,0],
+	     [0,0,0,0],
+	     [0,0,0,0],
+	     [0,0,0,0]];
+
+
+var message = [0,0,0,0];
+
+
+
 
 /**
  * Module dependencies.
@@ -123,18 +139,6 @@ subscription_log.errback(function(error) {
  */
 var subscription = bayeux.getClient().subscribe('/controller', function(game_ctxt) {
 
-
-    /* update the DB of the current player */ 
-    /* FOUND ANOTHER WAY BECAUSE TO SLOW SO THE ONSUBSCRIPT EVENT CALLING GET CURRENT PLAYER IS EMPTY */
-    // player.updatePlayerScore(game_ctxt.babyId,
-    // 			     game_ctxt.position, 
-    // 			     game_ctxt.score);
-
-
-    /* get all ready players */
-//    player.getCurrentPlayers(bayeux);
-
-
     /* and then send his context to the others */
     switch(eval(game_ctxt.position))
     {
@@ -161,9 +165,34 @@ var subscription = bayeux.getClient().subscribe('/controller', function(game_ctx
     default:
     }
 
+
+    var msg = {
+    	"score" :   "",
+    	"name" :  "",
+	"picture": "",
+	"position": "",
+	"babyId": ""
+    };
+
+    msg.picture = '<img src="'+game_ctxt.picture+'">';
+    msg.name = game_ctxt.first_name;
+    msg.score = game_ctxt.score;
+    msg.position = game_ctxt.position;
+    msg.babyId = game_ctxt.babyId;
+
+    message[msg.position - 1] = msg;
+
+  
+    score[game_ctxt.babyId - 1][game_ctxt.position - 1] = game_ctxt.score;
+
+
+
+    /* get all ready players */
+///    player.getCurrentPlayersForIndex(bayeux);
+
     /*get all ready players and compute the global context to be send
       or update a global context based in index ICD?*/
-//    bayeux.getClient().publish('/index',controller_to_public);
+    bayeux.getClient().publish('/index',message);
 });
 
 subscription.callback(function() {
@@ -199,27 +228,13 @@ bayeux.bind('unsubscribe', function(clientId, channel) {
 
     /* Set the started status to false */
     if(elem[3] == 'baby'){
-	player.unsubscriptPlayer(babyId, position);
-    }
-    // for( var i=0 ; i < clients.length ; i++) {
-    //     if( clients[i].clientId == clientId ) {
-    //         clients.splice(i, 1);
-    // 	    console.log('[UNSUBSCRIBED CLIENT] ' + clientId);
-    //         break;
-    //     }
-    // }
-    // for( var i=0 ; i < clients.length ; i++ ){
 
-    // 	console.log('[NEW CLIENT ARRAY AFTER DELETE'+ i + ']' + clients[i].clientId);
-    // }
+	player.unsubscriptPlayer(babyId, position, score[babyId - 1][position - 1]);
+    }
 });
 
 bayeux.bind('publish', function(clientId, channel, data) {
-    console.log('[PUBLISH] ' + clientId + ' -> ' + channel + ' -> ' + data);
-    // for( var i=0 ; i < clients.length ; i++ ){
-    // 	console.log('[CLIENT '+ i + '] ' + clients[0].clientId);
-    // 	//bayeux.getClient().publish(channel,game_ctxt);
-    // }
+    //console.log('[PUBLISH] ' + clientId + ' -> ' + channel + ' -> ' + data);
 });
 
 

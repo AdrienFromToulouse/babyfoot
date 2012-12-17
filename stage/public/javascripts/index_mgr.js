@@ -29,10 +29,10 @@ function index_send(buffer_out){
 
 
 
-var subscription = client.subscribe('/channel_index', function(message) {
+var subscription = client.subscribe('/index', function(message) {
 
-    score_t1 = message.score[P1_ATTACKER] + message.score[P1_DEFENSER] + message.score[P2_ATTACKER] + message.score[P2_DEFENSER];
-    score_t2 = message.score[P3_ATTACKER] + message.score[P3_DEFENSER] + message.score[P4_ATTACKER] + message.score[P4_DEFENSER];
+    var score_t1 = message[0].score + message[1].score;
+    var score_t2 = message[2].score + message[3].score;
     
     var newclass1 = "scores-big_0"+score_t1;
     var newclass2 = "scores-big_0"+score_t2;
@@ -40,11 +40,10 @@ var subscription = client.subscribe('/channel_index', function(message) {
     $("#score_team1").attr("class",newclass1);
     $("#score_team2").attr("class",newclass2);
 
-    scoreP1 = "scores-small_0"+(message.score[P1_ATTACKER] + message.score[P1_DEFENSER]);
-    scoreP2 = "scores-small_0"+(message.score[P2_ATTACKER] + message.score[P2_DEFENSER]);
-    scoreP3 = "scores-small_0"+(message.score[P3_ATTACKER] + message.score[P3_DEFENSER]);
-    scoreP4 = "scores-small_0"+(message.score[P4_ATTACKER] + message.score[P4_DEFENSER]);
-
+    scoreP1 = "scores-small_0"+(message[0].score);
+    scoreP2 = "scores-small_0"+(message[1].score);
+    scoreP3 = "scores-small_0"+(message[2].score);
+    scoreP4 = "scores-small_0"+(message[3].score);
 
     $("#score1").attr("class",scoreP1);
     $("#score2").attr("class",scoreP2);
@@ -53,27 +52,27 @@ var subscription = client.subscribe('/channel_index', function(message) {
 
 
     // player one
-    var htmlString = message.player[0].imageP1;
+    var htmlString = message[0].picture;
     $("#player1 .photo").html(htmlString);
-    htmlString = message.player[0].firstnameP1;
+    htmlString = message[0].name;
     $("#player1 .pheader1").html(htmlString);	
  
     // player 2
-    htmlString = message.player[1].imageP2;
+    htmlString = message[1].picture;
     $("#player2 .photo").html(htmlString);
-    htmlString = message.player[1].firstnameP2;
+    htmlString = message[1].name;
     $("#player2 .pheader2").html(htmlString);
 
     // player 3
-    htmlString = message.player[2].imageP3;
+    htmlString = message[2].picture;
     $("#player3 .photo").html(htmlString);
-    htmlString = message.player[2].firstnameP3;
+    htmlString = message[2].name;
     $("#player3 .pfooter3").html(htmlString);
 
     // player 4
-    htmlString = message.player[3].imageP4;
+    htmlString = message[3].picture;
     $("#player4 .photo").html(htmlString);
-    htmlString = message.player[3].firstnameP4;
+    htmlString = message[3].name;
     $("#player4 .pfooter4").html(htmlString);
 
 });
