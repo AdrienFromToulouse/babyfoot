@@ -14,11 +14,13 @@ body{
 
 
 #page{
-    width: 1010px;
-    margin-top: 4%;
+
+    margin-top: 5%;
+    width: 512px;
     margin-right: auto;
     margin-left: auto;
     position: relative;
+
 
     /* h1{ */
     /* 	position: absolute; */
@@ -44,37 +46,53 @@ body{
     /* } */
 
 
+
+   
+
+
     #plus{
 	position: absolute;
 	left: 150px;
-	top: 100px;
+	top: 75px;
     }
     #minus{
 	position: absolute;
-	left: 150px;
-	top: 120px;
+	left: 71px;
+	top: 84px;
     }
 
 
     
     #me{
 	position: absolute;
-	left: 293px;
+	left: 200px;
 	top: 127px;
-	width: 51px;
+	width: 80px;
 	height: 35px;
+
+	.photo img{	
+	    width: 80px;
+	    height: 80px;
+	}
+
 
 	#myscore{
     	    position: absolute;
-    	    left: 0px;
-    	    top: 135px;
+	    left: 5px;
+	    top: 110px;
     	    width: 51px;
     	    height: 35px;
 	}
+
+	.pfooter{
+	    position: absolute;
+	    left: 21px;
+	}
+
     }
     #myco{
 	position: absolute;
-	left: 220px;
+	left: 5px;
 	top: 50px;
 	width: 51px;
 	height: 35px;
@@ -85,6 +103,7 @@ body{
     	    width: 51px;
     	    height: 35px;
 	}
+
     }
     #adv1{
 	position: absolute;
@@ -118,7 +137,7 @@ body{
     #score_team1{
 	position: absolute;
 	top: 300px;
-	left: 100px;
+	left: 50px;
 	width: 88px;
 	height: 60px;
     }
@@ -126,7 +145,7 @@ body{
     #score_team2{
 	position: absolute;
 	top: 300px;
-	left: 420px;
+	left: 340px;
 	width: 88px;
 	height: 60px;
     }

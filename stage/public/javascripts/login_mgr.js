@@ -126,13 +126,14 @@ window.fbAsyncInit = function() {
 
 	    $("#logbut").remove();
 	 
-	    $('.logbutton').css('left', '310px');
-	    $('.logbutton').css('bottom', '210px');
+	    $('.logbutton').css('left', '215px');
+	    $('.logbutton').css('bottom', '265px');
+
 
 	    var position = getURLParameter('p');
 	    var babyId  = getURLParameter('b');
 
-	    $('.logbutton').append("<a href='/admin?babyId="+babyId+"&position="+position+"'><img id='hf' src='../images/btn_start.png' alt='have_fun'></a>");
+	    $('.logbutton').append("<a href='/admin?babyId="+babyId+"&position="+position+"'><img id='hf' src='../images/hf.png' alt='have_fun'></a>");
 
 	    
     	} else if (response.status === 'not_authorized') {

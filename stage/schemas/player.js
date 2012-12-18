@@ -63,7 +63,7 @@ getSchema = function(){
 
 
 /**
- * When a new Index page client connect...
+ * 
  *
  */
 exports.getCurrentPlayers = function(bayeux, position, babyId){
@@ -75,8 +75,6 @@ exports.getCurrentPlayers = function(bayeux, position, babyId){
 	"position": "",
 	"babyId": ""
     };
-
-
 
     db = mongoose.createConnection('localhost', 'asiance_babyfoot');
 
@@ -97,14 +95,60 @@ exports.getCurrentPlayers = function(bayeux, position, babyId){
 //    		if(players[i]){
 
 		message.picture = players[i].personal.picture;
-		message.name = players[i].personal.name;
+		message.name = players[i].personal.first_name;
 		message.score = players[i].stats.score;
 		message.position = players[i].position;
 		message.babyId = players[i].babyId;
 
-
 		bayeux.getClient().publish('/player/'+position+'/baby/'+babyId, message);
     	    }
+	    mongoose.disconnect();
+	});
+    });
+};
+
+/**
+ * 
+ *
+ */
+exports.getCurrentPlayersForIndex = function(bayeux){
+
+    var message = [0,0,0,0];
+
+    db = mongoose.createConnection('localhost', 'asiance_babyfoot');
+
+    var Player = db.model('Player', playerSchema);
+    var player = new Player;
+    
+    db.once('open', function () {
+
+	var query = Player.find({ ready: true }).limit(4);
+    	query.exec(function (err, players) {
+
+	    for(i = 0 ; i < players.length ; i++){
+
+
+		var msg = {
+    		    "score" :   "",
+    		    "name" :  "",
+		    "picture": "",
+		    "position": "",
+		    "babyId": ""
+		};
+
+//    		if(players[i]){
+
+		msg.picture = '<img src="'+players[i].personal.picture+'">';
+		msg.name = players[i].personal.first_name;
+		msg.score = players[i].stats.score;
+		msg.position = players[i].position;
+		msg.babyId = players[i].babyId;
+
+		message[msg.position - 1] = msg;
+    	    }
+
+	    bayeux.getClient().publish('/index', message);
+
 	    mongoose.disconnect();
 	});
     });
@@ -126,7 +170,6 @@ exports.updateScore = function(message){
     var Player = db.model('Player', playerSchema);
 
     var player = new Player;
-
 
     db.once('open', function () {
 
@@ -313,10 +356,8 @@ exports.updatePlayerStatus = function(req, res, status){
  * To switch from ready to notready.
  */
 exports.unsubscriptPlayer = function(babyId,
-				     position){
-    
-
-    console.log("unsubscript  player");
+				     position, 
+				     score){
 
     db = mongoose.createConnection('localhost', 'asiance_babyfoot');
 
@@ -324,7 +365,7 @@ exports.unsubscriptPlayer = function(babyId,
 
     db.once('open', function () {
 
-	Player.update({position: position, babyId: babyId, ready: true},{"ready": false },
+	Player.update({position: position, babyId: babyId, ready: true},{"ready": false, stats: {score: score}},
 		      function(){mongoose.disconnect();});
     });
 };
@@ -332,23 +373,27 @@ exports.unsubscriptPlayer = function(babyId,
 /**
  * Update current player: score etc etc....
  */
-exports.updatePlayerScore = function(babyId,
-				     position, 
-				     score){
+// exports.updatePlayerScore = function(babyId,
+// 				     position, 
+// 				     score){
 
-    console.log("update me");
+//     console.log("update me");
 
-    db = mongoose.createConnection('localhost', 'asiance_babyfoot');
+//     db = mongoose.createConnection('localhost', 'asiance_babyfoot');
 
-    var Player = db.model('Player', playerSchema);
+//     var Player = db.model('Player', playerSchema);
 
-    db.once('open', function () {
+//     db.once('open', function () {
 
-	Player.update({position: position, babyId: babyId, ready: true},
-		      {stats: {	"score":  score}},
-		      function(){mongoose.disconnect();});
-    });
-};
+// 	console.log(score);
+// 	console.log(score);
+
+
+// 	Player.update({position: position, babyId: babyId, ready: true},
+// 		      {stats: {"score":  score}},
+// 		      function(){mongoose.disconnect();});
+//     });
+// };
 
 
 
