@@ -15,9 +15,15 @@ var score = [[0,0,0,0],
 	     [0,0,0,0],
 	     [0,0,0,0]];
 
-
 var message = [0,0,0,0];
 
+/**
+ * To catch the webbrowser close event it is needed to fire
+ * a callback on Disconnect event. This callback parses the clients
+ * array and set to False the ready state if found. 
+ *
+ */
+var clients = new Array(100);
 
 
 
@@ -205,22 +211,34 @@ subscription.errback(function(error) {
 
 
 bayeux.bind('subscribe', function(clientId, channel) {
-//    console.log('[SUBSCRIBE] ' + clientId + ' -> ' + channel);
+    console.log('[SUBSCRIBE] ' + clientId + ' -> ' + channel);
 
-    /* whatever the case-sensitive */
-    if( channel.match(/player/i) ){
+    if(channel == "/index"){
+	player.getCurrentPlayersForIndex(bayeux);
+    }
+    else{
 
-	var elem = channel.split('/');
-	var position = elem[2] - 0;
-	var babyId = elem[4] - 0;
+	/* whatever the case-sensitive */
+	if( channel.match(/player/i) ){
 
-	player.getCurrentPlayers(bayeux, position, babyId);
+	    var elem = channel.split('/');
+	    var position = elem[2] - 0;
+	    var babyId = elem[4] - 0;
+
+	    var clt = {
+		id: clientId,
+		channel: channel
+	    };
+	    clients.push(clt);
+
+	    player.getCurrentPlayers(bayeux, position, babyId);
+	}
     }
 });
 
 bayeux.bind('unsubscribe', function(clientId, channel) {
-  //  console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
-
+    console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
+    
     var elem = channel.split('/');
 
     var position = elem[2] - 0;
@@ -237,6 +255,29 @@ bayeux.bind('publish', function(clientId, channel, data) {
     //console.log('[PUBLISH] ' + clientId + ' -> ' + channel + ' -> ' + data);
 });
 
+
+bayeux.bind('disconnect', function(clientId) {
+//    console.log('[ DISCONNECT] ' + clientId);
+
+    for(elt in clients){
+
+	if(clients[elt].id == clientId){
+
+	    console.log(clients[elt].channel);
+	    var elem = clients[elt].channel.split('/');
+
+	    var position = elem[2] - 0;
+	    var babyId = elem[4] - 0;
+
+	    /* Set the started status to false */
+	    if(elem[3] == 'baby'){
+
+		player.unsubscriptPlayer(babyId, position, score[babyId - 1][position - 1]);
+	    }
+	}
+    }
+
+});
 
 
 /**
