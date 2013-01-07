@@ -75,9 +75,6 @@ var babyAdmin = {
 		$("#me .photo").html(htmlString);
 		htmlString = '<span>'+me.personal.first_name+'</span>';
 		$("#me .pfooter").html(htmlString);	
-
-//		$("#myscore").html('0');
-
 	
 		babyAdmin.MyGameCtxt.position = me.position;
 		babyAdmin.MyGameCtxt.babyId = me.babyId;
@@ -147,18 +144,14 @@ var babyAdmin = {
 		switch(eval(game_ctxt.position))
 		{
 		case 1:
-		console.log("is not my partner pos1");
-
 		    htmlString = '<img src="'+game_ctxt.picture+'">';
 		    $("#adv1 .photo").html(htmlString);
 		    htmlString = '<span>'+game_ctxt.name+'</span>';
 		    $("#adv1 .pfooter").html(htmlString);	
 		    babyAdmin.updateScore(game_ctxt);
+
 		    break;
 		case 2:
-		console.log("is not my partner pos2");
-
-
 		    htmlString = '<img src="'+game_ctxt.picture+'">';
 		    $("#adv2 .photo").html(htmlString);
 		    htmlString = '<span>'+game_ctxt.name+'</span>';
@@ -167,9 +160,6 @@ var babyAdmin = {
 
 		    break;
 		case 3:
-
-		console.log("is not my partner pos3");
-
 		    htmlString = '<img src="'+game_ctxt.picture+'">';
 		    $("#adv1 .photo").html(htmlString);
 		    htmlString = '<span>'+game_ctxt.name+'</span>';
@@ -178,9 +168,6 @@ var babyAdmin = {
 
 		    break;
 		case 4:
-		console.log("is not my partner pos4");
-
-
 		    htmlString = '<img src="'+game_ctxt.picture+'">';
 		    $("#adv2 .photo").html(htmlString);
 		    htmlString = '<span>'+game_ctxt.name+'</span>';
@@ -210,95 +197,84 @@ var babyAdmin = {
      */
     updateScore : function(game_ctxt){
 
-	console.log("UP SCORE!!");
+	if(game_ctxt.score >= 0){
 
-	/* if it's actually me */
-	if(babyAdmin.MyGameCtxt.position == game_ctxt.position){
+	    /* if it's actually me */
+	    if(babyAdmin.MyGameCtxt.position == game_ctxt.position){
 
-	    var scoreMe = "scores-small_0"+(babyAdmin.MyGameCtxt.score);
-	    $("#myscore").attr("class",scoreMe);
-	    $("#myscore").attr("data-score",babyAdmin.MyGameCtxt.score);
-	    $("#myscore").attr("data-position",game_ctxt.position);
+		var scoreMe = "scores-small_0"+(babyAdmin.MyGameCtxt.score);
+		$("#myscore").attr("class",scoreMe);
+		$("#myscore").attr("data-score",babyAdmin.MyGameCtxt.score);
+		$("#myscore").attr("data-position",game_ctxt.position);
 
-	}
-	else if(babyAdmin.MyGameCtxt.partner_position == game_ctxt.position){
-
-	    var scoreCo = "scores-small_0"+(game_ctxt.score);
-	    $("#mycoscore").attr("class",scoreCo);
-	    $("#mycoscore").attr("data-score",game_ctxt.score);
-	    $("#mycoscore").attr("data-position",game_ctxt.position);
-	}
-	else{
-	    switch(eval(game_ctxt.position))
-	    {
-	    case 1:
-		var scoreP1 = "scores-small_0"+(game_ctxt.score);
-
-		console.log(game_ctxt.score);
-
-		$("#adv1score").attr("class",scoreP1);
-		$("#adv1score").attr("data-score",game_ctxt.score);
-		$("#adv1score").attr("data-position",game_ctxt.position);
-		break;
-	    case 2:
-		var scoreP2 = "scores-small_0"+(game_ctxt.score);
-
-		console.log(game_ctxt.score);
-
-		$("#adv2score").attr("class",scoreP2);
-		$("#adv2score").attr("data-score",game_ctxt.score);
-		$("#adv2score").attr("data-position",game_ctxt.position);
-		break;
-	    case 3:
-		var scoreP3 = "scores-small_0"+(game_ctxt.score);
-
-		console.log(game_ctxt.score);
-
-
-		$("#adv1score").attr("class",scoreP3);
-		$("#adv1score").attr("data-score",game_ctxt.score);
-		$("#adv1score").attr("data-position",game_ctxt.position);
-		break;
-	    case 4:
-		var scoreP4 = "scores-small_0"+(game_ctxt.score);
-
-
-		console.log(game_ctxt.score);
-
-		$("#adv2score").attr("class",scoreP4);
-		$("#adv2score").attr("data-score",game_ctxt.score);
-		$("#adv2score").attr("data-position",game_ctxt.position);
-		break;
-	    default:
-		console.log("default");
 	    }
+	    else if(babyAdmin.MyGameCtxt.partner_position == game_ctxt.position){
+
+		var scoreCo = "scores-small_0"+(game_ctxt.score);
+		$("#mycoscore").attr("class",scoreCo);
+		$("#mycoscore").attr("data-score",game_ctxt.score);
+		$("#mycoscore").attr("data-position",game_ctxt.position);
+	    }
+	    else{
+		switch(eval(game_ctxt.position))
+		{
+		case 1:
+		    var scoreP1 = "scores-small_0"+(game_ctxt.score);
+
+		    $("#adv1score").attr("class",scoreP1);
+		    $("#adv1score").attr("data-score",game_ctxt.score);
+		    $("#adv1score").attr("data-position",game_ctxt.position);
+
+		    break;
+		case 2:
+		    var scoreP2 = "scores-small_0"+(game_ctxt.score);
+
+		    $("#adv2score").attr("class",scoreP2);
+		    $("#adv2score").attr("data-score",game_ctxt.score);
+		    $("#adv2score").attr("data-position",game_ctxt.position);
+		    break;
+		case 3:
+		    var scoreP3 = "scores-small_0"+(game_ctxt.score);
+
+		    $("#adv1score").attr("class",scoreP3);
+		    $("#adv1score").attr("data-score",game_ctxt.score);
+		    $("#adv1score").attr("data-position",game_ctxt.position);
+		    break;
+		case 4:
+		    var scoreP4 = "scores-small_0"+(game_ctxt.score);
+
+		    $("#adv2score").attr("class",scoreP4);
+		    $("#adv2score").attr("data-score",game_ctxt.score);
+		    $("#adv2score").attr("data-position",game_ctxt.position);
+		    break;
+		default:
+		    console.log("default");
+		}
+	    }
+	    
+	    var s1 = document.getElementById("mycoscore").getAttribute('data-score');
+	    var s2 = document.getElementById("adv1score").getAttribute('data-score');
+	    var s3 = document.getElementById("adv2score").getAttribute('data-score');
+	    var s4 = document.getElementById("myscore").getAttribute('data-score');
+
+	    var s1 = $('[data-position="1"]').attr("data-score");
+	    var s2 = $('[data-position="2"]').attr("data-score");
+	    var s3 = $('[data-position="3"]').attr("data-score");
+	    var s4 = $('[data-position="4"]').attr("data-score");
+
+	    if(typeof s1 === 'undefined'){s1 = 0;}
+	    if(typeof s2 === 'undefined'){s2 = 0;}
+	    if(typeof s3 === 'undefined'){s3 = 0;}
+	    if(typeof s4 === 'undefined'){s4 = 0;}
+
+ 	    babyAdmin.MyGameCtxt.score_t1 = parseInt(s1) + parseInt(s2);
+	    babyAdmin.MyGameCtxt.score_t2 = parseInt(s3) + parseInt(s4);
+
+	    var newclass1 = "scores-big_0"+babyAdmin.MyGameCtxt.score_t1;
+	    $("#score_team1").attr("class",newclass1);
+	    var newclass2 = "scores-big_0"+babyAdmin.MyGameCtxt.score_t2;
+	    $("#score_team2").attr("class",newclass2);
 	}
-
-	var s1 = document.getElementById("mycoscore").getAttribute('data-score');
-	var s2 = document.getElementById("adv1score").getAttribute('data-score');
-	var s3 = document.getElementById("adv2score").getAttribute('data-score');
-	var s4 = document.getElementById("myscore").getAttribute('data-score');
-
-	var s1 = $('[data-position="1"]').attr("data-score");
-	var s2 = $('[data-position="2"]').attr("data-score");
-	var s3 = $('[data-position="3"]').attr("data-score");
-	var s4 = $('[data-position="4"]').attr("data-score");
-
-	if(typeof s1 === 'undefined'){s1 = 0;}
-	if(typeof s2 === 'undefined'){s2 = 0;}
-	if(typeof s3 === 'undefined'){s3 = 0;}
-	if(typeof s4 === 'undefined'){s4 = 0;}
-
- 	babyAdmin.MyGameCtxt.score_t1 = parseInt(s1) + parseInt(s2);
-	babyAdmin.MyGameCtxt.score_t2 = parseInt(s3) + parseInt(s4);
-
-	console.log(babyAdmin.MyGameCtxt.score_t1);
-	console.log(babyAdmin.MyGameCtxt.score_t2);
-
-	var newclass1 = "scores-big_0"+babyAdmin.MyGameCtxt.score_t1;
-	$("#score_team1").attr("class",newclass1);
-	var newclass2 = "scores-big_0"+babyAdmin.MyGameCtxt.score_t2;
-	$("#score_team2").attr("class",newclass2);
     },
 
 
