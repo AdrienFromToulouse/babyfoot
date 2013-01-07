@@ -68,9 +68,7 @@ var babyAdmin = {
 	    success: function(me) {
 
 		var htmlString = "";
-
-		console.log(me);
-
+		
 		htmlString = '<img src="'+me.personal.picture+'">';
 		$("#me .photo").html(htmlString);
 		htmlString = '<span>'+me.personal.first_name+'</span>';
@@ -126,8 +124,6 @@ var babyAdmin = {
 	var position = this.getURLParameter("position");
 
 	var subscription = client.subscribe('/player/'+position+'/baby/'+babyId, function(game_ctxt) {
-
-	    console.log(game_ctxt);
 
 	    /* if the player is my partner */
 	    if( game_ctxt.position == babyAdmin.MyGameCtxt.partner_position ){
@@ -197,7 +193,7 @@ var babyAdmin = {
      */
     updateScore : function(game_ctxt){
 
-	if(game_ctxt.score >= 0){
+	if( (game_ctxt.score >= 0) || (babyAdmin.MyGameCtxt.score >= 0) ){
 
 	    /* if it's actually me */
 	    if(babyAdmin.MyGameCtxt.position == game_ctxt.position){
