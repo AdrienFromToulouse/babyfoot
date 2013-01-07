@@ -245,8 +245,11 @@ bayeux.bind('unsubscribe', function(clientId, channel) {
     var babyId = elem[4] - 0;
 
     /* Set the started status to false */
-    if(elem[3] == 'baby'){
+    if( elem[3] == 'baby'){
 
+	if(score[babyId - 1][position - 1] = 0){
+	    score[babyId - 1][position - 1] = 0;
+	}
 	player.unsubscriptPlayer(babyId, position, score[babyId - 1][position - 1]);
     }
 });
