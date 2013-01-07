@@ -211,7 +211,7 @@ subscription.errback(function(error) {
 
 
 bayeux.bind('subscribe', function(clientId, channel) {
-    console.log('[SUBSCRIBE] ' + clientId + ' -> ' + channel);
+    // console.log('[SUBSCRIBE] ' + clientId + ' -> ' + channel);
 
     if(channel == "/index"){
 	player.getCurrentPlayersForIndex(bayeux);
@@ -237,7 +237,7 @@ bayeux.bind('subscribe', function(clientId, channel) {
 });
 
 bayeux.bind('unsubscribe', function(clientId, channel) {
-    console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
+    // console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
     
     var elem = channel.split('/');
 
