@@ -97,7 +97,10 @@ app.configure('development', function(){
 	    res.render('index_mobile', { title: 'LiveGameUp!' });
 
 	} else {
-	    res.render('index', { title: 'LiveGameUp!' });
+
+	    res.render('index_mobile', { title: 'LiveGameUp!' });
+
+	    // res.render('index', { title: 'LiveGameUp!' });
   	}
     });
 
@@ -237,7 +240,7 @@ bayeux.bind('subscribe', function(clientId, channel) {
 });
 
 bayeux.bind('unsubscribe', function(clientId, channel) {
-    // console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
+//     console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
     
     var elem = channel.split('/');
 
@@ -247,7 +250,7 @@ bayeux.bind('unsubscribe', function(clientId, channel) {
     /* Set the started status to false */
     if( elem[3] == 'baby'){
 
-	if(score[babyId - 1][position - 1] = 0){
+	if(score[babyId - 1][position - 1] < 0){
 	    score[babyId - 1][position - 1] = 0;
 	}
 	player.unsubscriptPlayer(babyId, position, score[babyId - 1][position - 1]);
@@ -260,7 +263,7 @@ bayeux.bind('publish', function(clientId, channel, data) {
 
 
 bayeux.bind('disconnect', function(clientId) {
-//    console.log('[ DISCONNECT] ' + clientId);
+   // console.log('[ DISCONNECT] ' + clientId);
 
     for(elt in clients){
 
@@ -275,6 +278,8 @@ bayeux.bind('disconnect', function(clientId) {
 	    /* Set the started status to false */
 	    if(elem[3] == 'baby'){
 
+		console.log(score[babyId - 1][position - 1]);
+	  
 		player.unsubscriptPlayer(babyId, position, score[babyId - 1][position - 1]);
 	    }
 	}
