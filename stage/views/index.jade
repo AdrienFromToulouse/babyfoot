@@ -88,22 +88,26 @@ html(xmlns="http://www.w3.org/1999/xhtml")
       #score_team2
 
 
-
       #screen
 
-        // iframe( width="434", height="276", src="http://www.ustream.tv/embed/11682769?v=3&amp;wmode=direct", scrolling="no", frameborder="0", style="border: 0px none transparent;")
+         // iframe( width="434", height="276", src="http://www.ustream.tv/embed/11682769?ub=ff3d23&amp;lc=ff3d23&amp;oc=ffffff&amp;uc=ffffff&amp;v=3&amp;wmode=direct", scrolling="no", frameborder="0", style="border: 0px none transparent;")
   
+         // embed( type="application/x-vlc-plugin", name='', pluginspage="http://www.videolan.org", version="VideoLAN.VLCPlugin.2", width="434px", height="276px", style="", id="mymovie", name="mymovie", mrl="http://@webcam.asiance.com:/video/ts-mp4.cgi?profileid=1")
 
-          // embed(id='stream_vid', mrl='http://192.168.0.4:3200/ideo/ts-mp4.cgi?profileid=1', name='', version='VideoLAN.VLCPlugin.2', pluginspage='http://www.videolan.org',  type='application/x-vlc-plugin' )
+
+         img(id="stream_vid", alt="Processing...", width="434", height="276", src="http://webcam.asiance.com/video/mjpg.cgi?profileid=3")
+
+         // embed(id='stream_vid', mrl='http://192.168.0.4:3200/ideo/ts-mp4.cgi?profileid=1', name='', version='VideoLAN.VLCPlugin.2', pluginspage='http://www.videolan.org',  type='application/x-vlc-plugin' )
 
     
 
-         object( type="application/x-shockwave-flash", data="http://www.justin.tv/widgets/live_embed_player.swf?channel=asiance", id="live_embed_player_flash", height="276", width="434", bgcolor="#000000")
-              param(name="allowFullScreen", value="true")
-              param(name="allowScriptAccess", value="always")
-              param(name="allowNetworking", value="all")
-              param(name="movie", value="http://www.justin.tv/widgets/live_embed_player.swf")
-              param(name="flashvars", value="hostname=www.justin.tv&channel=asiance&auto_play=false&start_volume=25")
+         // object(id='stream_vid', type="application/x-shockwave-flash", data="http://www.justin.tv/widgets/live_embed_player.swf?channel=adrienfromtoulouse", id="live_embed_player_flash", height="276", width="434", bgcolor="#000000")
+         //      param(name="allowFullScreen", value="true")
+         //      param(name="allowScriptAccess", value="always")
+         //      param(name="allowNetworking", value="all")
+         //      param(name="movie", value="http://www.justin.tv/widgets/live_embed_player.swf")
+         //      param(name="flashvars", value="hostname=www.justin.tv&channel=asiance&auto_play=false&start_volume=25")
+
 
   
       .fb-comments(data-href="http://livegameup.asiance-dev.com:3100/", data-num-posts="7",data-colorscheme="dark")

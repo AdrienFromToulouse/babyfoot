@@ -30,19 +30,12 @@ babyAdmin.init_ctxt(me);
 
 
 window.onbeforeunload = function(){
+    console.log("onbeforeunload");
     me.disconnect();
 };
 
 // /* for Safari */
 window.onunload = function(){
+   console.log("onunload");
     me.disconnect();
 };
-
-// window.abort = function(){
-
-//     alert("onunload");
-//    // me.disconnect();
-//     me.unsubscribe();
-
-// };
-
