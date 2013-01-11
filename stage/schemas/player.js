@@ -3,22 +3,9 @@
  */
 var mongoose = require('mongoose');
 
-var PLYR_NBROF_PLAYER = 4;
-
-var P1_ATTACKER = 0;
-var P2_ATTACKER = 1;
-var P3_ATTACKER = 2;
-var P4_ATTACKER = 3; 
-
-var P1_DEFENSER = 4;
-var P2_DEFENSER = 5;
-var P3_DEFENSER = 6;
-var P4_DEFENSER = 7; 
-
-
 
 /**
- * Defines the schema of a player.
+ * Defines the player's schema.
  *
  */
 var playerSchema = new mongoose.Schema({
@@ -36,7 +23,7 @@ var playerSchema = new mongoose.Schema({
 	email: String
     },
 
-    ready: { type: Boolean, default: true },//page is already loaded so its true...
+    ready: { type: Boolean, default: true }, //page is already loaded so its true...
     logged_at: Number,
     babyId: Number,
     gameID: String,
@@ -49,9 +36,8 @@ var playerSchema = new mongoose.Schema({
     }
 });
 
-
 /**
- * Used in tests.
+ * Used to export the schema everywhere.
  *
  */
 getSchema = function(){
@@ -59,11 +45,12 @@ getSchema = function(){
 };
 
 
-
-
-
 /**
- * 
+ * Gathers all the ready players to send to the new player who is connecting. 
+ *
+ * param[in]: bayeux - server to handle the websocket messaging.
+ * param[in]: position - player position.
+ * param[in]: babyId   - babyfoot identifier.
  *
  */
 exports.getCurrentPlayers = function(bayeux, position, babyId){
@@ -83,16 +70,10 @@ exports.getCurrentPlayers = function(bayeux, position, babyId){
     
     db.once('open', function () {
 
-    console.log("GET CURRENT PLAYERS");
-
 	var query = Player.find({ ready: true }).limit(4);
     	query.exec(function (err, players) {
 
-		console.log("LENGTH "+players.length);
-
 	    for(i = 0 ; i < players.length ; i++){
-
-//    		if(players[i]){
 
 		message.picture = players[i].personal.picture;
 		message.name = players[i].personal.first_name;
@@ -108,7 +89,9 @@ exports.getCurrentPlayers = function(bayeux, position, babyId){
 };
 
 /**
- * 
+ * Gathers all the ready players to send to the index on index connect. 
+ *
+ * param[in]: bayeux - server to handle the websocket messaging.
  *
  */
 exports.getCurrentPlayersForIndex = function(bayeux){
@@ -127,7 +110,6 @@ exports.getCurrentPlayersForIndex = function(bayeux){
 
 	    for(i = 0 ; i < players.length ; i++){
 
-
 		var msg = {
     		    "score" :   "",
     		    "name" :  "",
@@ -135,8 +117,6 @@ exports.getCurrentPlayersForIndex = function(bayeux){
 		    "position": "",
 		    "babyId": ""
 		};
-
-//    		if(players[i]){
 
 		msg.picture = '<img src="'+players[i].personal.picture+'">';
 		msg.name = players[i].personal.first_name;
@@ -146,112 +126,22 @@ exports.getCurrentPlayersForIndex = function(bayeux){
 
 		message[msg.position - 1] = msg;
     	    }
-
 	    mongoose.disconnect();
-
 	    bayeux.getClient().publish('/index', message);
 	});
     });
 };
 
-
-
-/**
- * 
- */
-exports.updateScore = function(message){
-    
-    var playerSchema = createSchema();
-
-    console.log("update score player");
-
-    db = mongoose.createConnection('localhost', 'asiance_babyfoot');
-
-    var Player = db.model('Player', playerSchema);
-
-    var player = new Player;
-
-    db.once('open', function () {
-
-	var query = Player.find().sort({ logged_at: 'desc'}).limit(4);
-    	query.exec(function (err, players) {
-    	    if (err) { console.log(err); }
-
-	    for(i = 0 ; i < PLYR_NBROF_PLAYER ; i++){
-		switch(players[i].position)
-		{
-		case 1:
-		    players[i].update({ 
-			stats: { "cendriers": 0, 
-	    			 "reprises": 0, 
-	    			 "pissettes": 0, 
-	    			 "gamelles": 0, 
-				 "score_attack":  message.score[P1_ATTACKER],
-				 "score_defense": message.score[P1_DEFENSER]}},
-	    						  function (err) {
-	    						      if (err) { throw err; }
-	    						  });
-		    break;
-		case 2:
-		    players[i].update({ 
-			stats: { "cendriers": 0, 
-	    			 "reprises": 0, 
-	    			 "pissettes": 0, 
-	    			 "gamelles": 0, 
-				 "score_attack":  message.score[P2_ATTACKER],
-				 "score_defense": message.score[P2_DEFENSER]}},
-	    						  function (err) {
-	    						      if (err) { throw err; }
-	    						  });
-		    break;
-		case 3:
-		    players[i].update({ 
-			stats: { "cendriers": 0, 
-	    			 "reprises": 0, 
-	    			 "pissettes": 0, 
-	    			 "gamelles": 0, 
-				 "score_attack":  message.score[P3_ATTACKER],
-				 "score_defense": message.score[P3_DEFENSER]}},
-	    						  function (err) {
-	    						      if (err) { throw err; }
-	    						  });
-		    break;
-		case 4:
-		    players[i].update({ 
-			stats: { "cendriers": 0, 
-	    			 "reprises": 0, 
-	    			 "pissettes": 0, 
-	    			 "gamelles": 0, 
-				 "score_attack":  message.score[P4_ATTACKER],
-				 "score_defense": message.score[P4_DEFENSER]}},
-	    						  function (err) {
-	    						      if (err) { throw err; }
-	    						  });
-		    break;
-		default:
-		    break;
-		}
-	    }
-	    mongoose.disconnect();
-    	});
-    });
-};
-
-
-
-
 /**
  * Add player to the DB.
+ *
+ * param[in]: player_logged - the player who is logging.
+ *
  */
 exports.addPlayer = function(player_logged){
-    /*
-     * Connect and write DB
-     */
+
     db = mongoose.createConnection('localhost', 'asiance_babyfoot');
 
-    /* 
-     * Declare new player
-     */
     var Player = db.model('Player', playerSchema);
    
     var player = new Player;
@@ -285,27 +175,24 @@ exports.addPlayer = function(player_logged){
 
 	player.save(function (err) {
     	    if(err){
-    		console.log('ERROR');
 		mongoose.disconnect();
     	    }else{
-		console.log("[INFO] player logged saved");
 		mongoose.disconnect();}
 	});
     });
 };
 
-
-
-
 /**
  * After login it retrieves all the data corresponding to the current player (me)
+ *
+ * param[in]: req - request.
+ * param[in]: res - response.
  *
  */
 exports.getAplayer = function(req, res){
 
     db = mongoose.createConnection('localhost', 'asiance_babyfoot');
 
-    // var Player = new PlayerModel;
     var Player = db.model('Player', playerSchema);
     
     db.once('open', function () {
@@ -326,34 +213,14 @@ exports.getAplayer = function(req, res){
     });
 }
 
-
+	
 /**
- * To switch from not ready to ready.
- */
-exports.updatePlayerStatus = function(req, res, status){
-    
-    var ready_req = (status == true) ? false : true;
-
-    console.log("update score player");
-
-    db = mongoose.createConnection('localhost', 'asiance_babyfoot');
-
-    var Player = db.model('Player', playerSchema);
-
-    db.once('open', function () {
-
-	var query = Player.find({position: req.position, babyId: req.babyId, ready: ready_req}).sort({ logged_at: 'desc'}).limit(4);
-    	query.exec(function (err, player) {
-    	    if (err) { console.log(err); }
-
-	    //player.update({"ready": status });
-	    mongoose.disconnect();
-    	});
-    });
-};
-
-/**
- * To switch from ready to notready.
+ * To switch from ready to notready when the player unsubscripts.
+ * 
+ * param[in]: babyId   - babyfoot identifier.
+ * param[in]: position - player position.
+ * param[in]: score    - player score.
+ *    
  */
 exports.unsubscriptPlayer = function(babyId,
 				     position, 
@@ -369,34 +236,3 @@ exports.unsubscriptPlayer = function(babyId,
 		      function(){mongoose.disconnect();});
     });
 };
-
-/**
- * Update current player: score etc etc....
- */
-// exports.updatePlayerScore = function(babyId,
-// 				     position, 
-// 				     score){
-
-//     console.log("update me");
-
-//     db = mongoose.createConnection('localhost', 'asiance_babyfoot');
-
-//     var Player = db.model('Player', playerSchema);
-
-//     db.once('open', function () {
-
-// 	console.log(score);
-// 	console.log(score);
-
-
-// 	Player.update({position: position, babyId: babyId, ready: true},
-// 		      {stats: {"score":  score}},
-// 		      function(){mongoose.disconnect();});
-//     });
-// };
-
-
-
-
-
-
