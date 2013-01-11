@@ -11,6 +11,10 @@ body{
 			      image-url('../images/bg-pattern.jpg'));
 }	
 
+@font-face {
+    font-family: Interstate-Bold;
+    src: url('../fonts/Interstate-Bold.ttf');
+}
 
 
 #page{
@@ -29,10 +33,9 @@ body{
     	position: absolute;
     	text-align: center;
     	left:19%;
-    	font-weight: bold;
     	font-size:57px;
     	/* text-transform:uppercase; */
-    	font-family: "Interstate";
+    	font-family: "Interstate-Bold";
     	color: #FFFFFF;
     	@include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 4px 8px 0, rgba(black, 0.2) 3px 3px 0);
     }
@@ -73,11 +76,10 @@ body{
 	    margin-left: 129px;
 	    margin-top: 62px;
 	    text-align: center;
-	    font-weight: bold;
 	    font-size:14px;
 	    text-transform:uppercase;
 	    font-style:italic;
-	    font-family: "Interstate";
+	    font-family: "Interstate-Bold";
 	    color: #FFFFFF;
 	}
 	.pheader2{
@@ -130,11 +132,10 @@ body{
 	    margin-left: 216px;
 	    margin-top: 576px;
 	    text-align: center;
-	    font-weight: bold;
 	    font-size:14px;
 	    text-transform:uppercase;
 	    font-style:italic;
-	    font-family: "Interstate";
+	    font-family: "Interstate-Bold";
 	    color: #FFFFFF;
 	}
 
@@ -218,4 +219,3 @@ body{
 
       }
 }
-

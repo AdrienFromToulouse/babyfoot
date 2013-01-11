@@ -147,9 +147,9 @@ exports.getCurrentPlayersForIndex = function(bayeux){
 		message[msg.position - 1] = msg;
     	    }
 
-	    bayeux.getClient().publish('/index', message);
-
 	    mongoose.disconnect();
+
+	    bayeux.getClient().publish('/index', message);
 	});
     });
 };

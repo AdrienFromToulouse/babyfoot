@@ -177,7 +177,12 @@ body {
   background-image: radial-gradient(circle, #ffffff 200px, transparent), url('/images/../images/bg-pattern.jpg?1352956908');
 }
 
-/* line 16, ../sass/main_mobile.scss */
+@font-face {
+  font-family: Interstate-Bold;
+  src: url("../fonts/Interstate-Bold.ttf");
+}
+
+/* line 20, ../sass/main_mobile.scss */
 #page {
   width: 1010px;
   margin-top: 4%;
@@ -185,75 +190,73 @@ body {
   margin-left: auto;
   position: relative;
 }
-/* line 23, ../sass/main_mobile.scss */
+/* line 27, ../sass/main_mobile.scss */
 #page #social {
   position: absolute;
   right: 374px;
   top: 1202px;
 }
-/* line 28, ../sass/main_mobile.scss */
+/* line 32, ../sass/main_mobile.scss */
 #page h1 {
   position: absolute;
   text-align: center;
   left: 19%;
-  font-weight: bold;
   font-size: 57px;
   /* text-transform:uppercase; */
-  font-family: "Interstate";
+  font-family: "Interstate-Bold";
   color: #FFFFFF;
   text-shadow: rgba(0, 0, 0, 0.2) 1px 1px 0, rgba(0, 0, 0, 0.2) 4px 8px 0, rgba(0, 0, 0, 0.2) 3px 3px 0;
 }
-/* line 41, ../sass/main_mobile.scss */
+/* line 44, ../sass/main_mobile.scss */
 #page div.panel {
   margin-left: auto;
   margin-right: auto;
   margin-top: -10%;
 }
-/* line 46, ../sass/main_mobile.scss */
+/* line 49, ../sass/main_mobile.scss */
 #page #panel_img {
   margin-top: 5%;
   width: 100%;
 }
-/* line 52, ../sass/main_mobile.scss */
+/* line 55, ../sass/main_mobile.scss */
 #page div.player {
   position: absolute;
   top: 142px;
 }
-/* line 56, ../sass/main_mobile.scss */
+/* line 59, ../sass/main_mobile.scss */
 #page div.player .photo img {
   width: 147px;
   height: 147px;
 }
-/* line 61, ../sass/main_mobile.scss */
+/* line 64, ../sass/main_mobile.scss */
 #page div.player .pbody {
   width: 98px;
 }
-/* line 67, ../sass/main_mobile.scss */
+/* line 70, ../sass/main_mobile.scss */
 #page div.player .pheader1, #page div.player .pheader2, #page div.player .pfooter3, #page div.player .pfooter4 {
   text-shadow: rgba(0, 0, 0, 0.2) 1px 1px 0, rgba(0, 0, 0, 0.2) 2px 2px 0, rgba(0, 0, 0, 0.2) 3px 3px 0;
 }
-/* line 72, ../sass/main_mobile.scss */
+/* line 75, ../sass/main_mobile.scss */
 #page div.player .pheader1, #page div.player .pheader2 {
   margin-left: 129px;
   margin-top: 62px;
   text-align: center;
-  font-weight: bold;
   font-size: 14px;
   text-transform: uppercase;
   font-style: italic;
-  font-family: "Interstate";
+  font-family: "Interstate-Bold";
   color: #FFFFFF;
 }
-/* line 83, ../sass/main_mobile.scss */
+/* line 85, ../sass/main_mobile.scss */
 #page div.player .pheader2 {
   margin-left: 319px;
   margin-top: 62px;
 }
-/* line 88, ../sass/main_mobile.scss */
+/* line 90, ../sass/main_mobile.scss */
 #page div.player#player1 {
   left: 99px;
 }
-/* line 92, ../sass/main_mobile.scss */
+/* line 94, ../sass/main_mobile.scss */
 #page div.player#player1 #score1 {
   position: absolute;
   left: 22px;
@@ -261,7 +264,7 @@ body {
   width: 51px;
   height: 35px;
 }
-/* line 99, ../sass/main_mobile.scss */
+/* line 101, ../sass/main_mobile.scss */
 #page div.player#player1 .photo {
   width: 158px;
   height: 158px;
@@ -269,11 +272,11 @@ body {
   left: 83px;
   top: 95px;
 }
-/* line 108, ../sass/main_mobile.scss */
+/* line 110, ../sass/main_mobile.scss */
 #page div.player#player2 {
   left: 390px;
 }
-/* line 111, ../sass/main_mobile.scss */
+/* line 113, ../sass/main_mobile.scss */
 #page div.player#player2 #score2 {
   position: absolute;
   left: 433px;
@@ -281,7 +284,7 @@ body {
   width: 51px;
   height: 35px;
 }
-/* line 118, ../sass/main_mobile.scss */
+/* line 120, ../sass/main_mobile.scss */
 #page div.player#player2 .photo {
   width: 158px;
   height: 158px;
@@ -289,29 +292,28 @@ body {
   left: 274px;
   top: 95px;
 }
-/* line 129, ../sass/main_mobile.scss */
+/* line 131, ../sass/main_mobile.scss */
 #page div.player .pfooter3, #page div.player .pfooter4 {
   margin-left: 216px;
   margin-top: 576px;
   text-align: center;
-  font-weight: bold;
   font-size: 14px;
   text-transform: uppercase;
   font-style: italic;
-  font-family: "Interstate";
+  font-family: "Interstate-Bold";
   color: #FFFFFF;
 }
-/* line 141, ../sass/main_mobile.scss */
+/* line 142, ../sass/main_mobile.scss */
 #page div.player .pfooter4 {
   margin-left: 700px;
   margin-top: 576px;
 }
-/* line 147, ../sass/main_mobile.scss */
+/* line 148, ../sass/main_mobile.scss */
 #page div.player#player3 {
   top: 500px;
   left: 10px;
 }
-/* line 151, ../sass/main_mobile.scss */
+/* line 152, ../sass/main_mobile.scss */
 #page div.player#player3 #score3 {
   position: absolute;
   left: 111px;
@@ -319,18 +321,18 @@ body {
   width: 51px;
   height: 35px;
 }
-/* line 158, ../sass/main_mobile.scss */
+/* line 159, ../sass/main_mobile.scss */
 #page div.player#player3 .photo {
   position: absolute;
   left: 172px;
   top: 412px;
 }
-/* line 165, ../sass/main_mobile.scss */
+/* line 166, ../sass/main_mobile.scss */
 #page div.player#player4 {
   top: 500px;
   left: 10px;
 }
-/* line 169, ../sass/main_mobile.scss */
+/* line 170, ../sass/main_mobile.scss */
 #page div.player#player4 #score4 {
   width: 51px;
   height: 35px;
@@ -338,7 +340,7 @@ body {
   left: 814px;
   top: 470px;
 }
-/* line 176, ../sass/main_mobile.scss */
+/* line 177, ../sass/main_mobile.scss */
 #page div.player#player4 .photo {
   width: 158px;
   height: 158px;
@@ -346,7 +348,7 @@ body {
   left: 654px;
   top: 412px;
 }
-/* line 185, ../sass/main_mobile.scss */
+/* line 186, ../sass/main_mobile.scss */
 #page div#score_team1 {
   width: 90px;
   height: 66px;
@@ -354,7 +356,7 @@ body {
   left: 452px;
   top: 258px;
 }
-/* line 192, ../sass/main_mobile.scss */
+/* line 193, ../sass/main_mobile.scss */
 #page div#score_team2 {
   width: 90px;
   height: 66px;
@@ -362,18 +364,18 @@ body {
   left: 452px;
   top: 975px;
 }
-/* line 199, ../sass/main_mobile.scss */
+/* line 200, ../sass/main_mobile.scss */
 #page div#screen {
   position: absolute;
   top: 418px;
   left: 129px;
 }
-/* line 204, ../sass/main_mobile.scss */
+/* line 205, ../sass/main_mobile.scss */
 #page div#screen #stream_vid {
   width: 740px;
   height: 460px;
 }
-/* line 210, ../sass/main_mobile.scss */
+/* line 211, ../sass/main_mobile.scss */
 #page .fb_iframe_widget {
   position: absolute;
   left: 98px;

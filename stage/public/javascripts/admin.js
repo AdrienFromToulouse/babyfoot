@@ -1,4 +1,3 @@
-
 var babyAdmin = {
 
     MyGameCtxt: {
@@ -193,7 +192,7 @@ var babyAdmin = {
      */
     updateScore : function(game_ctxt){
 
-	if( (game_ctxt.score >= 0) || (babyAdmin.MyGameCtxt.score >= 0) ){
+	if( ( (game_ctxt.score >= 0) && (game_ctxt.score <= 10) ) || ( (babyAdmin.MyGameCtxt.score >= 0) && (babyAdmin.MyGameCtxt.score <= 10) ) ){
 
 	    /* if it's actually me */
 	    if(babyAdmin.MyGameCtxt.position == game_ctxt.position){

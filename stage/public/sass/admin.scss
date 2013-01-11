@@ -5,11 +5,13 @@
 @import "compass/css3/text-shadow";
 @import "compass/css3/images";
 
-body{
-    /* @include background-image(radial-gradient(circle,  */
-    /* 					      #ffffff 200px,transparent), */
-    /* 			      image-url('../images/bg-pattern.jpg')); */
-}	
+
+body
+{
+    /* background: url('../images/bg-pattern.jpg'); */
+    /* background-repeat: no-repeat; */
+    background-color:#000000;
+}
 
 
 
@@ -20,51 +22,25 @@ body{
     margin-right: auto;
     margin-left: auto;
     position: relative;
-
-
-    /* h1{ */
-    /* 	position: absolute; */
-    /* 	text-align: center; */
-    /* 	left:19%; */
-    /* 	font-weight: bold; */
-    /* 	font-size:57px; */
-    /* 	/\* text-transform:uppercase; *\/ */
-    /* 	font-family: "Interstate"; */
-    /* 	color: #FFFFFF; */
-    /* 	@include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 4px 8px 0, rgba(black, 0.2) 3px 3px 0); */
-    
-
-
-    /* div.panel{ */
-    /* 	margin-left: auto; */
-    /* 	margin-right: auto; */
-    /* 	margin-top: -10%; */
-    /* } */
-    /* #panel_img{ */
-    /* 	margin-top: 5%; */
-    /* 	width: 100%; */
-    /* } */
-
-
    
 
 
     #plus{
 	position: absolute;
 	left: 328px;
-	top: 142px;
+	top: 232px;
     }
     #minus{
 	position: absolute;
 	left: 110px;
-	top: 153px;
+	top: 248px;
     }
 
 
     
     #me{
 	position: absolute;
-	left: 200px;
+	left: 168px;
 	top: 127px;
 	width: 80px;
 	height: 35px;
@@ -91,7 +67,7 @@ body{
     }
     #myco{
 	position: absolute;
-	left: 5px;
+	left: 64px;
 	top: 50px;
 	width: 51px;
 	height: 35px;
@@ -106,7 +82,7 @@ body{
     }
     #adv1{
 	position: absolute;
-	left: 398px;
+	left: 299px;
 	top: 50px;
 	width: 51px;
 	height: 35px;
@@ -120,7 +96,7 @@ body{
     }
     #adv2{
 	position: absolute;
-	left: 476px;
+	left: 366px;
 	top: 50px;
 	width: 51px;
 	height: 35px;
@@ -136,7 +112,7 @@ body{
     #score_team1{
 	position: absolute;
 	top: 300px;
-	left: 50px;
+	left: 136px;
 	width: 88px;
 	height: 60px;
     }
@@ -144,172 +120,8 @@ body{
     #score_team2{
 	position: absolute;
 	top: 300px;
-	left: 340px;
+	left: 254px;
 	width: 88px;
 	height: 60px;
     }
 }
-
-/* @import "compass/reset"; */
-/* @import "compass/utilities/sprites"; */
-/* @import "../images/scores/\*.png"; */
-/* @include all-scores-sprites; */
-/* @import "compass/css3/text-shadow"; */
-/* @import "compass/css3/images"; */
-
-/* body{ */
-/*     @include background-image(radial-gradient(circle, */
-/*     					      #ffffff 200px,transparent), */
-/*     			      image-url('../images/bg-pattern.jpg')); */
-/* }	 */
-
-
-
-/* #page{ */
-
-/*     width: 1010px; */
-/*     margin-top: 4%; */
-/*     margin-right: auto; */
-/*     margin-left: auto; */
-/*     position: relative; */
-
-
-/*     h1{ */
-/*     	position: absolute; */
-/*     	text-align: center; */
-/*     	left:19%; */
-/*     	font-weight: bold; */
-/*     	font-size:57px; */
-/*     	/\* text-transform:uppercase; *\/ */
-/*     	font-family: "Interstate"; */
-/*     	color: #FFFFFF; */
-/*     	@include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 4px 8px 0, rgba(black, 0.2) 3px 3px 0); */
-/*     } */
-
-
-/*     div.panel{ */
-/*     	margin-left: auto; */
-/*     	margin-right: auto; */
-/*     	margin-top: -10%; */
-/*     } */
-/*     #panel_img{ */
-/*     	margin-top: 5%; */
-/*     	width: 100%; */
-/*     } */
-  
-
-
-/*     #plus{ */
-/* 	position: absolute; */
-/* 	left: 581px; */
-/* 	top: 550px; */
-/*     } */
-/*     #minus{ */
-/* 	position: absolute; */
-/* 	left: 167px; */
-/* 	top: 550px; */
-/*     } */
-
-
-/*     #imgplus, #imgminus{ */
-
-/* 	/\* width: 100px; *\/ */
-/*     } */
-
-
-    
-/*     #me{ */
-/* 	 position: absolute; */
-/* 	 left: 443px; */
-/* 	 top: 600px; */
-
-/* 	 .photo img{	 */
-/* 	     width: 120px; */
-/* 	     height: 120px; */
-/* 	 } */
-
-
-/* 	 #myscore{ */
-/* 	     position: absolute; */
-/* 	     left: 32px; */
-/* 	     top: -41px; */
-/* 	     width: 51px; */
-/* 	     height: 35px; */
-/* 	 } */
-
-/* 	 .pfooter{ */
-/* 	     position: absolute; */
-/* 	     left: 39px; */
-/* 	     top: 139px; */
-/* 	     @include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 2px 2px 0, rgba(black, 0.2) 3px 3px 0); */
-
-/* 	     text-align: center; */
-/* 	     font-weight: bold; */
-/* 	     /\* font-size:14px; *\/ */
-/* 	     text-transform:uppercase; */
-/* 	     font-style:italic; */
-/* 	     font-family: "Interstate"; */
-/* 	     color: #FFFFFF; */
-/* 	} */
-
-/*     } */
-/*     #myco{ */
-/* 	position: absolute; */
-/* 	left: 5px; */
-/* 	top: 50px; */
-/* 	width: 51px; */
-/* 	height: 35px; */
-
-/* 	#mycoscore{ */
-/*     	    position: absolute; */
-/*     	    top: 77px; */
-/*     	    width: 51px; */
-/*     	    height: 35px; */
-/* 	} */
-
-/*     } */
-/*     #adv1{ */
-/* 	position: absolute; */
-/* 	left: 398px; */
-/* 	top: 50px; */
-/* 	width: 51px; */
-/* 	height: 35px; */
-
-/*         #adv1score{ */
-/*     	    position: absolute; */
-/*     	    top: 77px; */
-/* 	    width: 51px; */
-/*     	    height: 35px; */
-/* 	} */
-/*     } */
-/*     #adv2{ */
-/* 	position: absolute; */
-/* 	left: 476px; */
-/* 	top: 50px; */
-/* 	width: 51px; */
-/* 	height: 35px; */
-
-/*         #adv2score{ */
-/*     	    position: absolute; */
-/* 	    top: 77px; */
-/*     	    width: 51px; */
-/*     	    height: 35px; */
-/* 	} */
-/*     } */
-
-/*     #score_team1{ */
-/* 	width: 90px; */
-/* 	height: 66px; */
-/* 	position: absolute; */
-/* 	left: 452px; */
-/* 	top: 258px; */
-/*     } */
-
-/*     #score_team2{ */
-/* 	width: 90px; */
-/* 	height: 66px; */
-/* 	position: absolute; */
-/* 	left: 452px; */
-/* 	top: 975px; */
-/*     } */
-/* } */

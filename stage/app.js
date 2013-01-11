@@ -25,8 +25,6 @@ var message = [0,0,0,0];
  */
 var clients = new Array(100);
 
-
-
 /**
  * Module dependencies.
  */
@@ -41,6 +39,7 @@ var express = require('express')
 , mongoose = require('mongoose')
 , game = require('./schemas/game')
 , player = require('./schemas/player');
+
 
 /**
  * APP variable
@@ -76,8 +75,6 @@ var bayeux = new faye.NodeAdapter({
 });
 
 
-var clients = new Array();
-
 /**
  * Development: export NODE_ENV=development or NODE_ENV=development node app
  */
@@ -98,9 +95,7 @@ app.configure('development', function(){
 
 	} else {
 
-	    res.render('index_mobile', { title: 'LiveGameUp!' });
-
-	    // res.render('index', { title: 'LiveGameUp!' });
+	    res.render('index', { title: 'LiveGameUp!' });
   	}
     });
 
@@ -190,10 +185,8 @@ var subscription = bayeux.getClient().subscribe('/controller', function(game_ctx
     msg.babyId = game_ctxt.babyId;
 
     message[msg.position - 1] = msg;
-
   
     score[game_ctxt.babyId - 1][game_ctxt.position - 1] = game_ctxt.score;
-
 
 
     /* get all ready players */
@@ -253,7 +246,18 @@ bayeux.bind('unsubscribe', function(clientId, channel) {
 	if(score[babyId - 1][position - 1] < 0){
 	    score[babyId - 1][position - 1] = 0;
 	}
+	if(score[babyId - 1][position - 1] > 10){
+	    score[babyId - 1][position - 1] = 10;
+	}
 	player.unsubscriptPlayer(babyId, position, score[babyId - 1][position - 1]);
+
+	for(elt in clients){
+
+	    if(clients[elt].id == clientId){
+
+		clients.splice(elt,1);
+	    }
+	}
     }
 });
 
@@ -269,7 +273,6 @@ bayeux.bind('disconnect', function(clientId) {
 
 	if(clients[elt].id == clientId){
 
-	    console.log(clients[elt].channel);
 	    var elem = clients[elt].channel.split('/');
 
 	    var position = elem[2] - 0;
@@ -280,7 +283,16 @@ bayeux.bind('disconnect', function(clientId) {
 
 		console.log(score[babyId - 1][position - 1]);
 	  
+		if(score[babyId - 1][position - 1] < 0){
+		    score[babyId - 1][position - 1] = 0;
+		}
+		if(score[babyId - 1][position - 1] > 10){
+		    score[babyId - 1][position - 1] = 10;
+		}
+
 		player.unsubscriptPlayer(babyId, position, score[babyId - 1][position - 1]);
+
+		clients.splice(elt,1);
 	    }
 	}
     }

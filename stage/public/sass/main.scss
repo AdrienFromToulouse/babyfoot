@@ -8,18 +8,16 @@
 
 
 
-/*JUST TO TEST*/
-@import "../images/test/*.png";
-@include all-scores-sprites;
-
-
 body{
     @include background-image(radial-gradient(circle, 
 					      #ffffff 150px,transparent),
 			      image-url('../images/bg-pattern.jpg'));
 }	
 
-
+@font-face {
+    font-family: Interstate-Bold;
+    src: url('../fonts/Interstate-Bold.ttf');
+}
 
 #page{
     width: 1030px;
@@ -37,10 +35,9 @@ body{
 	position: absolute;
 	text-align: center;
 	left:19%;
-	font-weight: bold;
 	font-size:57px;
 	/* text-transform:uppercase; */
-	font-family: "Interstate";
+	font-family: "Interstate-Bold";
 	color: #FFFFFF;
 	@include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 4px 8px 0, rgba(black, 0.2) 3px 3px 0); 
     }
@@ -65,11 +62,10 @@ body{
 	    margin-left: -6px;
 	    margin-top: 28px;
 	    text-align: center;
-	    font-weight: bold;
 	    font-size:14px;
 	    text-transform:uppercase;
 	    font-style:italic;
-	    font-family: "Interstate";
+	    font-family: "Interstate-Bold";
 	    color: #FFFFFF;
 	}
 	.pheader2{
@@ -128,11 +124,10 @@ body{
 	    margin-left: 106px;
 	    margin-top: 198px;
 	    text-align: center;
-	    font-weight: bold;
 	    font-size:14px;
 	    text-transform:uppercase;
 	    font-style:italic;
-	    font-family: "Interstate";
+	    font-family: "Interstate-Bold";
 	    color: #FFFFFF;
 	}
 
