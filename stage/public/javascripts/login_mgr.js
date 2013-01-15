@@ -155,7 +155,7 @@ function fb_login(){
     	}else{
     	    //User cancelled login or did not fully authorize.
     	}
-    }, {scope: 'email,user_checkins,publish_stream'});
+    }, {scope: 'email,publish_stream'});
 }
 
 
