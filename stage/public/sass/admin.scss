@@ -6,11 +6,32 @@
 @import "compass/css3/images";
 
 
+@font-face {
+    font-family: Interstate-Bold;
+    src: url('../fonts/Interstate-Bold.ttf');
+}
+
+
+@mixin position($position, 
+		$top, 
+		$left, 
+		$width, 
+		$height) {
+
+    position: $position;
+    left: $left;
+    top: $top;
+    width: $width;
+    height: $height;
+
+}
+
+
 body
 {
-    /* background: url('../images/bg-pattern.jpg'); */
-    /* background-repeat: no-repeat; */
-    background-color:#000000;
+
+    @include background-image(image-url('../images/bg-pattern.jpg'));
+
 }
 
 
@@ -39,53 +60,68 @@ body
 
     
     #me{
-	position: absolute;
-	left: 168px;
-	top: 127px;
-	width: 80px;
-	height: 35px;
+	@include position(absolute, 
+			  127px, 
+			  190px, 
+			  80px, 
+			  35px);
 
 	.photo img{	
 	    width: 80px;
 	    height: 80px;
 	}
 
-
 	#myscore{
-    	    position: absolute;
-	    left: 5px;
-	    top: 110px;
-    	    width: 51px;
-    	    height: 35px;
-	}
 
+	    @include position(absolute, 
+			      -43px, 
+			      16px, 
+			      51px, 
+			      35px);
+    	    
+	}
 	.pfooter{
-	    position: absolute;
-	    left: 21px;
+	    @include text-shadow(rgba(black, 0.2) 1px 1px 0, 
+				 rgba(black, 0.2) 2px 2px 0, 
+				 rgba(black, 0.2) 3px 3px 0);
+
+	    font-family: "Interstate-Bold";
+	    color: #FFFFFF;
+	    text-align: center;
 	}
 
     }
     #myco{
-	position: absolute;
-	left: 64px;
-	top: 50px;
-	width: 51px;
-	height: 35px;
 
+	@include position(absolute, 
+			  50px, 
+			  64px, 
+			  51px,
+			  35px);
 	#mycoscore{
+
     	    position: absolute;
     	    top: 77px;
     	    width: 51px;
     	    height: 35px;
 	}
+	.pfooter{
+	    @include text-shadow(rgba(black, 0.2) 1px 1px 0, 
+				 rgba(black, 0.2) 2px 2px 0, 
+				 rgba(black, 0.2) 3px 3px 0);
 
+	    font-family: "Interstate-Bold";
+	    color: #FFFFFF;
+	    text-align: center;
+	}
     }
     #adv1{
-	position: absolute;
-	left: 299px;
-	top: 50px;
-	width: 51px;
-	height: 35px;
+
+	@include position(absolute, 
+			  50px, 
+			  299px, 
+			  51px, 
+			  35px);
 
         #adv1score{
     	    position: absolute;
@@ -93,13 +129,24 @@ body
 	    width: 51px;
     	    height: 35px;
 	}
+	.pfooter{
+	    @include text-shadow(rgba(black, 0.2) 1px 1px 0, 
+				 rgba(black, 0.2) 2px 2px 0, 
+				 rgba(black, 0.2) 3px 3px 0);
+
+	    font-family: "Interstate-Bold";
+	    color: #FFFFFF;
+	    text-align: center;
+	}
+
+
     }
     #adv2{
-	position: absolute;
-	left: 366px;
-	top: 50px;
-	width: 51px;
-	height: 35px;
+	@include position(absolute, 
+			  50px, 
+			  366px, 
+			  51px, 
+			  35px);
 
         #adv2score{
     	    position: absolute;
@@ -107,21 +154,31 @@ body
     	    width: 51px;
     	    height: 35px;
 	}
+	.pfooter{
+	    @include text-shadow(rgba(black, 0.2) 1px 1px 0, 
+				 rgba(black, 0.2) 2px 2px 0, 
+				 rgba(black, 0.2) 3px 3px 0);
+
+	    font-family: "Interstate-Bold";
+	    color: #FFFFFF;
+	    text-align: center;
+	}
     }
 
     #score_team1{
-	position: absolute;
-	top: 300px;
-	left: 136px;
-	width: 88px;
-	height: 60px;
+	@include position(absolute, 
+			  300px, 
+			  136px, 
+			  88px, 
+			  60px);
     }
 
     #score_team2{
-	position: absolute;
-	top: 300px;
-	left: 254px;
-	width: 88px;
-	height: 60px;
+
+	@include position(absolute, 
+			  300px, 
+			  254px, 
+			  88px, 
+			  60px);
     }
 }

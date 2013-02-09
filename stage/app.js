@@ -80,7 +80,7 @@ var bayeux = new faye.NodeAdapter({
  */
 app.configure('development', function(){
 
-    console.log("ALL ON MOBILE STARTED IN development MODE");
+    //console.log("ALL ON MOBILE STARTED IN development MODE");
     app.use(express.errorHandler());
 
     /**
@@ -94,7 +94,6 @@ app.configure('development', function(){
 	    res.render('index_mobile', { title: 'LiveGameUp!' });
 
 	} else {
-
 	    res.render('index', { title: 'LiveGameUp!' });
   	}
     });
@@ -210,7 +209,10 @@ bayeux.bind('subscribe', function(clientId, channel) {
     // console.log('[SUBSCRIBE] ' + clientId + ' -> ' + channel);
 
     if(channel == "/index"){
-	player.getCurrentPlayersForIndex(bayeux);
+
+	//console.log('[SUBSCRIBE INDEX] ' + clientId + ' -> ' + channel);
+	//TODO in get function take the babyId into account
+	player.getCurrentPlayersForIndex(bayeux, score);
     }
     else{
 
@@ -225,6 +227,9 @@ bayeux.bind('subscribe', function(clientId, channel) {
 		id: clientId,
 		channel: channel
 	    };
+
+	    //console.log('[SUBSCRIBE] ' + clientId + ' -> ' + channel);
+
 	    clients.push(clt);
 
 	    player.getCurrentPlayers(bayeux, position, babyId);
@@ -243,6 +248,9 @@ bayeux.bind('unsubscribe', function(clientId, channel) {
     /* Set the started status to false */
     if( elem[3] == 'baby'){
 
+	//console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
+
+
 	if(score[babyId - 1][position - 1] < 0){
 	    score[babyId - 1][position - 1] = 0;
 	}
@@ -254,6 +262,9 @@ bayeux.bind('unsubscribe', function(clientId, channel) {
 	for(elt in clients){
 
 	    if(clients[elt].id == clientId){
+
+		//console.log('[SPLICE] ' + clientId + ' -> ' + channel);
+
 
 		clients.splice(elt,1);
 	    }

@@ -92,9 +92,10 @@ exports.getCurrentPlayers = function(bayeux, position, babyId){
  * Gathers all the ready players to send to the index on index connect. 
  *
  * param[in]: bayeux - server to handle the websocket messaging.
+ * param[in]: theScore - the score array.
  *
  */
-exports.getCurrentPlayersForIndex = function(bayeux){
+exports.getCurrentPlayersForIndex = function(bayeux, theScore){
 
     var message = [0,0,0,0];
 
@@ -120,9 +121,10 @@ exports.getCurrentPlayersForIndex = function(bayeux){
 
 		msg.picture = '<img src="'+players[i].personal.picture+'">';
 		msg.name = players[i].personal.first_name;
-		msg.score = players[i].stats.score;
-		msg.position = players[i].position;
+		//msg.score = players[i].stats.score;
+ 		msg.position = players[i].position;
 		msg.babyId = players[i].babyId;
+		msg.score = theScore[msg.babyId - 1][msg.position - 1];
 
 		message[msg.position - 1] = msg;
     	    }
@@ -206,8 +208,8 @@ exports.getAplayer = function(req, res){
 	    
 	    mongoose.disconnect();
 
-	    res.header("Access-Control-Allow-Origin", "*"); 
-	    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	    // res.header("Access-Control-Allow-Origin", "*"); 
+	    // res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	    res.send(player);
 	});
     });
