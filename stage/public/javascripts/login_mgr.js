@@ -86,7 +86,9 @@ function savePlayerNPost(response){
 	    params['description'] = 'Watch '+response.first_name+' playing Babyfoot! Go ahead and support him!';
 	}
 	params['link'] = 'http://livegameup.asiance-dev.com:3300/';
-	params['picture'] = 'http://livegameup.asiance-dev.com:3300/images/asiance.jpg';
+	//params['picture'] = 'http://livegameup.asiance-dev.com:3300/images/asiance.jpg';
+
+	params['picture'] = 'http://coreeaffaires.com/wp-content/uploads/2011/02/asiance1.jpg';
 	params['caption'] = 'Watch me live playing Babyfoot!!';
 
  	FB.api('/me/feed', 'post', params, function(response) {

@@ -101,7 +101,17 @@ app.configure('development', function(){
     /**
      * Login
      */
-    app.get('/login', login.show);
+//    app.get('/login:b/:p', login.show);
+
+    app.get('/login', function(req, res){
+
+	console.log("i am gonna render the login page");
+
+	res.render('login', { title: 'Login' })
+    });
+
+    
+
 
     /**
      * Admin
@@ -116,6 +126,7 @@ app.configure('development', function(){
   
   	player.getAplayer(req, res);
     });
+
 });
 
 
