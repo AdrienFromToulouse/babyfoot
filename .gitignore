@@ -17,4 +17,4 @@
 
 /stage/public/stylesheets/*
 /stage/public/.sass-cache/*
-
+.sass-cache/
