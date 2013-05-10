@@ -11,7 +11,7 @@
     "jade": "*",
     "faye": "*",
     "mocha": "*",
-    "should": "*"
-
+    "should": "*",
+    "optimist": "*"
   }
 }

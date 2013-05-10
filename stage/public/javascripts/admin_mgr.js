@@ -4,17 +4,27 @@
 $().ready(function() {
 
     $(function() {
-	$('#plus').on('click touchstart', function(e) {
+    	$('#plus').on('click touchstart', function(e) {
     	    e.preventDefault(); babyAdmin.MyGameCtxt.score++;
+
+	    var htmlString = "";
+	    htmlString = '<p>'+babyAdmin.MyGameCtxt.score+'</p>';
+	    $("#myscore").html(htmlString);
+ 
     	    babyAdmin.send(me, babyAdmin.MyGameCtxt);
-	    babyAdmin.updateScore(babyAdmin.MyGameCtxt);
-	});
+    	    babyAdmin.updateScore(babyAdmin.MyGameCtxt);
+    	});
 	
-	$('#minus').on('click touchstart', function(e) {
+    	$('#minus').on('click touchstart', function(e) {
     	    e.preventDefault(); babyAdmin.MyGameCtxt.score--;
+
+	    var htmlString = "";
+	    htmlString = '<p>'+babyAdmin.MyGameCtxt.score+'</p>';
+	    $("#myscore").html(htmlString);
+
     	    babyAdmin.send(me, babyAdmin.MyGameCtxt);
-	    babyAdmin.updateScore(babyAdmin.MyGameCtxt);
-	});
+    	    babyAdmin.updateScore(babyAdmin.MyGameCtxt);
+    	});
     });
 
 });
@@ -34,8 +44,11 @@ window.onbeforeunload = function(){
     me.disconnect();
 };
 
-// /* for Safari */
+/* for Safari */
 window.onunload = function(){
-   console.log("onunload");
+    console.log("onunload");
     me.disconnect();
 };
+
+
+

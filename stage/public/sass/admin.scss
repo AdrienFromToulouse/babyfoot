@@ -4,181 +4,155 @@
 @include all-scores-sprites;
 @import "compass/css3/text-shadow";
 @import "compass/css3/images";
+@import "compass/css3/border-radius";
+@import "compass/css3/font-face";
+
+/* @font-face { */
+/*     font-family: jd_led3; */
+/*     src: url('../fonts/jd_led3.ttf'); */
+/* } */
+@font-face {
+    font-family: ProximaNovaCond-Regular;
+    src: url('../fonts/ProximaNovaCond-Regular.otf');
+}
 
 
 @font-face {
-    font-family: Interstate-Bold;
-    src: url('../fonts/Interstate-Bold.ttf');
+    font-family: jd_led3;
+    src: url('../fonts/jd_led3.otf');
 }
 
-
-@mixin position($position, 
-		$top, 
-		$left, 
-		$width, 
-		$height) {
-
-    position: $position;
-    left: $left;
-    top: $top;
-    width: $width;
-    height: $height;
-
+body{
+    background-color: rgb(203,203,203);
 }
-
-
-body
-{
-
-    @include background-image(image-url('../images/bg-pattern.jpg'));
-
-}
-
 
 
 #page{
 
-    margin-top: 5%;
-    width: 512px;
+    width: 640px;
     margin-right: auto;
     margin-left: auto;
     position: relative;
-   
 
+    .gamepanel{
 
-    #plus{
 	position: absolute;
-	left: 328px;
-	top: 232px;
-    }
-    #minus{
-	position: absolute;
-	left: 110px;
-	top: 248px;
-    }
 
-
-    
-    #me{
-	@include position(absolute, 
-			  127px, 
-			  190px, 
-			  80px, 
-			  35px);
-
-	.photo img{	
-	    width: 80px;
-	    height: 80px;
+	#gamepanel{
+	    width: 640px;
+	}
+	.photo img {
+	    position: absolute;
+  	    width: 106px;
+    	    border-radius: 50%;
+    	    -webkit-border-radius: 50%;
+    	    -moz-border-radius: 50%;
+	}
+	.pname p{
+	    position: absolute;
+	    top: -33px;
+	    left: 14px;
+    	    /* font-size:57px; */
+    	    text-transform:uppercase;
+     	    font-family: ProximaNovaCond-Regular;
 	}
 
-	#myscore{
+	@for $i from 1 through 4 {
 
-	    @include position(absolute, 
-			      -43px, 
-			      16px, 
-			      51px, 
-			      35px);
-    	    
+	    #player#{$i} {
+		position: absolute; 
+	    }
 	}
-	.pfooter{
-	    @include text-shadow(rgba(black, 0.2) 1px 1px 0, 
-				 rgba(black, 0.2) 2px 2px 0, 
-				 rgba(black, 0.2) 3px 3px 0);
-
-	    font-family: "Interstate-Bold";
-	    color: #FFFFFF;
-	    text-align: center;
+ 	#player1{
+	    top: 17.2%;
+	    left: 4%;
 	}
-
-    }
-    #myco{
-
-	@include position(absolute, 
-			  50px, 
-			  64px, 
-			  51px,
-			  35px);
-	#mycoscore{
-
-    	    position: absolute;
-    	    top: 77px;
-    	    width: 51px;
-    	    height: 35px;
+	#player2{
+	    top: 8.4%;
+	    left: 25.4%;
 	}
-	.pfooter{
-	    @include text-shadow(rgba(black, 0.2) 1px 1px 0, 
-				 rgba(black, 0.2) 2px 2px 0, 
-				 rgba(black, 0.2) 3px 3px 0);
-
-	    font-family: "Interstate-Bold";
-	    color: #FFFFFF;
-	    text-align: center;
+	#player3{
+	    top: 8.4%;
+	    left: 57.7%;
 	}
-    }
-    #adv1{
-
-	@include position(absolute, 
-			  50px, 
-			  299px, 
-			  51px, 
-			  35px);
-
-        #adv1score{
-    	    position: absolute;
-    	    top: 77px;
-	    width: 51px;
-    	    height: 35px;
-	}
-	.pfooter{
-	    @include text-shadow(rgba(black, 0.2) 1px 1px 0, 
-				 rgba(black, 0.2) 2px 2px 0, 
-				 rgba(black, 0.2) 3px 3px 0);
-
-	    font-family: "Interstate-Bold";
-	    color: #FFFFFF;
-	    text-align: center;
+	#player4{
+	    top: 17.2%;
+	    left: 79.39%;
 	}
 
 
-    }
-    #adv2{
-	@include position(absolute, 
-			  50px, 
-			  366px, 
-			  51px, 
-			  35px);
-
-        #adv2score{
-    	    position: absolute;
-	    top: 77px;
-    	    width: 51px;
-    	    height: 35px;
+	.scorep, .scoret, #myscore {
+	    p{
+		font: {
+		    family: "jd_led3";
+		    size: 3em;
+		}
+	    }
 	}
-	.pfooter{
-	    @include text-shadow(rgba(black, 0.2) 1px 1px 0, 
-				 rgba(black, 0.2) 2px 2px 0, 
-				 rgba(black, 0.2) 3px 3px 0);
+	#myscore {
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;	 
 
-	    font-family: "Interstate-Bold";
-	    color: #FFFFFF;
-	    text-align: center;
+	    p{
+		font: {
+		    size: 8em;
+		}
+	    }
 	}
-    }
+	@for $i from 1 through 4 {
 
-    #score_team1{
-	@include position(absolute, 
-			  300px, 
-			  136px, 
-			  88px, 
-			  60px);
-    }
+	    #scorep#{$i} {
+		position: absolute; 
+	    }
+	}
 
-    #score_team2{
+	#scorep1{
+	    top: 37%;
+	    left: 14%;	 
+	}	 
+	#scorep2{
+	    top: 27%;
+	    left: 32%;	 
+ 	}	 
+	#scorep3{
+	    top: 27%;
+	    right: 36%;	 
+	}	 
+	#scorep4{
+	    top: 37%;
+	    right: 18%;	 
+	}
 
-	@include position(absolute, 
-			  300px, 
-			  254px, 
-			  88px, 
-			  60px);
+	#scoret1, #scoret2, #logo{
+	    position: absolute;
+	}
+	#scoret1{
+	    top: 32%;
+	    left: 22%;
+	}
+        #scoret2{
+	    top: 32%;
+	    right: 24%;
+	}
+	#logo{
+	    top: 98%;
+	    left: 32%;
+	}
+
+	#minus, #plus{
+	    position: absolute;
+	    width: 100px;
+	    height:100px;
+	}
+        #minus{
+	    top: 80%;
+	    left: 12%;
+	    
+	}
+        #plus{
+	    top: 79%;
+	    left: 71%;
+	}
     }
 }

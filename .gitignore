@@ -10,11 +10,8 @@
 # Ignore the default SQLite database.
 #/db/*.sqlite3
 
-# Ignore all logfiles and tempfiles.
-#/log/*.log
-#/tmp
 
-
+/stage/public/bkp/*
 /stage/public/stylesheets/*
 /stage/public/.sass-cache/*
-.sass-cache/
+.sass-cache

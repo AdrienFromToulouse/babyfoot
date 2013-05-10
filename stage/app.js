@@ -148,10 +148,11 @@ subscription_log.errback(function(error) {
 });
 
 /**
- * Forwards message to other players with the same babyID.
+ * Forwards message to other players having the same babyID.
  * Forwards message to the index page.
  */
 var subscription = bayeux.getClient().subscribe('/controller', function(game_ctxt) {
+
 
     /* and then send his context to the others */
     switch(eval(game_ctxt.position))
