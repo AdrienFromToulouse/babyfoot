@@ -1,220 +1,209 @@
 @import "compass/reset";
 @import "compass/utilities/sprites";
 @import "../images/scores/*.png";
+
 @include all-scores-sprites;
 @import "compass/css3/text-shadow";
-
 @import "compass/css3/images";
 
-
-
-
-
-
-
-body{
-    @include background-image(radial-gradient(circle, 
-					      #ffffff 150px,transparent),
-			      image-url('../images/bg-pattern.jpg'));
-}	
-
-@font-face {
-    font-family: Interstate-Bold;
-    src: url('../fonts/Interstate-Bold.ttf');
+body {
+  @include background-image(radial-gradient(circle, #ffffff 150px, transparent), image-url('../images/bg-pattern.jpg'));
 }
 
-#page{
-    width: 1030px;
-    margin-top: 4%;
-    margin-right: auto;
+@font-face {
+  font-family: Interstate-Bold;
+  src: url('../fonts/Interstate-Bold.ttf');
+}
+
+#page {
+  width: 1030px;
+  margin-top: 4%;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+
+  #social {
+    position: absolute;
+    right: 117px;
+    top: 136px;
+  }
+  h1 {
+    position: absolute;
+    text-align: center;
+    left: 19%;
+    font-size: 57px;
+    /* text-transform:uppercase; */
+    font-family: "Interstate-Bold";
+    color: #FFFFFF;
+    @include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 4px 8px 0, rgba(black, 0.2) 3px 3px 0);
+  }
+
+  div.panel {
     margin-left: auto;
-    position: relative;
+    margin-right: auto;
+    margin-top: -10%;
+  }
 
-    #social{
-	position: absolute;
-	right: 117px;
-	top: 136px;
-    }
-    h1{
-	position: absolute;
-	text-align: center;
-	left:19%;
-	font-size:57px;
-	/* text-transform:uppercase; */
-	font-family: "Interstate-Bold";
-	color: #FFFFFF;
-	@include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 4px 8px 0, rgba(black, 0.2) 3px 3px 0); 
+  div.player {
+    position: absolute;
+    top: 142px;
+
+    .pheader1, .pheader2, .pfooter3, .pfooter4 {
+      @include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 2px 2px 0, rgba(black, 0.2) 3px 3px 0);
+
     }
 
-
-    div.panel{
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: -10%;
+    .pheader1, .pheader2 {
+      margin-left: -6px;
+      margin-top: 28px;
+      text-align: center;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-style: italic;
+      font-family: "Interstate-Bold";
+      color: #FFFFFF;
+    }
+    .pheader2 {
+      margin-left: -6px;
+      margin-top: 28px;
     }
 
-    div.player {
-	position: absolute;
-	top: 142px;
-
-	.pheader1,.pheader2,.pfooter3,.pfooter4{
-	    @include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 2px 2px 0, rgba(black, 0.2) 3px 3px 0);
-
-	}
-
-	.pheader1,.pheader2{
-	    margin-left: -6px;
-	    margin-top: 28px;
-	    text-align: center;
-	    font-size:14px;
-	    text-transform:uppercase;
-	    font-style:italic;
-	    font-family: "Interstate-Bold";
-	    color: #FFFFFF;
-	}
-	.pheader2{
-	    margin-left: -6px;
-	    margin-top: 28px;
-	}
-
-
-	.photo img{	
-	    width: 80px;
-	    height: 80px;
-	}
-
-	.pbody{
-	    width: 98px;
-	}
-
-	&#player1 {
-	    left: 99px;
-	    #score1{
-		position: absolute;
-		left: -50px;
-		top: 75px;
-		width: 51px;
-		height: 35px;
-	    }
-	    .photo{
-		width: 80px;
-		height: 80px;
-		position: absolute;
-		left: 14px;
-		top: 56px;	
-	    }
-
-	}
-	&#player2 {
-	    left: 390px;
-	    #score2{
-		position: absolute;
-		left: 108px;
-		top: 75px;
-		width: 51px;
-		height: 35px;
-	    }
-	    .photo{
-		width: 80px;
-		height: 80px;
-		position: absolute;
-		left: 12px;
-		top: 56px;
-	    }
-
-	}
-
-	.pfooter3,.pfooter4{
-	    margin-left: 106px;
-	    margin-top: 198px;
-	    text-align: center;
-	    font-size:14px;
-	    text-transform:uppercase;
-	    font-style:italic;
-	    font-family: "Interstate-Bold";
-	    color: #FFFFFF;
-	}
-
-	.pfooter4{
-	    margin-left: 700px;
-	    margin-left: 395px;
-	}
-
-
-	&#player3 {
-	    top: 500px;
-	    left: 10px;
-	    #score3{
-		position: absolute;
-		left: 37px;
-		top: 120px;
-		width: 51px;
-		height: 35px;
-	    }
-	    .photo{
-		position: absolute;
-		left: 103px;
-		top: 103px;
-	    }
-
-	}
-	&#player4 {
-	    top: 500px;
-	    left: 10px;
-	    #score4{
-		width: 51px;
-		height: 35px;
-		position: absolute;
-		left: 488px;
-		top: 120px;
-	    }
-	    .photo{
-		width: 80px;
-		height: 80px;
-		position: absolute;
-		left: 392px;
-		top: 103px;
-	    }
-	    .pfooter{
-		margin-left: 396px;
-		margin-top: 198px;
-	    }
-	}
-    }
-    div#score_team1{
-	width: 90px;
-	height: 66px;
-	position: absolute;
-	left: 253px;
-	top: 193px;
-    }
-    div#score_team2{
-	width: 90px;
-	height: 66px;
-	position: absolute;
-	left: 253px;
-	top: 621px;
-    }
-    div#screen{
-	position: absolute;
-	top: 304px;
-	left: 82px;
-
-	#stream_vid{
-	    width: 434px;
-	    height: 273px;
-	}
+    .photo img {
+      width: 80px;
+      height: 80px;
     }
 
-    .fb_iframe_widget{
-    	position: absolute;
-    	left: 56%;
-    	top: 176px;
-    	height: 537px !important;
-    	overflow-y: scroll !important;
-    	overflow-x:hidden !important;
-    	padding-right: 28px;
+    .pbody {
+      width: 98px;
     }
-    
+
+    &#player1 {
+      left: 99px;
+      #score1 {
+        position: absolute;
+        left: -50px;
+        top: 75px;
+        width: 51px;
+        height: 35px;
+      }
+      .photo {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        left: 14px;
+        top: 56px;
+      }
+
+    }
+    &#player2 {
+      left: 390px;
+      #score2 {
+        position: absolute;
+        left: 108px;
+        top: 75px;
+        width: 51px;
+        height: 35px;
+      }
+      .photo {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        left: 12px;
+        top: 56px;
+      }
+
+    }
+
+    .pfooter3, .pfooter4 {
+      margin-left: 106px;
+      margin-top: 198px;
+      text-align: center;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-style: italic;
+      font-family: "Interstate-Bold";
+      color: #FFFFFF;
+    }
+
+    .pfooter4 {
+      margin-left: 700px;
+      margin-left: 395px;
+    }
+
+    &#player3 {
+      top: 500px;
+      left: 10px;
+      #score3 {
+        position: absolute;
+        left: 37px;
+        top: 120px;
+        width: 51px;
+        height: 35px;
+      }
+      .photo {
+        position: absolute;
+        left: 103px;
+        top: 103px;
+      }
+
+    }
+    &#player4 {
+      top: 500px;
+      left: 10px;
+      #score4 {
+        width: 51px;
+        height: 35px;
+        position: absolute;
+        left: 488px;
+        top: 120px;
+      }
+      .photo {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        left: 392px;
+        top: 103px;
+      }
+      .pfooter {
+        margin-left: 396px;
+        margin-top: 198px;
+      }
+    }
+  }
+  div#score_team1 {
+    width: 90px;
+    height: 66px;
+    position: absolute;
+    left: 253px;
+    top: 193px;
+  }
+  div#score_team2 {
+    width: 90px;
+    height: 66px;
+    position: absolute;
+    left: 253px;
+    top: 621px;
+  }
+  div#screen {
+    position: absolute;
+    top: 304px;
+    left: 82px;
+
+    #stream_vid {
+      width: 434px;
+      height: 273px;
+    }
+  }
+
+  .fb_iframe_widget {
+    position: absolute;
+    left: 56%;
+    top: 176px;
+    height: 537px !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    padding-right: 28px;
+  }
+
 }
 

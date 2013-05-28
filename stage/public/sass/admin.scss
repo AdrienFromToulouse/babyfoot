@@ -1,158 +1,179 @@
 @import "compass/reset";
 @import "compass/utilities/sprites";
 @import "../images/scores/*.png";
+
 @include all-scores-sprites;
 @import "compass/css3/text-shadow";
 @import "compass/css3/images";
 @import "compass/css3/border-radius";
 @import "compass/css3/font-face";
 
-/* @font-face { */
-/*     font-family: jd_led3; */
-/*     src: url('../fonts/jd_led3.ttf'); */
-/* } */
-@font-face {
-    font-family: ProximaNovaCond-Regular;
-    src: url('../fonts/ProximaNovaCond-Regular.otf');
-}
-
 
 @font-face {
-    font-family: jd_led3;
-    src: url('../fonts/jd_led3.otf');
+  font-family: ProximaNovaCond-Regular;
+  src: url('../fonts/ProximaNovaCond-Regular.otf');
 }
 
-body{
-    background-color: rgb(203,203,203);
+@font-face {
+  font-family: jd_led3;
+  src: url('../fonts/jd_led3.otf');
+}
+
+body {
+  background-color: rgb(203, 203, 203);
+}
+
+*:focus {
+  outline: none;
 }
 
 
-#page{
+#page {
 
-    width: 640px;
-    margin-right: auto;
-    margin-left: auto;
-    position: relative;
+  width: 640px;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
 
-    .gamepanel{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
-	position: absolute;
+  .gamepanel {
 
-	#gamepanel{
-	    width: 640px;
-	}
-	.photo img {
-	    position: absolute;
-  	    width: 106px;
-    	    border-radius: 50%;
-    	    -webkit-border-radius: 50%;
-    	    -moz-border-radius: 50%;
-	}
-	.pname p{
-	    position: absolute;
-	    top: -33px;
-	    left: 14px;
-    	    /* font-size:57px; */
-    	    text-transform:uppercase;
-     	    font-family: ProximaNovaCond-Regular;
-	}
+    position: absolute;
 
-	@for $i from 1 through 4 {
-
-	    #player#{$i} {
-		position: absolute; 
-	    }
-	}
- 	#player1{
-	    top: 17.2%;
-	    left: 4%;
-	}
-	#player2{
-	    top: 8.4%;
-	    left: 25.4%;
-	}
-	#player3{
-	    top: 8.4%;
-	    left: 57.7%;
-	}
-	#player4{
-	    top: 17.2%;
-	    left: 79.39%;
-	}
-
-
-	.scorep, .scoret, #myscore {
-	    p{
-		font: {
-		    family: "jd_led3";
-		    size: 3em;
-		}
-	    }
-	}
-	#myscore {
-	    position: absolute;
-	    top: 50%;
-	    left: 50%;	 
-
-	    p{
-		font: {
-		    size: 8em;
-		}
-	    }
-	}
-	@for $i from 1 through 4 {
-
-	    #scorep#{$i} {
-		position: absolute; 
-	    }
-	}
-
-	#scorep1{
-	    top: 37%;
-	    left: 14%;	 
-	}	 
-	#scorep2{
-	    top: 27%;
-	    left: 32%;	 
- 	}	 
-	#scorep3{
-	    top: 27%;
-	    right: 36%;	 
-	}	 
-	#scorep4{
-	    top: 37%;
-	    right: 18%;	 
-	}
-
-	#scoret1, #scoret2, #logo{
-	    position: absolute;
-	}
-	#scoret1{
-	    top: 32%;
-	    left: 22%;
-	}
-        #scoret2{
-	    top: 32%;
-	    right: 24%;
-	}
-	#logo{
-	    top: 98%;
-	    left: 32%;
-	}
-
-	#minus, #plus{
-	    position: absolute;
-	    width: 100px;
-	    height:100px;
-	}
-        #minus{
-	    top: 80%;
-	    left: 12%;
-	    
-	}
-        #plus{
-	    top: 79%;
-	    left: 71%;
-	}
+    #gamepanel {
+      width: 640px;
     }
+    .photo img {
+      position: absolute;
+      width: 106px;
+      @include border-radius(50%);
+      //border-radius: 50%;
+      //-webkit-border-radius: 50%;
+      //-moz-border-radius: 50%;
+    }
+    .pname p {
+      position: absolute;
+      top: -33px;
+      left: 14px;
+      /* font-size:57px; */
+      text-transform: uppercase;
+      font-family: ProximaNovaCond-Regular;
+    }
+
+    @for $i from 1 through 4 {
+
+      #player#{$i} {
+        position: absolute;
+      }
+    }
+    #player1 {
+      top: 17.2%;
+      left: 4%;
+    }
+    #player2 {
+      top: 8.4%;
+      left: 25.4%;
+    }
+    #player3 {
+      top: 8.4%;
+      left: 57.7%;
+    }
+    #player4 {
+      top: 17.2%;
+      left: 79.39%;
+    }
+
+    .scorep, .scoret, #myscore {
+      p {
+        font: {
+          family: "jd_led3";
+          size: 3em;
+        }
+        @include text-shadow(0 0 40px rgb(240, 121, 34), 0 0 70px rgb(240, 121, 34), 0 0 80px rgb(240, 121, 34));
+        color: rgb(240, 121, 34);
+      }
+    }
+    #myscore {
+      position: absolute;
+      top: 39%;
+      width: 100%;
+      left: 5px;
+      p {
+        text-align: center;
+        font: {
+          size: 14em;
+        }
+      }
+    }
+    @for $i from 1 through 4 {
+
+      #scorep#{$i} {
+        position: absolute;
+      }
+    }
+
+    #scorep1 {
+      top: 38%;
+      left: 13%;
+    }
+    #scorep2 {
+      top: 25%;
+      left: 34%;
+    }
+    #scorep3 {
+      top: 25%;
+      right: 34%;
+    }
+    #scorep4 {
+      top: 38%;
+      right: 13%;
+    }
+
+    #scoret1, #scoret2, #logo {
+      position: absolute;
+    }
+    #scoret1 {
+      top: 30%;
+      left: 22%;
+      p {
+        color: rgb(255, 0, 0);
+      }
+    }
+    #scoret2 {
+      top: 30%;
+      right: 22%;
+      p {
+        color: rgb(0, 0, 255);
+      }
+    }
+    #logo {
+      top: 98%;
+      left: 32%;
+    }
+
+    #minus, #plus {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      /* No background, just iOS:*/
+      -webkit-tap-highlight-color: transparent;
+      /* No background iOS + Android:  */
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+    #minus {
+      top: 80%;
+      left: 12%;
+
+    }
+    #plus {
+      top: 79%;
+      left: 71%;
+    }
+  }
 }
