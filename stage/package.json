@@ -12,7 +12,8 @@
     "faye": "*",
     "mocha": "*",
     "should": "*",
-    "optimist": "*"
+    "optimist": "*",
+    // "mongodb" : "1.1.11" 
   }
   "engines": {
     "node": "0.0.1",  
