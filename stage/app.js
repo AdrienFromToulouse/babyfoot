@@ -97,14 +97,13 @@ app.configure('development', function () {
 
     } else {
       res.render('index', { title: 'LiveGameUp!' });
+
     }
   });
 
   /**
    * Login
    */
-//    app.get('/login:b/:p', login.show);
-
   app.get('/login', function (req, res) {
     res.render('login', { title: 'Login' })
   });

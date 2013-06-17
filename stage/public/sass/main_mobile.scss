@@ -18,22 +18,22 @@ body{
 
 
 #page{
-    width: 1010px;
-    margin-top: 4%;
+    width: 640px;
+    margin-top: 3%;
     margin-right: auto;
     margin-left: auto;
     position: relative;
 
     #social{
 	position: absolute;
-	right: 374px;
+	right: 26%;
 	top: 1202px;
     }
     h1{
     	position: absolute;
     	text-align: center;
-    	left:19%;
-    	font-size:57px;
+    	font-size: 48px;
+	left: 8%;
     	/* text-transform:uppercase; */
     	font-family: "Interstate-Bold";
     	color: #FFFFFF;
@@ -199,12 +199,14 @@ body{
     }
     div#screen{
 	position: absolute;
-	top: 418px;
-	left: 129px;
+        width: 83%;
+        height: 204%;
+	top: 18.5%;
+	left: 13%;
 
 	#stream_vid{
-	    width: 740px;
-	    height: 460px;
+            width: 88%;
+            height: 293px;
 	}
     }
 

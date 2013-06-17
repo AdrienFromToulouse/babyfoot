@@ -8,47 +8,47 @@ Syntax error: File to import not found or unreadable: compass/reset.
 1: @import "compass/reset";
 2: @import "compass/utilities/sprites";
 3: @import "../images/scores/*.png";
-4: @include all-scores-sprites;
-5: @import "compass/css3/text-shadow";
-6: @import "compass/css3/images";
+4: 
+5: @include all-scores-sprites;
+6: @import "compass/css3/text-shadow";
 
 Backtrace:
 /var/www/asiance/babyfoot/stage/public/sass/admin.scss:1
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/import_node.rb:67:in `rescue in import'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/import_node.rb:45:in `import'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/import_node.rb:28:in `imported_file'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/import_node.rb:37:in `css_import?'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:217:in `visit_import'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `visit'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:100:in `visit'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `map'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:53:in `visit_children'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `block in visit'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:128:in `visit_root'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/visitors/base.rb:37:in `visit'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:100:in `visit'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/visitors/perform.rb:7:in `visit'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/tree/root_node.rb:20:in `render'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/engine.rb:315:in `_render'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/engine.rb:262:in `render'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:341:in `update_stylesheet'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:201:in `each'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/plugin.rb:81:in `update_stylesheets'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/exec.rb:424:in `watch_or_update'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/exec.rb:307:in `process_result'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/exec.rb:41:in `parse'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/lib/sass/exec.rb:21:in `parse!'
-/var/lib/gems/1.9.1/gems/sass-3.2.6/bin/sass:9:in `<top (required)>'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/import_node.rb:67:in `rescue in import'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/import_node.rb:45:in `import'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/import_node.rb:28:in `imported_file'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/import_node.rb:37:in `css_import?'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/visitors/perform.rb:217:in `visit_import'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/visitors/base.rb:37:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/visitors/base.rb:53:in `map'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/visitors/base.rb:37:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/tree/root_node.rb:20:in `render'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/engine.rb:315:in `_render'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/engine.rb:262:in `render'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/plugin/compiler.rb:362:in `update_stylesheet'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/plugin/compiler.rb:201:in `each'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/plugin.rb:81:in `update_stylesheets'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/exec.rb:432:in `watch_or_update'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/exec.rb:315:in `process_result'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/exec.rb:41:in `parse'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/lib/sass/exec.rb:21:in `parse!'
+/var/lib/gems/1.9.1/gems/sass-3.2.9/bin/sass:9:in `<top (required)>'
 /usr/local/bin/sass:19:in `load'
 /usr/local/bin/sass:19:in `<main>'
 */
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: File to import not found or unreadable: compass/reset.\A               Load paths:\A                 /var/www/asiance/babyfoot/stage/public/sass\A                 /var/www/asiance/babyfoot/stage/public/sass\A         on line 1 of /var/www/asiance/babyfoot/stage/public/sass/admin.scss\A \A 1: @import \"compass/reset\";\A 2: @import \"compass/utilities/sprites\";\A 3: @import \"../images/scores/*.png\";\A 4: @include all-scores-sprites;\A 5: @import \"compass/css3/text-shadow\";\A 6: @import \"compass/css3/images\";"; }
+  content: "Syntax error: File to import not found or unreadable: compass/reset.\A               Load paths:\A                 /var/www/asiance/babyfoot/stage/public/sass\A                 /var/www/asiance/babyfoot/stage/public/sass\A         on line 1 of /var/www/asiance/babyfoot/stage/public/sass/admin.scss\A \A 1: @import \"compass/reset\";\A 2: @import \"compass/utilities/sprites\";\A 3: @import \"../images/scores/*.png\";\A 4: \A 5: @include all-scores-sprites;\A 6: @import \"compass/css3/text-shadow\";"; }

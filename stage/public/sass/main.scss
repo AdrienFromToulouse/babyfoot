@@ -15,6 +15,43 @@ body {
   src: url('../fonts/Interstate-Bold.ttf');
 }
 
+
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+//
+//::-webkit-scrollbar {
+//  width: 10px;
+//}
+//::-webkit-scrollbar-track {
+//  background: #FFF;
+//  -webkit-box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
+//}
+//::-webkit-scrollbar-thumb {
+//  background: #CCC;
+//  -webkit-box-shadow: inset 1px 1px 2px rgba(0,0,0,0.2);
+//}
+//::-webkit-scrollbar-thumb:hover {
+//  background: #AAA;
+//}
+//::-webkit-scrollbar-thumb:active {
+//  background: #888;
+//  -webkit-box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+//}
+//
+//
+
 #page {
   width: 1030px;
   margin-top: 4%;

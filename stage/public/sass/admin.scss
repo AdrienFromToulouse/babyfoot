@@ -53,15 +53,14 @@ body {
       position: absolute;
       width: 106px;
       @include border-radius(50%);
-      //border-radius: 50%;
-      //-webkit-border-radius: 50%;
-      //-moz-border-radius: 50%;
     }
     .pname p {
       position: absolute;
       top: -33px;
       left: 14px;
-      /* font-size:57px; */
+      font-size:20px;
+      /* @include text-shadow(2px 8px 6px rgba(0,0,0,0.2), */
+      /* 			   0px -5px 35px rgba(255,255,255,0.3) ); */
       text-transform: uppercase;
       font-family: ProximaNovaCond-Regular;
     }
@@ -95,11 +94,11 @@ body {
           family: "jd_led3";
           size: 3em;
         }
-        @include text-shadow(0 0 40px rgb(240, 121, 34), 0 0 70px rgb(240, 121, 34), 0 0 80px rgb(240, 121, 34));
-        color: rgb(240, 121, 34);
       }
     }
     #myscore {
+      @include text-shadow(0 0 40px rgb(240, 121, 34), 0 0 70px rgb(240, 121, 34), 0 0 80px rgb(240, 121, 34));
+      color: rgb(240, 121, 34);
       position: absolute;
       top: 39%;
       width: 100%;
@@ -121,18 +120,22 @@ body {
     #scorep1 {
       top: 38%;
       left: 13%;
+      color: rgb(173, 173, 173);
     }
     #scorep2 {
       top: 25%;
       left: 34%;
+      color: rgb(173, 173, 173);
     }
     #scorep3 {
       top: 25%;
       right: 34%;
+      color: rgb(173, 173, 173);
     }
     #scorep4 {
       top: 38%;
       right: 13%;
+      color: rgb(173, 173, 173);
     }
 
     #scoret1, #scoret2, #logo {
@@ -142,6 +145,7 @@ body {
       top: 30%;
       left: 22%;
       p {
+        @include text-shadow(0 0 40px rgb(255, 0, 0), 0 0 70px rgb(255, 0, 0), 0 0 80px rgb(255, 0, 0));
         color: rgb(255, 0, 0);
       }
     }
@@ -149,6 +153,7 @@ body {
       top: 30%;
       right: 22%;
       p {
+        @include text-shadow(0 0 40px rgb(0, 0, 255), 0 0 70px rgb(0, 0, 255), 0 0 80px rgb(0, 0, 255));
         color: rgb(0, 0, 255);
       }
     }
