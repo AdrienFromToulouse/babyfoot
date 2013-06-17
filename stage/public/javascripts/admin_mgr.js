@@ -4,51 +4,50 @@
 $().ready(function() {
 
     $(function() {
-    	$('#plus').on('click touchstart', function(e) {
-    	    e.preventDefault(); babyAdmin.MyGameCtxt.score++;
+    	$('.plus').on('click touchstart', function(e) {
+    	    e.preventDefault(); 
 
-	    var htmlString = "";
-	    htmlString = '<p>'+babyAdmin.MyGameCtxt.score+'</p>';
-	    $("#myscore").html(htmlString);
- 
-    	    babyAdmin.send(me, babyAdmin.MyGameCtxt);
-    	    babyAdmin.updateScore(babyAdmin.MyGameCtxt);
+	    babyAdmin.GameCtxt.position = $(this).attr('data-position');
+
+            var playerX = "#player" + babyAdmin.GameCtxt.position;
+	    babyAdmin.GameCtxt.score = $(playerX).attr("data-score");
+	    babyAdmin.GameCtxt.score++
+
+	    $(playerX).attr("data-score", babyAdmin.GameCtxt.score);
+            babyAdmin.GameCtxt.picture = $(playerX).attr("data-picture");
+            babyAdmin.GameCtxt.first_name = $(playerX).attr("data-name");
+
+    	    babyAdmin.updateScore(babyAdmin.GameCtxt);
+
+	    // babyAdmin.GameCtxt.position = babyAdmin.GameCtxt.position - 1;
+    	    babyAdmin.send(admin, babyAdmin.GameCtxt);
+
     	});
 	
-    	$('#minus').on('click touchstart', function(e) {
-    	    e.preventDefault(); babyAdmin.MyGameCtxt.score--;
+    	$('.minus').on('click touchstart', function(e) {
+    	    e.preventDefault(); 
 
-	    var htmlString = "";
-	    htmlString = '<p>'+babyAdmin.MyGameCtxt.score+'</p>';
-	    $("#myscore").html(htmlString);
+	    babyAdmin.GameCtxt.position = $(this).attr('data-position');
 
-    	    babyAdmin.send(me, babyAdmin.MyGameCtxt);
-    	    babyAdmin.updateScore(babyAdmin.MyGameCtxt);
+            var playerX = "#player" + babyAdmin.GameCtxt.position;
+	    babyAdmin.GameCtxt.score = $(playerX).attr("data-score");
+	    babyAdmin.GameCtxt.score--
+
+	    $(playerX).attr("data-score", babyAdmin.GameCtxt.score);
+            babyAdmin.GameCtxt.picture = $(playerX).attr("data-picture");
+            babyAdmin.GameCtxt.first_name = $(playerX).attr("data-name");
+
+    	    babyAdmin.updateScore(babyAdmin.GameCtxt);
+
+	    // babyAdmin.GameCtxt.position = babyAdmin.GameCtxt.position - 1;
+    	    babyAdmin.send(admin, babyAdmin.GameCtxt);
+
     	});
     });
 
 });
 
 
-var me = babyAdmin.init_connection();
+var admin = babyAdmin.init_connection();
 
-
-babyAdmin.subscript(me);
-
-/* init my profile and send this one to the others */
-babyAdmin.init_ctxt(me);
-
-
-window.onbeforeunload = function(){
-    console.log("onbeforeunload");
-    me.disconnect();
-};
-
-/* for Safari */
-window.onunload = function(){
-    console.log("onunload");
-    me.disconnect();
-};
-
-
-
+babyAdmin.subscript(admin);

@@ -23,7 +23,7 @@ var playerSchema = new mongoose.Schema({
     email: String
   },
 
-  ready: { type: Boolean, default: true }, //page is already loaded so its true...
+  ready: { type: Boolean, default: false }, //set to true on start button
   logged_at: Number,
   babyId: Number,
   gameID: String,

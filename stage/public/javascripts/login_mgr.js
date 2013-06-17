@@ -1,25 +1,25 @@
 /**
- * New client instance.
- */
-var client = new Faye.Client('/faye');
-
-
-/**
- * Publish to /contoller channel.
+ * Send the player's data.
  *
  * @param[in] - buffer_out: buffer to send.
  */
 function login_send(buffer_out) {
 
-  var publication = client.publish('/controller/logplayer', buffer_out);
-
-  publication.callback(function () {
-    console.log('Message received by server!');
-  });
-
-  publication.errback(function (error) {
-    console.log('There was a problem: ' + error.message);
-  });
+    buffer_out = JSON.stringify(buffer_out);
+ 
+    $.ajax({
+    	url: "/login",
+    	type: "POST",
+    	dataType: "json",
+    	data: buffer_out,
+    	contentType: "application/json",
+    	cache: false,
+    	timeout: 5000,
+    	complete: function() {
+    	},
+    	success: function(data) {
+	}
+    });
 }
 
 
@@ -66,7 +66,7 @@ function savePlayerNPost(response) {
 
 
     var params = {};
-    params['message'] = 'I am playing Babyfoot right NOW! Watch me live on LiveGameUp! channel number: ' + babyId;
+    params['message'] = 'I am playing Babyfoot right now at the Asiance party! Watch me live on LiveGameUp!';
     params['name'] = "LiveGameUp!";
 
     if (response.gender == "male") {
@@ -89,21 +89,21 @@ function savePlayerNPost(response) {
 
     params['caption'] = 'Watch me live playing Babyfoot!!';
 
-    FB.api('/me/feed', 'post', params, function (response) {
+    // FB.api('/me/feed', 'post', params, function (response) {
 
-      if (!response || response.error) {
+    //   if (!response || response.error) {
 
-        var errorID = new RegExp("#506");
-        alert("Sorry, you can't access the game. Try again later.");
+    //     var errorID = new RegExp("#506");
+    //     alert("Sorry, you can't access the game. Try again later.");
 
-        if (errorID.exec(response.error.message) == "#506") {
-        }
-      } else {
-        /* thanks to the facebook delay the player has enough time to be saved before the redirect*/
-        window.location = "/admin?babyId=" + babyId + "&position=" + position + "&fbId=" + response.id;
+    //     if (errorID.exec(response.error.message) == "#506") {
+    //     }
+    //   } else {
+    //     // /* thanks to the facebook delay the player has enough time to be saved before the redirect*/
+    //     // window.location = "/admin?babyId=" + babyId + "&position=" + position + "&fbId=" + response.id;
 
-      }
-    });
+    //   }
+    // });
   });
 }
 

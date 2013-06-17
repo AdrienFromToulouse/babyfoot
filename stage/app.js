@@ -108,6 +108,36 @@ app.configure('development', function () {
     res.render('login', { title: 'Login' })
   });
 
+  app.post('/login', function(req, res) {
+
+      res.send(req.body); // looback object to client to get SUCCESS status
+      var player_logged = req.body;
+      player.addPlayer(player_logged);
+
+      var msg = {
+	  "score": "",
+	  "name": "",
+	  "picture": "",
+	  "position": "",
+	  "babyId": ""
+      };
+
+      msg.picture = '<img src="' + player_logged.picture + '">';
+      msg.name = player_logged.first_name;
+      msg.score = 0;
+      msg.position = player_logged.position;
+      msg.babyId = player_logged.babyId;
+
+      message[player_logged.position - 1] = msg;
+
+      // update the global score
+      score[player_logged.babyId - 1][player_logged.position - 1] = 0;
+
+      bayeux.getClient().publish('/admin', message);
+      bayeux.getClient().publish('/index', message);
+
+  });
+
 
   /**
    * Admin
@@ -127,52 +157,9 @@ app.configure('development', function () {
 
 
 /**
- * Write the databse with player's data from login page.
- */
-var subscription_log = bayeux.getClient().subscribe('/controller/logplayer', function (player_logged) {
-
-  player.addPlayer(player_logged);
-
-});
-
-subscription_log.callback(function () {
-  console.log('Subscription_init is now active!');
-});
-
-subscription_log.errback(function (error) {
-  console.log(error.message);
-});
-
-/**
- * Forwards message to other players having the same babyID.
  * Forwards message to the index page.
  */
 var subscription = bayeux.getClient().subscribe('/controller', function (game_ctxt) {
-
-  /* and then send his context to the others */
-  switch (eval(game_ctxt.position)) {
-    case 1:
-      bayeux.getClient().publish('/player/2/baby/' + game_ctxt.babyId, game_ctxt);
-      bayeux.getClient().publish('/player/3/baby/' + game_ctxt.babyId, game_ctxt);
-      bayeux.getClient().publish('/player/4/baby/' + game_ctxt.babyId, game_ctxt);
-      break;
-    case 2:
-      bayeux.getClient().publish('/player/1/baby/' + game_ctxt.babyId, game_ctxt);
-      bayeux.getClient().publish('/player/3/baby/' + game_ctxt.babyId, game_ctxt);
-      bayeux.getClient().publish('/player/4/baby/' + game_ctxt.babyId, game_ctxt);
-      break;
-    case 3:
-      bayeux.getClient().publish('/player/1/baby/' + game_ctxt.babyId, game_ctxt);
-      bayeux.getClient().publish('/player/2/baby/' + game_ctxt.babyId, game_ctxt);
-      bayeux.getClient().publish('/player/4/baby/' + game_ctxt.babyId, game_ctxt);
-      break;
-    case 4:
-      bayeux.getClient().publish('/player/1/baby/' + game_ctxt.babyId, game_ctxt);
-      bayeux.getClient().publish('/player/2/baby/' + game_ctxt.babyId, game_ctxt);
-      bayeux.getClient().publish('/player/3/baby/' + game_ctxt.babyId, game_ctxt);
-      break;
-    default:
-  }
 
   var msg = {
     "score": "",
@@ -182,23 +169,20 @@ var subscription = bayeux.getClient().subscribe('/controller', function (game_ct
     "babyId": ""
   };
 
-  msg.picture = '<img src="' + game_ctxt.picture + '">';
-  msg.name = game_ctxt.name;
+  msg.picture = game_ctxt.picture;
+  msg.name = game_ctxt.first_name;
   msg.score = game_ctxt.score;
   msg.position = game_ctxt.position;
   msg.babyId = game_ctxt.babyId;
-
+  
   message[msg.position - 1] = msg;
 
-  score[game_ctxt.babyId - 1][game_ctxt.position - 1] = game_ctxt.score;
+  score[0][game_ctxt.position - 1] = game_ctxt.score;
 
+  console.log(game_ctxt);
 
-  /* get all ready players */
-///    player.getCurrentPlayersForIndex(bayeux);
-
-  /*get all ready players and compute the global context to be send
-   or update a global context based in index ICD?*/
   bayeux.getClient().publish('/index', message);
+
 });
 
 subscription.callback(function () {

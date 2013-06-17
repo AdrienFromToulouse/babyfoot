@@ -1,33 +1,4 @@
-/**
-* Define
-*/
-var P1_ATTACKER = 0;
-var P2_ATTACKER = 1;
-var P3_ATTACKER = 2;
-var P4_ATTACKER = 3;
-
-var P1_DEFENSER = 4;
-var P2_DEFENSER = 5;
-var P3_DEFENSER = 6;
-var P4_DEFENSER = 7;
-
-
 var client = new Faye.Client('/faye');
-
-function index_send(buffer_out){
-
-   var publication = client.publish('/admin', buffer_out);
-
-   publication.callback(function() {
-	console.log('Message received by server!');
-   });
-
-   publication.errback(function(error) {
-	console.log('There was a problem: ' + error.message);
-   });
-}
-
-
 
 var subscription = client.subscribe('/index', function(message) {
 
@@ -80,8 +51,6 @@ var subscription = client.subscribe('/index', function(message) {
 subscription.callback(function() {
 
    console.log('Subscription is now active!');
-
-   index_send({newsubscription: 1});
 });
 
 subscription.errback(function(error) {

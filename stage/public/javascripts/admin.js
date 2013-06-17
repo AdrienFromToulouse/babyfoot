@@ -1,28 +1,16 @@
 var babyAdmin = {
 
-  MyGameCtxt: {
+  GameCtxt: {
 
     "babyId": "",
     "position": "",
     "ready": "",
     "score": "",
     "picture": "",
-    "name": "",
+    "first_name": "",
     "partner_position": "",
     "score_t1": 0,
     "score_t2": 0
-  },
-
-
-  /**
-   * Get the current URL parameters (one by one).
-   *
-   * @param[in] - name: parameter name.
-   */
-  getURLParameter: function (name) {
-    return decodeURI(
-      (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
-    );
   },
 
   /**
@@ -31,64 +19,7 @@ var babyAdmin = {
    */
   init_connection: function () {
     var client = new Faye.Client('/faye');
-
     return client;
-  },
-
-
-  /**
-   * Init the player (me) context (picture, name)...
-   *
-   */
-  init_ctxt: function (client) {
-    var babyId = this.getURLParameter("babyId");
-    var position = this.getURLParameter("position");
-    var fb_id = this.getURLParameter("fbId");
-
-    var datareq = {"babyId": babyId,
-      "position": position,
-      "fb_id": fb_id };
-
-    datareq = JSON.stringify(datareq);
-
-    $.ajax({
-      url: "/player/getme",
-      type: "POST",
-      dataType: "json",
-      data: datareq,
-      contentType: "application/json",
-      cache: false,
-      timeout: 5000,
-      success: function (me) {
-
-        var htmlString = "";
-        var playerX = "#player" + me.position;
-
-        htmlString = '<img src="' + me.personal.picture + '">';
-        $(playerX + " .photo").html(htmlString);
-        htmlString = '<p>' + me.personal.first_name + '</p>';
-        $(playerX + " .pname").html(htmlString);
-
-        $(playerX).addClass("joined");
-
-        babyAdmin.MyGameCtxt.position = me.position;
-        babyAdmin.MyGameCtxt.babyId = me.babyId;
-        babyAdmin.MyGameCtxt.score = me.stats.score;
-        babyAdmin.MyGameCtxt.picture = me.personal.picture;
-        babyAdmin.MyGameCtxt.name = me.personal.first_name;
-
-        htmlString = '<p>' + babyAdmin.MyGameCtxt.score + '</p>';
-        $("#myscore").html(htmlString);
-
-        babyAdmin.updateScore(me);
-
-        /* send my profile to the other players */
-        babyAdmin.send(client, babyAdmin.MyGameCtxt);
-      },
-      error: function () {
-        console.log("error");
-      },
-    });
   },
 
   /**
@@ -110,33 +41,80 @@ var babyAdmin = {
   },
 
   /**
-   * Creates my channel to get info of the other players.
+   * Creates admin channel to get info of the players.
    *
    * @param[in] - client: instance of client.
    */
   subscript: function (client) {
-    var babyId = this.getURLParameter("babyId");
-    var position = this.getURLParameter("position");
 
-    var subscription = client.subscribe('/player/' + position + '/baby/' + babyId, function (game_ctxt) {
+    var subscription = client.subscribe('/admin', function (game_ctxt) {
 
-      var playerX = "#player" + game_ctxt.position;
-      var htmlString = "";
+	console.log(game_ctxt);
 
-      htmlString = '<img src="' + game_ctxt.picture + '">';
-      $(playerX + " .photo").html(htmlString);
-      htmlString = '<p>' + game_ctxt.name + '</p>';
-      $(playerX + " .pname").html(htmlString);
-      babyAdmin.updateScore(game_ctxt);
+
+	var i = 0;
+	for(i = 0 ; i < 4 ; i++){
+            var playerX = "#player" + game_ctxt[i].position;
+	    $(playerX).attr("data-name", game_ctxt[i].name);
+	    $(playerX).attr("data-babyid", game_ctxt[i].babyId);
+	    $(playerX).attr("data-picture", game_ctxt[i].picture);
+	    $(playerX).attr("data-score", game_ctxt[i].score);
+
+	    htmlString = '<p>' + game_ctxt[i].name + '</p>';
+            $(playerX + " .pname").html(htmlString);
+
+	}
+
+	var score_t1 = parseInt(game_ctxt[0].score) + parseInt(game_ctxt[1].score);
+	var score_t2 = parseInt(game_ctxt[2].score) + parseInt(game_ctxt[3].score);
+
+	var newclass1 = "scores-big_0"+score_t1;
+	var newclass2 = "scores-big_0"+score_t2;
+
+	$("#score_team1").attr("class",newclass1);
+	$("#score_team2").attr("class",newclass2);
+
+	scoreP1 = "scores-small_0"+(game_ctxt[0].score);
+	scoreP2 = "scores-small_0"+(game_ctxt[1].score);
+	scoreP3 = "scores-small_0"+(game_ctxt[2].score);
+	scoreP4 = "scores-small_0"+(game_ctxt[3].score);
+
+	$("#score1").attr("class",scoreP1);
+	$("#score2").attr("class",scoreP2);
+	$("#score3").attr("class",scoreP3);
+	$("#score4").attr("class",scoreP4);
+
+	// player one
+	var htmlString = game_ctxt[0].picture;
+	$("#player1 .photo").html(htmlString);
+	htmlString = game_ctxt[0].name;
+	$("#player1 .pheader1").html(htmlString);
+
+	// player 2
+	htmlString = game_ctxt[1].picture;
+	$("#player2 .photo").html(htmlString);
+	htmlString = game_ctxt[1].name;
+	$("#player2 .pheader2").html(htmlString);
+
+	// player 3
+	htmlString = game_ctxt[2].picture;
+	$("#player3 .photo").html(htmlString);
+	htmlString = game_ctxt[2].name;
+	$("#player3 .pfooter3").html(htmlString);
+
+	// player 4
+	htmlString = game_ctxt[3].picture;
+	$("#player4 .photo").html(htmlString);
+	htmlString = game_ctxt[3].name;
+	$("#player4 .pfooter4").html(htmlString);
 
     });
 
     subscription.callback(function () {
       console.log('Subscription admin is now active!');
     });
-
     subscription.errback(function (error) {
-      alert(error.message);
+      alert(error.game_ctxt);
     });
   },
 
@@ -158,6 +136,8 @@ var babyAdmin = {
 
       $(playerX).attr("data-score", game_ctxt.score);
       $(playerX).attr("data-position", game_ctxt.position);
+      $(playerX).attr("data-name", game_ctxt.first_name);
+      $(playerX).attr("data-picture", game_ctxt.picture);
 
     }
 
@@ -179,12 +159,12 @@ var babyAdmin = {
       s4 = 0;
     }
 
-    babyAdmin.MyGameCtxt.score_t1 = parseInt(s1) + parseInt(s2);
-    babyAdmin.MyGameCtxt.score_t2 = parseInt(s3) + parseInt(s4);
+    babyAdmin.GameCtxt.score_t1 = parseInt(s1) + parseInt(s2);
+    babyAdmin.GameCtxt.score_t2 = parseInt(s3) + parseInt(s4);
 
-    htmlString = '<p>' + babyAdmin.MyGameCtxt.score_t1 + '</p>';
+    htmlString = '<p>' + babyAdmin.GameCtxt.score_t1 + '</p>';
     $("#scoret1").html(htmlString);
-    htmlString = '<p>' + babyAdmin.MyGameCtxt.score_t2 + '</p>';
+    htmlString = '<p>' + babyAdmin.GameCtxt.score_t2 + '</p>';
     $("#scoret2").html(htmlString);
   }
 };
