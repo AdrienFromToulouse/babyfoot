@@ -29,10 +29,10 @@ var express = require('express')
   , login = require('./login')
   , http = require('http')
   , path = require('path')
-  , socketio = require('socket.io')
-  , mongoose = require('mongoose')
-  , game = require('./schemas/game')
-  , player = require('./schemas/player');
+  , socketio = require('socket.io');
+//  , mongoose = require('mongoose')
+//  , game = require('./schemas/game')
+//  , player = require('./schemas/player');
 
 
 
@@ -56,7 +56,7 @@ app.configure(function () {
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(express.errorHandler({showStack: true, dumpExceptions: true}));
-  app.use(express.vhost('livegameup.asiance.com', app));
+//  app.use(express.vhost('livegameup.asiance.com', app));
 });
 
 
@@ -135,7 +135,7 @@ app.configure('development', function () {
   });
   app.post('/player/setScores', function (req, res) {
 
-    player.setScores(score);
+    //player.setScores(score);
     res.send(req.body);
   });
 
@@ -178,8 +178,8 @@ var server = http.createServer(app).listen(app.get('port'), function () {
 });
 
 /**
- * Attach SocketIO to it
- */
+* Attach SocketIO to it
+*/
 var sio = socketio.listen(server);
 
 sio.sockets.on('connection', function (socket) {
