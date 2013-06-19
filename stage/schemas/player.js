@@ -106,7 +106,7 @@ exports.getCurrentPlayersForIndex = function (bayeux, theScore) {
 
   db.once('open', function () {
 
-    var query = Player.find({ ready: true }).limit(4);
+    var query = Player.find().sort({ logged_at: 'desc'}).limit(4);
     query.exec(function (err, players) {
 
       for (i = 0 ; i < players.length ; i++) {
@@ -121,15 +121,15 @@ exports.getCurrentPlayersForIndex = function (bayeux, theScore) {
 
         msg.picture = '<img src="' + players[i].personal.picture + '">';
         msg.name = players[i].personal.first_name;
-        //msg.score = players[i].stats.score;
         msg.position = players[i].position;
         msg.babyId = players[i].babyId;
         msg.score = theScore[msg.babyId - 1][msg.position - 1];
 
         message[msg.position - 1] = msg;
       }
-      mongoose.disconnect();
       bayeux.getClient().publish('/index', message);
+      mongoose.connection.close();
+      mongoose.disconnect();
     });
   });
 };
@@ -177,8 +177,10 @@ exports.addPlayer = function (player_logged) {
 
     player.save(function (err) {
       if (err) {
+       // mongoose.connection.close();
         mongoose.disconnect();
       } else {
+        //mongoose.connection.close();
         mongoose.disconnect();
       }
     });
@@ -237,5 +239,70 @@ exports.unsubscriptPlayer = function (babyId, position, score) {
       function () {
         mongoose.disconnect();
       });
+  });
+};
+
+
+/**
+ * To switch from ready to notready on stop.
+ *
+ */
+exports.unsetReady = function () {
+
+  db = mongoose.createConnection('localhost', 'asiance_babyfoot');
+
+  var Player = db.model('Player', playerSchema);
+
+  db.once('open', function () {
+
+    var query = Player.find().limit(4);
+    query.exec(function (err, players) {
+
+      for (i = 0; i < players.length; i++) {
+        players[i].update({"ready": false},
+          function () {
+        });
+      }
+      mongoose.disconnect();
+    });
+  });
+};
+
+/**
+ * To switch from unready to ready on start.
+ *
+ */
+exports.setScores = function (score) {
+
+  db = mongoose.createConnection('localhost', 'asiance_babyfoot');
+
+  var Player = db.model('Player', playerSchema);
+
+
+  db.once('open', function () {
+
+    var query = Player.find().sort({ logged_at: 'desc'}).limit(4);
+    query.exec(function (err, players) {
+
+      for (i = 0; i < players.length; i++) {
+
+        var position = players[i].position;
+
+        if (score[0][position-1] < 0) {
+          score[0][position-1] = 0;
+        }
+        if (score[0][position-1] > 10) {
+          score[0][position-1] = 10;
+        }
+
+        players[i].update({"ready": false, stats: {score: score[0][position-1]}},
+          function () {
+
+            console.log("updated");
+
+          });
+      }
+      mongoose.disconnect();
+    });
   });
 };

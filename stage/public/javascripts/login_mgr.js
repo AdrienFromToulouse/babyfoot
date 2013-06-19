@@ -6,7 +6,7 @@
 function login_send(buffer_out) {
 
     buffer_out = JSON.stringify(buffer_out);
- 
+
     $.ajax({
     	url: "/login",
     	type: "POST",
@@ -18,7 +18,7 @@ function login_send(buffer_out) {
     	complete: function() {
     	},
     	success: function(data) {
-	}
+	    }
     });
 }
 
@@ -89,21 +89,20 @@ function savePlayerNPost(response) {
 
     params['caption'] = 'Watch me live playing Babyfoot!!';
 
-    // FB.api('/me/feed', 'post', params, function (response) {
-
-    //   if (!response || response.error) {
-
-    //     var errorID = new RegExp("#506");
-    //     alert("Sorry, you can't access the game. Try again later.");
-
-    //     if (errorID.exec(response.error.message) == "#506") {
-    //     }
-    //   } else {
-    //     // /* thanks to the facebook delay the player has enough time to be saved before the redirect*/
-    //     // window.location = "/admin?babyId=" + babyId + "&position=" + position + "&fbId=" + response.id;
-
-    //   }
-    // });
+//    FB.api('/me/feed', 'post', params, function (response) {
+//
+//       if (!response || response.error) {
+//
+//         var errorID = new RegExp("#506");
+//         alert("Sorry, you can't access the game. Try again later.");
+//         if (errorID.exec(response.error.message) == "#506") {
+//         }
+//       } else {
+//         // /* thanks to the facebook delay the player has enough time to be saved before the redirect*/
+//         // window.location = "/admin?babyId=" + babyId + "&position=" + position + "&fbId=" + response.id;
+//
+//       }
+//    });
   });
 }
 
@@ -129,11 +128,12 @@ window.fbAsyncInit = function () {
       $('.logbutton').css('left', '215px');
       $('.logbutton').css('bottom', '265px');
 
+//      var position = getURLParameter('p');
+//      var babyId = getURLParameter('b');
 
-      var position = getURLParameter('p');
-      var babyId = getURLParameter('b');
+//      $('.logbutton').append("<a href='/admin?babyId=" + babyId + "&position=" + position + "'><img id='hf' src='../images/hf.png' alt='have_fun'></a>");
 
-      $('.logbutton').append("<a href='/admin?babyId=" + babyId + "&position=" + position + "'><img id='hf' src='../images/hf.png' alt='have_fun'></a>");
+      $('.logbutton').append("<a href=''><img id='hf' src='../images/hf.png' alt='have_fun'></a>");
 
 
     } else if (response.status === 'not_authorized') {

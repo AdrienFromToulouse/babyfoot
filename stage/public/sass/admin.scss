@@ -19,6 +19,12 @@
   src: url('../fonts/jd_led3.otf');
 }
 
+@font-face {
+  font-family: Interstate-Bold;
+  src: url('../fonts/Interstate-Bold.ttf');
+}
+
+
 body {
   background-color: rgb(203, 203, 203);
 }
@@ -46,8 +52,9 @@ body {
 
     position: absolute;
 
+
     #gamepanel {
-      width: 1024px;
+      //width: 1024px;
     }
     .photo img {
       position: absolute;
@@ -57,18 +64,24 @@ body {
     #player1 .pname p, #player2 .pname p {
       position: absolute;
       top: 39px;
-      left: -100px;
+      left: -136px;
+      font-style: italic;
+      font-family: "Interstate-Bold";
+      color: #FFFFFF;
       font-size:20px;
       text-transform: uppercase;
-      font-family: ProximaNovaCond-Regular;
+      @include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 2px 2px 0, rgba(black, 0.2) 3px 3px 0);
     }
     #player3 .pname p, #player4 .pname p {
       position: absolute;
       top: 39px;
-      right: -192px;
+      left: 138px;
+      font-style: italic;
+      font-family: "Interstate-Bold";
+      color: #FFFFFF;
       font-size:20px;
       text-transform: uppercase;
-      font-family: ProximaNovaCond-Regular;
+      @include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 2px 2px 0, rgba(black, 0.2) 3px 3px 0);
     }
 
     @for $i from 1 through 4 {
@@ -122,38 +135,43 @@ body {
     }
 
     #scorep1 {
-      top: 35.4%;
+      top: 35.7%;
       left: 23%;
+      width: 100px;
     }
     #scorep2 {
-      top: 65%;
+      top: 65.4%;
       left: 18.9%;
+      width: 100px;
     }
     #scorep3 {
-      top: 35.4%;
-      right: -76.3%;
+      top: 35.7%;
+      left: 76.2%;
+      width: 100px;
     }
     #scorep4 {
-      top: 65%;
-      right: -79.7%;
+      top: 65.4%;
+      left: 79.6%;
+      width: 100px;
     }
 
     #scoret1, #scoret2 {
       position: absolute;
     }
     #scoret1 {
-      text-align: center;
+      position: absolute;
+      top: 553px;
       width: 100%;
-      margin-top: -22%;
       p {
-          text-align: center;
-          font: {
-            size: 6em;
+        text-align: center;
+        font: {
+          size: 6em;
           }
       }
     }
     #scoret2 {
-      margin-top: -50%;
+      position: absolute;
+      top: 264px;
       left: 3px;
       p {
         text-align: center;
@@ -166,7 +184,14 @@ body {
       top: 98%;
       left: 32%;
     }
+    #start{
+      width: 90px;
+      display: block;
+      position: absolute;
+      top: 88%;
+      left: 45%;
 
+    }
 
     @for $i from 1 through 4 {
       #minus#{$i}, #plus#{$i} {
@@ -181,42 +206,35 @@ body {
     }
 
     #minus1 {
-      border:2px solid;
+      //border:2px solid;
       top: 35%;
       left: 27%;
     }
     #plus1 {
-      border:2px solid;
       top: 35%;
       left: 14%;
     }
     #minus2 {
-      border:2px solid;
       top: 65%;
       left: 23%;
     }
     #plus2 {
-      border:2px solid;
       top: 65%;
       left: 10%;
     }
     #minus3 {
-      border:2px solid;
       top: 36%;
       right: 13%;
     }
     #plus3 {
-      border:2px solid;
       top: 36%;
       right: 27%;
     }
     #minus4 {
-      border:2px solid;
       top: 65%;
       right: 10%;
     }
     #plus4 {
-      border:2px solid;
       top: 65%;
       right: 23%;
     }

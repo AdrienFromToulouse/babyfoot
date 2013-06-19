@@ -4,14 +4,14 @@
 html(xmlns="http://www.w3.org/1999/xhtml")
   head
     title= title
-    meta(name="viewport", content="width=device-width")
+    meta(name="viewport", content="width=1024", initial-scale="1.0", maximum-scale="1.0", user-scalable="no")
     <!--[if IE]>
     link(href="/stylesheets/ie.css", media="screen, projection", rel="stylesheet", type="text/css")
     <![endif]-->
 
     link(rel='stylesheet', href='/stylesheets/admin.css')
     script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js")
-    script(type='text/javascript', src='/faye/browser/faye-browser.js')
+    script(type='text/javascript', src='/faye/browser/faye-browser-min.js')
 
     script(type='text/javascript', src='/javascripts/admin.js')
     script(type='text/javascript', src='/javascripts/admin_mgr.js')
@@ -19,6 +19,9 @@ html(xmlns="http://www.w3.org/1999/xhtml")
     #page
         .gamepanel
           img#gamepanel(src="../images/bg_ipad.jpg",  alt="")
+
+          #startStop
+            img#start(src="../images/btn_start.png", alt="startstop")
 
           #player1
               .photo
@@ -35,8 +38,6 @@ html(xmlns="http://www.w3.org/1999/xhtml")
           #player4
               .photo
               .pname
-
-
 
           #scorep1.scorep
           #scorep2.scorep

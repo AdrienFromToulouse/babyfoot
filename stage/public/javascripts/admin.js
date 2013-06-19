@@ -10,7 +10,8 @@ var babyAdmin = {
     "first_name": "",
     "partner_position": "",
     "score_t1": 0,
-    "score_t2": 0
+    "score_t2": 0,
+    "started": ""
   },
 
   /**
@@ -45,12 +46,9 @@ var babyAdmin = {
    *
    * @param[in] - client: instance of client.
    */
-  subscript: function (client) {
+subscript: function (client) {
 
-    var subscription = client.subscribe('/admin', function (game_ctxt) {
-
-	console.log(game_ctxt);
-
+  var subscription = client.subscribe('/admin', function (game_ctxt) {
 
 	var i = 0;
 	for(i = 0 ; i < 4 ; i++){
@@ -62,7 +60,6 @@ var babyAdmin = {
 
 	    htmlString = '<p>' + game_ctxt[i].name + '</p>';
             $(playerX + " .pname").html(htmlString);
-
 	}
 
 	var score_t1 = parseInt(game_ctxt[0].score) + parseInt(game_ctxt[1].score);

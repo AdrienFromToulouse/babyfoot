@@ -4,7 +4,6 @@
  *
  */
 
-/* player scores */
 /**
  * due to the asynchrone stuffs it is impossible to
  * write the database each time a score is changed...
@@ -64,7 +63,7 @@ app.configure(function () {
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(express.errorHandler({showStack: true, dumpExceptions: true}));
-  app.use(express.vhost('livegameup.asiance-dev.com', app));
+  app.use(express.vhost('livegameup.asiance.com', app));
 });
 
 
@@ -82,7 +81,6 @@ var bayeux = new faye.NodeAdapter({
  */
 app.configure('development', function () {
 
-  //console.log("ALL ON MOBILE STARTED IN development MODE");
   app.use(express.errorHandler());
 
   /**
@@ -96,6 +94,7 @@ app.configure('development', function () {
       res.render('index_mobile', { title: 'LiveGameUp!' });
 
     } else {
+
       res.render('index', { title: 'LiveGameUp!' });
 
     }
@@ -110,16 +109,15 @@ app.configure('development', function () {
 
   app.post('/login', function(req, res) {
 
-      res.send(req.body); // looback object to client to get SUCCESS status
       var player_logged = req.body;
       player.addPlayer(player_logged);
 
       var msg = {
-	  "score": "",
-	  "name": "",
-	  "picture": "",
-	  "position": "",
-	  "babyId": ""
+        "score": "",
+        "name": "",
+        "picture": "",
+        "position": "",
+        "babyId": ""
       };
 
       msg.picture = '<img src="' + player_logged.picture + '">';
@@ -136,21 +134,26 @@ app.configure('development', function () {
       bayeux.getClient().publish('/admin', message);
       bayeux.getClient().publish('/index', message);
 
-  });
+      res.send(req.body); // looback object to client to get SUCCESS status
 
+  });
 
   /**
    * Admin
    */
   app.get('/admin', admin.admin);
 
-
   /**
-   * READ one specific player
+   *
    */
-  app.post('/player/getme', function (req, res) {
+  app.post('/player/setReady', function (req, res) {
 
-    player.getAplayer(req, res);
+//    player.setReady(req, res);
+  });
+  app.post('/player/setScores', function (req, res) {
+
+    player.setScores(score);
+    res.send(req.body);
   });
 
 });
@@ -174,12 +177,10 @@ var subscription = bayeux.getClient().subscribe('/controller', function (game_ct
   msg.score = game_ctxt.score;
   msg.position = game_ctxt.position;
   msg.babyId = game_ctxt.babyId;
-  
+
   message[msg.position - 1] = msg;
 
   score[0][game_ctxt.position - 1] = game_ctxt.score;
-
-  console.log(game_ctxt);
 
   bayeux.getClient().publish('/index', message);
 
@@ -198,101 +199,19 @@ bayeux.bind('subscribe', function (clientId, channel) {
 
   if (channel == "/index") {
 
-    //TODO in get function take the babyId into account
     player.getCurrentPlayersForIndex(bayeux, score);
-  }
-  else {
 
-    /* whatever the case-sensitive */
-    if (channel.match(/player/i)) {
-
-      var elem = channel.split('/');
-      var position = elem[2] - 0;
-      var babyId = elem[4] - 0;
-
-      var clt = {
-        id: clientId,
-        channel: channel
-      };
-
-      clients.push(clt);
-
-      player.getCurrentPlayers(bayeux, position, babyId);
-    }
   }
 });
 
 bayeux.bind('unsubscribe', function (clientId, channel) {
-//     console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
-
-  var elem = channel.split('/');
-
-  var position = elem[2] - 0;
-  var babyId = elem[4] - 0;
-
-  /* Set the started status to false */
-  if (elem[3] == 'baby') {
-
-    //console.log('[UNSUBSCRIBE] ' + clientId + ' -> ' + channel);
-
-
-    if (score[babyId - 1][position - 1] < 0) {
-      score[babyId - 1][position - 1] = 0;
-    }
-    if (score[babyId - 1][position - 1] > 10) {
-      score[babyId - 1][position - 1] = 10;
-    }
-    player.unsubscriptPlayer(babyId, position, score[babyId - 1][position - 1]);
-
-    for (elt in clients) {
-
-      if (clients[elt].id == clientId) {
-
-        //console.log('[SPLICE] ' + clientId + ' -> ' + channel);
-
-
-        clients.splice(elt, 1);
-      }
-    }
-  }
 });
 
 bayeux.bind('publish', function (clientId, channel, data) {
-  //console.log('[PUBLISH] ' + clientId + ' -> ' + channel + ' -> ' + data);
 });
 
 
 bayeux.bind('disconnect', function (clientId) {
-  // console.log('[ DISCONNECT] ' + clientId);
-
-  for (elt in clients) {
-
-    if (clients[elt].id == clientId) {
-
-      var elem = clients[elt].channel.split('/');
-
-      var position = elem[2] - 0;
-      var babyId = elem[4] - 0;
-
-      /* Set the started status to false */
-      if (elem[3] == 'baby') {
-
-        console.log(score[babyId - 1][position - 1]);
-
-        if (score[babyId - 1][position - 1] < 0) {
-          score[babyId - 1][position - 1] = 0;
-        }
-        if (score[babyId - 1][position - 1] > 10) {
-          score[babyId - 1][position - 1] = 10;
-        }
-
-        player.unsubscriptPlayer(babyId, position, score[babyId - 1][position - 1]);
-
-        clients.splice(elt, 1);
-      }
-    }
-  }
-
 });
 
 
