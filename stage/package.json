@@ -2,16 +2,12 @@
   "name": "babyfoot-app",
   "description": "babyfoot test app",	
   "version": "0.0.1",
-  // "private": true,
-  // "scripts": {
-  //   "start": "node app"
-  // },
+  "private": true,
   "dependencies": {
     "express": "3.0.0rc3",
     "jade": "*",
     "optimist": "*",
-    // "socket.io": "*",
-    // "mongodb" : "1.1.11" 
+    "socket.io": "*",
   }
   "engines": {
      "node": "0.0.1",  
