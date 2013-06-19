@@ -18,13 +18,6 @@ var score = [
 
 var message = [0, 0, 0, 0];
 
-/**
- * To catch the webbrowser close event it is needed to fire
- * a callback on Disconnect event. This callback parses the clients
- * array and set to False the ready state if found.
- *
- */
-var clients = new Array(100);
 
 /**
  * Module dependencies.
@@ -36,10 +29,11 @@ var express = require('express')
   , login = require('./login')
   , http = require('http')
   , path = require('path')
-  , faye = require('faye')
+  , socketio = require('socket.io')
   , mongoose = require('mongoose')
   , game = require('./schemas/game')
   , player = require('./schemas/player');
+
 
 
 /**
@@ -47,7 +41,6 @@ var express = require('express')
  *
  */
 var app = express();
-
 
 /**
  * Config
@@ -64,15 +57,6 @@ app.configure(function () {
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(express.errorHandler({showStack: true, dumpExceptions: true}));
   app.use(express.vhost('livegameup.asiance.com', app));
-});
-
-
-/**
- * Create Bayeux "server"
- */
-var bayeux = new faye.NodeAdapter({
-  mount: '/faye',
-  timeout: 5
 });
 
 
@@ -110,7 +94,7 @@ app.configure('development', function () {
   app.post('/login', function(req, res) {
 
       var player_logged = req.body;
-      player.addPlayer(player_logged);
+      //player.addPlayer(player_logged);
 
       var msg = {
         "score": "",
@@ -128,14 +112,13 @@ app.configure('development', function () {
 
       message[player_logged.position - 1] = msg;
 
-      // update the global score
+      //update the global score
       score[player_logged.babyId - 1][player_logged.position - 1] = 0;
 
-      bayeux.getClient().publish('/admin', message);
-      bayeux.getClient().publish('/index', message);
+      sio.sockets.in("index").emit("message", message);
+      sio.sockets.in("admin").emit("message", message);
 
       res.send(req.body); // looback object to client to get SUCCESS status
-
   });
 
   /**
@@ -162,57 +145,29 @@ app.configure('development', function () {
 /**
  * Forwards message to the index page.
  */
-var subscription = bayeux.getClient().subscribe('/controller', function (game_ctxt) {
+//var subscription = bayeux.getClient().subscribe('/controller', function (game_ctxt) {
+//
+//  var msg = {
+//    "score": "",
+//    "name": "",
+//    "picture": "",
+//    "position": "",
+//    "babyId": ""
+//  };
+//
+//  msg.picture = game_ctxt.picture;
+//  msg.name = game_ctxt.first_name;
+//  msg.score = game_ctxt.score;
+//  msg.position = game_ctxt.position;
+//  msg.babyId = game_ctxt.babyId;
+//
+//  message[msg.position - 1] = msg;
+//
+//  score[0][game_ctxt.position - 1] = game_ctxt.score;
+//
+//  sio.sockets.in("index").emit("message", message);
 
-  var msg = {
-    "score": "",
-    "name": "",
-    "picture": "",
-    "position": "",
-    "babyId": ""
-  };
-
-  msg.picture = game_ctxt.picture;
-  msg.name = game_ctxt.first_name;
-  msg.score = game_ctxt.score;
-  msg.position = game_ctxt.position;
-  msg.babyId = game_ctxt.babyId;
-
-  message[msg.position - 1] = msg;
-
-  score[0][game_ctxt.position - 1] = game_ctxt.score;
-
-  bayeux.getClient().publish('/index', message);
-
-});
-
-subscription.callback(function () {
-  console.log('Subscription is now active!');
-});
-
-subscription.errback(function (error) {
-  console.log(error.message);
-});
-
-
-bayeux.bind('subscribe', function (clientId, channel) {
-
-  if (channel == "/index") {
-
-    player.getCurrentPlayersForIndex(bayeux, score);
-
-  }
-});
-
-bayeux.bind('unsubscribe', function (clientId, channel) {
-});
-
-bayeux.bind('publish', function (clientId, channel, data) {
-});
-
-
-bayeux.bind('disconnect', function (clientId) {
-});
+//});
 
 
 /**
@@ -223,7 +178,18 @@ var server = http.createServer(app).listen(app.get('port'), function () {
 });
 
 /**
- * Attach Bayeux to it
+ * Attach SocketIO to it
  */
-bayeux.attach(server);
+var sio = socketio.listen(server);
 
+sio.sockets.on('connection', function (socket) {
+
+  socket.on('room', function(room) {
+    /* room can be index or admin*/
+    socket.join(room);
+
+    if(room == "index"){
+      //player.getCurrentPlayersForIndex(sio, score);
+    }
+  });
+});

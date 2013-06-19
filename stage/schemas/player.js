@@ -95,14 +95,13 @@ exports.getCurrentPlayers = function (bayeux, position, babyId) {
  * param[in]: theScore - the score array.
  *
  */
-exports.getCurrentPlayersForIndex = function (bayeux, theScore) {
+exports.getCurrentPlayersForIndex = function (sio, theScore) {
 
   var message = [0, 0, 0, 0];
 
   db = mongoose.createConnection('localhost', 'asiance_babyfoot');
 
   var Player = db.model('Player', playerSchema);
-  var player = new Player;
 
   db.once('open', function () {
 
@@ -127,7 +126,7 @@ exports.getCurrentPlayersForIndex = function (bayeux, theScore) {
 
         message[msg.position - 1] = msg;
       }
-      bayeux.getClient().publish('/index', message);
+      sio.sockets.in("index").emit("message", message);
       mongoose.connection.close();
       mongoose.disconnect();
     });
@@ -149,6 +148,9 @@ exports.addPlayer = function (player_logged) {
   var player = new Player;
 
   db.once('open', function (err, db) {
+
+    mongoose.disconnect();
+
 
     player.personal.name = player_logged.name;
 

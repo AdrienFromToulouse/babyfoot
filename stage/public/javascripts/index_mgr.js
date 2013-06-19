@@ -1,6 +1,13 @@
-var client = new Faye.Client('/faye');
+var client = io.connect("http://livegameup.asiance-dev.com");
 
-var subscription = client.subscribe('/index', function(message) {
+var room = "index";
+
+client.on('connect', function() {
+  // Connected, let's sign-up for to receive messages for this room
+  client.emit('room', room);
+});
+
+client.on('message', function(message) {
 
    var score_t1 = parseInt(message[0].score) + parseInt(message[1].score);
    var score_t2 = parseInt(message[2].score) + parseInt(message[3].score);
@@ -20,7 +27,6 @@ var subscription = client.subscribe('/index', function(message) {
    $("#score2").attr("class",scoreP2);
    $("#score3").attr("class",scoreP3);
    $("#score4").attr("class",scoreP4);
-
 
    // player one
    var htmlString = message[0].picture;
@@ -46,13 +52,4 @@ var subscription = client.subscribe('/index', function(message) {
    htmlString = message[3].name;
    $("#player4 .pfooter4").html(htmlString);
 
-});
-
-subscription.callback(function() {
-
-   console.log('Subscription is now active!');
-});
-
-subscription.errback(function(error) {
-   alert(error.message);
 });
