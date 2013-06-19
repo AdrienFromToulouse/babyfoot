@@ -28,11 +28,11 @@ var express = require('express')
   , admin = require('./admin')
   , login = require('./login')
   , http = require('http')
-  , path = require('path');
-//  , socketio = require('socket.io');
-//  , mongoose = require('mongoose')
-//  , game = require('./schemas/game')
-//  , player = require('./schemas/player');
+  , path = require('path')
+  , socketio = require('socket.io')
+  , mongoose = require('mongoose')
+  , game = require('./schemas/game')
+  , player = require('./schemas/player');
 
 
 
@@ -56,7 +56,7 @@ app.configure(function () {
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(express.errorHandler({showStack: true, dumpExceptions: true}));
-//  app.use(express.vhost('livegameup.asiance.com', app));
+  app.use(express.vhost('livegameup.asiance.com', app));
 });
 
 
@@ -93,32 +93,32 @@ app.configure('development', function () {
 
   app.post('/login', function(req, res) {
 
-//      var player_logged = req.body;
-//      //player.addPlayer(player_logged);
-//
-//      var msg = {
-//        "score": "",
-//        "name": "",
-//        "picture": "",
-//        "position": "",
-//        "babyId": ""
-//      };
-//
-//      msg.picture = '<img src="' + player_logged.picture + '">';
-//      msg.name = player_logged.first_name;
-//      msg.score = 0;
-//      msg.position = player_logged.position;
-//      msg.babyId = player_logged.babyId;
-//
-//      message[player_logged.position - 1] = msg;
-//
-//      //update the global score
-//      score[player_logged.babyId - 1][player_logged.position - 1] = 0;
-//
-//      sio.sockets.in("index").emit("message", message);
-//      sio.sockets.in("admin").emit("message", message);
-//
-//      res.send(req.body); // looback object to client to get SUCCESS status
+      var player_logged = req.body;
+      //player.addPlayer(player_logged);
+
+      var msg = {
+        "score": "",
+        "name": "",
+        "picture": "",
+        "position": "",
+        "babyId": ""
+      };
+
+      msg.picture = '<img src="' + player_logged.picture + '">';
+      msg.name = player_logged.first_name;
+      msg.score = 0;
+      msg.position = player_logged.position;
+      msg.babyId = player_logged.babyId;
+
+      message[player_logged.position - 1] = msg;
+
+      //update the global score
+      score[player_logged.babyId - 1][player_logged.position - 1] = 0;
+
+      sio.sockets.in("index").emit("message", message);
+      sio.sockets.in("admin").emit("message", message);
+
+      res.send(req.body); // looback object to client to get SUCCESS status
   });
 
   /**
@@ -135,7 +135,7 @@ app.configure('development', function () {
   });
   app.post('/player/setScores', function (req, res) {
 
-    //player.setScores(score);
+    player.setScores(score);
     res.send(req.body);
   });
 
@@ -173,23 +173,23 @@ app.configure('development', function () {
 /**
  * Create server
  */
-//var server = http.createServer(app).listen(app.get('port'), function () {
-//  console.log("Express server listening on port " + app.get('port'));
-//});
-//
-///**
-// * Attach SocketIO to it
-// */
-//var sio = socketio.listen(server);
-//
-//sio.sockets.on('connection', function (socket) {
-//
-//  socket.on('room', function(room) {
-//    /* room can be index or admin*/
-//    socket.join(room);
-//
-//    if(room == "index"){
-//      //player.getCurrentPlayersForIndex(sio, score);
-//    }
-//  });
-//});
+var server = http.createServer(app).listen(app.get('port'), function () {
+  console.log("Express server listening on port " + app.get('port'));
+});
+
+/**
+ * Attach SocketIO to it
+ */
+var sio = socketio.listen(server);
+
+sio.sockets.on('connection', function (socket) {
+
+  socket.on('room', function(room) {
+    /* room can be index or admin*/
+    socket.join(room);
+
+    if(room == "index"){
+      //player.getCurrentPlayersForIndex(sio, score);
+    }
+  });
+});
