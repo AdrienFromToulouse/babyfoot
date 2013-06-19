@@ -29,10 +29,10 @@ var express = require('express')
   , login = require('./login')
   , http = require('http')
   , path = require('path')
-  , socketio = require('socket.io')
-  , mongoose = require('mongoose')
-  , game = require('./schemas/game')
-  , player = require('./schemas/player');
+  , socketio = require('socket.io');
+//  , mongoose = require('mongoose')
+//  , game = require('./schemas/game')
+//  , player = require('./schemas/player');
 
 
 
@@ -135,7 +135,7 @@ app.configure('development', function () {
   });
   app.post('/player/setScores', function (req, res) {
 
-    player.setScores(score);
+    //player.setScores(score);
     res.send(req.body);
   });
 
