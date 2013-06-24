@@ -1,14 +1,16 @@
 @import "compass/reset";
 @import "compass/css3/text-shadow";
 
-/* @media screen and (orientation:landscape) { */
-/* } */
+
+@font-face {
+  font-family: jd_led3;
+  src: url('../fonts/jd_led3.otf');
+}
 
 
 body
 {
     background: url('../images/bg-pattern_min.jpg');
-    /* background-repeat: no-repeat; */
 }
 
 
@@ -73,7 +75,16 @@ body
 	    color: #FFFFFF;
 	    @include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 4px 8px 0, rgba(black, 0.2) 3px 3px 0); 
 	}
-
+        .expired {
+	    position: absolute;
+            left: 19%;  
+            top: 370px;
+            color: rgb(240, 121, 34);
+	    font: {
+               family: "jd_led3";
+               size: 2.5em;
+            }
+        } 
     }
 }
 

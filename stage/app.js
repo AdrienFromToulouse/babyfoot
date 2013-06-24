@@ -63,7 +63,6 @@ app.configure(function () {
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(express.errorHandler({showStack: true, dumpExceptions: true}));
-  app.use(express.vhost('livegameup.asiance.com', app));
 });
 
 
@@ -94,11 +93,19 @@ app.configure('development', function () {
       res.render('index_mobile', { title: 'LiveGameUp!' });
 
     } else {
-
       res.render('index', { title: 'LiveGameUp!' });
 
     }
   });
+
+  /**
+   *
+   */
+  app.get('/me/:fbid', function (req, res) {
+
+    player.isPlaying(req, res);
+  });
+
 
   /**
    * Login

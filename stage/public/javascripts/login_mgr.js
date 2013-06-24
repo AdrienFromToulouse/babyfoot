@@ -80,7 +80,7 @@ function savePlayerNPost(response) {
     else {
       params['description'] = 'Watch ' + response.first_name + ' playing Babyfoot! Go ahead and support him!';
     }
-    params['link'] = 'http://livegameup.asiance-dev.com:3300/';
+    params['link'] = 'http://livegameup.asiance.com:3300/me/'+response.id;
     // params['picture'] = 'http://livegameup.asiance-dev.com:3300/images/blueteam.png';
 
     // params['picture'] = 'http://coreeaffaires.com/wp-content/uploads/2011/02/asiance1.jpg';
@@ -89,20 +89,20 @@ function savePlayerNPost(response) {
 
     params['caption'] = 'Watch me live playing Babyfoot!!';
 
-//    FB.api('/me/feed', 'post', params, function (response) {
-//
-//       if (!response || response.error) {
-//
-//         var errorID = new RegExp("#506");
-//         alert("Sorry, you can't access the game. Try again later.");
-//         if (errorID.exec(response.error.message) == "#506") {
-//         }
-//       } else {
-//         // /* thanks to the facebook delay the player has enough time to be saved before the redirect*/
-//         // window.location = "/admin?babyId=" + babyId + "&position=" + position + "&fbId=" + response.id;
-//
-//       }
-//    });
+    FB.api('/me/feed', 'post', params, function (response) {
+
+       if (!response || response.error) {
+
+         var errorID = new RegExp("#506");
+         alert("Sorry, you can't access the game. Try again later.");
+         if (errorID.exec(response.error.message) == "#506") {
+         }
+       } else {
+         // /* thanks to the facebook delay the player has enough time to be saved before the redirect*/
+         // window.location = "/admin?babyId=" + babyId + "&position=" + position + "&fbId=" + response.id;
+
+       }
+    });
   });
 }
 
@@ -111,9 +111,9 @@ window.fbAsyncInit = function () {
 
   FB.init({
     appId: '103759093066773',
-    status: true, // check login status
-    cookie: true, // enable cookies to allow the server to access the session
-    xfbml: true  // parse XFBML
+    status: true,
+    cookie: true,
+    xfbml: true
   });
 
   /* If the user is already connected */
@@ -128,13 +128,7 @@ window.fbAsyncInit = function () {
       $('.logbutton').css('left', '215px');
       $('.logbutton').css('bottom', '265px');
 
-//      var position = getURLParameter('p');
-//      var babyId = getURLParameter('b');
-
-//      $('.logbutton').append("<a href='/admin?babyId=" + babyId + "&position=" + position + "'><img id='hf' src='../images/hf.png' alt='have_fun'></a>");
-
       $('.logbutton').append("<a href=''><img id='hf' src='../images/hf.png' alt='have_fun'></a>");
-
 
     } else if (response.status === 'not_authorized') {
       // the user is logged in to Facebook,

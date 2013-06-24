@@ -23,7 +23,7 @@ var playerSchema = new mongoose.Schema({
     email: String
   },
 
-  ready: { type: Boolean, default: false }, //set to true on start button
+  ready: { type: Boolean, default: true }, //set to true on start button
   logged_at: Number,
   babyId: Number,
   gameID: String,
@@ -209,11 +209,9 @@ exports.getAplayer = function (req, res) {
 
     query.exec(function (err, player) {
 
+      res.send(player);
       mongoose.disconnect();
 
-      // res.header("Access-Control-Allow-Origin", "*");
-      // res.header("Access-Control-Allow-Headers", "X-Requested-With");
-      res.send(player);
     });
   });
 }
@@ -278,7 +276,6 @@ exports.setScores = function (score) {
 
   var Player = db.model('Player', playerSchema);
 
-
   db.once('open', function () {
 
     var query = Player.find().sort({ logged_at: 'desc'}).limit(4);
@@ -306,3 +303,33 @@ exports.setScores = function (score) {
     });
   });
 };
+
+
+/**
+ * Check if the player corresponding to the facebook ID is still playing
+ *
+ */
+exports.isPlaying = function (req, res) {
+
+  db = mongoose.createConnection('localhost', 'asiance_babyfoot');
+
+  var Player = db.model('Player', playerSchema);
+
+
+  db.once('open', function () {
+
+      var query = Player.findOne({ready: true, "personal.fb_id": req.params.fbid });
+
+      query.exec(function (err, player) {
+
+      if(player){
+
+	  res.redirect('/');
+      }
+      else {
+         res.render('expired', { title: 'LiveGameUp!' });
+      }
+      mongoose.disconnect();
+    });
+  });
+}
