@@ -561,6 +561,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stage/node_modules/socket.io/node_modules/redis/node_modules/hiredis/deps/hiredis/example.c" afterPath="$PROJECT_DIR$/stage/node_modules/socket.io/node_modules/redis/node_modules/hiredis/deps/hiredis/example.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stage/node_modules/socket.io/node_modules/socket.io-client/node_modules/ws/node_modules/tinycolor/example.js" afterPath="$PROJECT_DIR$/stage/node_modules/socket.io/node_modules/socket.io-client/node_modules/ws/node_modules/tinycolor/example.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stage/node_modules/should/test/exist.test.js" afterPath="$PROJECT_DIR$/stage/node_modules/should/test/exist.test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stage/views/expired.jade" afterPath="$PROJECT_DIR$/stage/views/expired.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stage/node_modules/.bin/express" afterPath="$PROJECT_DIR$/stage/node_modules/.bin/express" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stage/node_modules/express/bin/express" afterPath="$PROJECT_DIR$/stage/node_modules/express/bin/express" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stage/node_modules/mongoose/support/expresso/bin/expresso" afterPath="$PROJECT_DIR$/stage/node_modules/mongoose/support/expresso/bin/expresso" />
@@ -1117,7 +1118,7 @@
     </list>
     <ignored path="babyfoot.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="0bfc2556-962b-4844-89fc-f1a731904fb6" time="1371772953916" ignored="false" />
+    <file path="/Dummy.txt" changelist="0bfc2556-962b-4844-89fc-f1a731904fb6" time="1372299502610" ignored="false" />
     <file path="/admin.jade" changelist="0bfc2556-962b-4844-89fc-f1a731904fb6" time="1371610467342" ignored="false" />
     <file path="/admin.scss" changelist="0bfc2556-962b-4844-89fc-f1a731904fb6" time="1371519018253" ignored="false" />
     <file path="/admin.js" changelist="0bfc2556-962b-4844-89fc-f1a731904fb6" time="1371511461668" ignored="false" />
@@ -1151,7 +1152,7 @@
       <file leaf-file-name="index_mobile.jade" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stage/views/index_mobile.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="86" column="6" selection-start="2669" selection-end="2669" vertical-scroll-proportion="0.0">
+            <state line="86" column="6" selection-start="2666" selection-end="2666" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1169,7 +1170,7 @@
       <file leaf-file-name="expired.jade" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stage/views/expired.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="17" selection-start="443" selection-end="443" vertical-scroll-proportion="0.0">
+            <state line="25" column="17" selection-start="495" selection-end="495" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1178,7 +1179,7 @@
       <file leaf-file-name="login.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stage/public/sass/login.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="238" selection-end="238" vertical-scroll-proportion="-0.68">
+            <state line="17" column="0" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1187,7 +1188,7 @@
       <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stage/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="107" column="4" selection-start="2108" selection-end="2108" vertical-scroll-proportion="0.0">
+            <state line="106" column="4" selection-start="2079" selection-end="2079" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1196,7 +1197,7 @@
       <file leaf-file-name="player.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stage/schemas/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="326" column="17" selection-start="7458" selection-end="7458" vertical-scroll-proportion="0.5910653">
+            <state line="305" column="0" selection-start="6939" selection-end="6939" vertical-scroll-proportion="0.32760596">
               <folding />
             </state>
           </provider>
@@ -1306,7 +1307,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1359,6 +1359,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1491,14 +1492,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stage/public/javascripts/index_mgr.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="38" selection-start="679" selection-end="679" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="18" column="38" selection-start="679" selection-end="679" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/stage/views/index_mobile.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="6" selection-start="2669" selection-end="2669" vertical-scroll-proportion="0.0">
+        <state line="86" column="6" selection-start="2666" selection-end="2666" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1524,7 +1523,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stage/views/expired.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="17" selection-start="443" selection-end="443" vertical-scroll-proportion="0.0">
+        <state line="25" column="17" selection-start="495" selection-end="495" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1552,21 +1551,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stage/public/sass/login.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="238" selection-end="238" vertical-scroll-proportion="-0.68">
+        <state line="17" column="0" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/stage/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="4" selection-start="2108" selection-end="2108" vertical-scroll-proportion="0.0">
+        <state line="106" column="4" selection-start="2079" selection-end="2079" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/stage/schemas/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="326" column="17" selection-start="7458" selection-end="7458" vertical-scroll-proportion="0.5910653">
+        <state line="305" column="0" selection-start="6939" selection-end="6939" vertical-scroll-proportion="0.32760596">
           <folding />
         </state>
       </provider>
