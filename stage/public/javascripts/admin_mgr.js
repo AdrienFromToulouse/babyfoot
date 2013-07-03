@@ -20,7 +20,7 @@ $().ready(function() {
     	    babyAdmin.updateScore(babyAdmin.GameCtxt);
 	  	    babyAdmin.send(admin, babyAdmin.GameCtxt);
 
-    	});
+       	});
 	
     	$('.minus').on('click touchstart', function(e) {
     	    e.preventDefault(); 

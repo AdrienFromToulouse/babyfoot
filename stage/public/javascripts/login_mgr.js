@@ -120,6 +120,7 @@ window.fbAsyncInit = function () {
   FB.Event.subscribe('auth.authResponseChange', function (response) {
 
     if (response.status == "connected") {
+      console.log(response);
 
       savePlayerNPost(response);
 
@@ -148,7 +149,7 @@ function fb_login() {
     } else {
       //User cancelled login or did not fully authorize.
     }
-  }, {scope: 'email,publish_stream'});
+  }, {scope: 'email,publish_stream,publish_actions'});
 }
 
 
