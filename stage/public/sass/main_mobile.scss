@@ -1,7 +1,4 @@
 @import "compass/reset";
-@import "compass/utilities/sprites";
-@import "../images/scores/*.png";
-@include all-scores-sprites;
 @import "compass/css3/text-shadow";
 @import "compass/css3/images";
 
@@ -10,12 +7,27 @@ body{
 					      #ffffff 200px,transparent),
 			      image-url('../images/bg-pattern.jpg'));
 }
-
 @font-face {
-    font-family: Interstate-Bold;
-    src: url('../fonts/Interstate-Bold.ttf');
+  font-family: 'Interstate-Bold';
+  src: url('../fonts/Interstate-Bold.otf'),
+       url('../fonts/Interstate-Bold.ttf'),
+       url('../fonts/Interstate-Bold.oet'),
+       url('../fonts/Interstate-Bold.svg');
 }
-
+@font-face {
+  font-family: 'jd_led3';
+  src: url('../fonts/jd_led3.eot'),
+       url('../fonts/jd_led3.ttf'),
+       url('../fonts/jd_led3.svg'),
+       url('../fonts/jd_led3.otf');
+}
+@font-face {
+  font-family: 'Interstate_Mono_Blk';
+  src: url('../fonts/interstate_mono__blk.otf'),
+       url('../fonts/interstate_mono__blk.ttf'),
+       url('../fonts/interstate_mono__blk.eot'),
+       url('../fonts/interstate_mono__blk.svg');
+}
 
 #page {
   width: 640px;
@@ -33,12 +45,11 @@ body{
   h1{
       position: absolute;
       text-align: center;
-      font-size: 48px;
-      left: 8%;
-      /* text-transform:uppercase; */
-      font-family: "Interstate-Bold";
-      color: #FFFFFF;
-      @include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 4px 8px 0, rgba(black, 0.2) 3px 3px 0);
+      left: 7%;
+      font-size: 2.6em;
+      font-family: "Interstate_Mono_Blk";
+      color: #D2D2D2;
+      @include text-shadow( 0px 8px 10px rgb( 27, 28, 28 ), 1px 1.732px 9px rgb( 0, 0, 0 ));
   }
 
 
@@ -174,21 +185,30 @@ body{
       }
     }
   }
-  div#score_team1 {
+  #score_team1 {
     width: 90px;
     height: 66px;
     position: absolute;
     left: 253px;
-    top: 111px;
+    top: 90px;
   }
-  div#score_team2 {
+  #score_team2 {
     width: 90px;
     height: 66px;
     position: absolute;
     left: 253px;
-    top: 540px;
+    top: 519px;
   }
-  div#screen {
+  .score-team{
+      text-align: center;
+      font: {
+          family: "jd_led3";
+          size: 6em;
+      }
+      @include text-shadow(0 0 40px rgb(240, 121, 34), 0 0 70px rgb(240, 121, 34), 0 0 80px rgb(240, 121, 34));
+      color: rgb(240, 121, 34);
+  }
+  #screen {
     position: absolute;
     top: 222px;
     left: 82px;
@@ -198,7 +218,6 @@ body{
       height: 273px;
     }
   }
-
   .fb_iframe_widget {
     position: absolute;
     left: 56px;
