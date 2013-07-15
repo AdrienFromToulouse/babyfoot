@@ -1,5 +1,7 @@
 var babyLogin = {
 
+    accessToken: "",
+
     /**
      * Get the guest.
      *
@@ -75,14 +77,15 @@ var babyLogin = {
 		"picture": "https://graph.facebook.com/" + response.id + "/picture",
 		"email": response.email,
 		"position": position,
-		"babyId": babyId
+		"babyId": babyId,
+		"accessToken": babyLogin.accessToken 
 	    };
 
 	    /* to be saved in database */
 	    babyLogin.register(player);
 
 	    var params = {};
-	    params['message'] = 'I am playing Babyfoot right now at the Asiance party! Watch me live on LiveGameUp!';
+	    params['message'] = 'I am playing Babyfoot right now at Asiance! Watch me live on LiveGameUp!';
 	    params['name'] = "LiveGameUp!";
 
 	    if (response.gender == "male") {
@@ -129,6 +132,7 @@ window.fbAsyncInit = function () {
     });
 
     FB.Event.subscribe('auth.authResponseChange', function (response) {
+	babyLogin.accessToken = response.authResponse.accessToken;
 
 	if (response.status == "connected") {
 

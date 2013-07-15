@@ -1,109 +1,51 @@
-!!! XML
-!!! 1.1
+include header_index
 
-html(xmlns="http://www.w3.org/1999/xhtml")
-  head
+block body
 
-    <!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> <![endif]-->
-    <!--[if lte IE 8]>
-    script(src="/javascripts/html5.js?1349778565", type="text/javascript")
-    <![endif]-->
-
-    title= title
-    link(rel='stylesheet', href='/stylesheets/main.css')
-    link(rel='stylesheet', href='/stylesheets/main_fb.css')
-
-
-    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js")
-    script(type='text/javascript', src='/faye/browser/faye-browser-min.js')
-    script(type='text/javascript', src='/javascripts/index_mgr.js')
-  
-
-    script(type="text/javascript") var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-1115917-63']);_gaq.push(['_trackPageview']);(function(){var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();
-
-
-  body
+  div(ng-controller="IndexController")
 
     script (function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=103759093066773";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
 
     #fb-root
-   
+           
     #page
-
       #title
         h1 LiveGameUp! - Babyfoot
-
       #panel
         img(src="images/grey_panel.png")
-
-
-
       #player1.player
         .pheader1
-          p
+          p {{player1_name}}
         .pbody
-          #score1 
           .photo
-
+            img(ng-src="{{player1_photo}}")
       #player2.player
         .pheader2
-          p
+          p {{player2_name}}
         .pbody
-          #score2
           .photo
-
-
+            img(ng-src="{{player2_photo}}")
       #player3.player
-    
         .pbody
-          #score3 
           .photo
-
+            img(ng-src="{{player3_photo}}")
         .pfooter3
-          p
-
+          p {{player3_name}}
       #player4.player
-      
         .pbody
-          #score4 
-          .photo
-
+          .photo 
+            img(ng-src="{{player4_photo}}")
         .pfooter4
-          p
-
-
-      #score_team1
-
-      #score_team2
-
-
+          p {{player4_name}}
+      #score_team1.score-team {{score_team1}}
+      #score_team2.score-team {{score_team2}}
       #screen
-
-         // iframe( width="434", height="276", src="http://www.ustream.tv/embed/11682769?ub=ff3d23&amp;lc=ff3d23&amp;oc=ffffff&amp;uc=ffffff&amp;v=3&amp;wmode=direct", scrolling="no", frameborder="0", style="border: 0px none transparent;")
-
-         // embed( type="application/x-vlc-plugin", name='', pluginspage="http://www.videolan.org", version="VideoLAN.VLCPlugin.2", width="434px", height="276px", style="", id="mymovie", name="mymovie", mrl="http://@webcam.asiance.com:/video/ts-mp4.cgi?profileid=1")
-
-         img(id="stream_vid", alt="Processing...", width="434", height="276", src="http://1.214.211.82:3200/video/mjpg.cgi?profileid=3")
-
-
-
-         // embed(id='stream_vid', mrl='http://172.16.0.123:3200/ideo/ts-mp4.cgi?profileid=1', name='', version='VideoLAN.VLCPlugin.2', pluginspage='http://www.videolan.org',  type='application/x-vlc-plugin' )
-         // embed(id='stream_vid', mrl='http://@172.16.0.123:3200/video/ts-mp4.cgi?profileid=1', name='', version='VideoLAN.VLCPlugin.2', pluginspage='http://www.videolan.org',  type='application/x-vlc-plugin' )
-
-         // object(id='stream_vid', type="application/x-shockwave-flash", data="http://www.justin.tv/widgets/live_embed_player.swf?channel=adrienfromtoulouse", id="live_embed_player_flash", height="276", width="434", bgcolor="#000000")
-         //      param(name="allowFullScreen", value="true")
-         //      param(name="allowScriptAccess", value="always")
-         //      param(name="allowNetworking", value="all")
-         //      param(name="movie", value="http://www.justin.tv/widgets/live_embed_player.swf")
-         //      param(name="flashvars", value="hostname=www.justin.tv&channel=asiance&auto_play=false&start_volume=25")
-  
+        img(id="stream_vid", alt="Processing...", width="434", height="276", src="http://1.214.211.82:3200/video/mjpg.cgi?profileid=3")
+   
       .fb-comments(data-href="http://livegameup.asiance-dev.com:3300/", data-num-posts="7",data-colorscheme="dark")
 
       #social
        .g-plusone(data-size="medium")
-
        script(type="text/javascript") (function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = 'https://apis.google.com/js/plusone.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();
-
-
        a(href="https://twitter.com/share", class="twitter-share-button", data-lang="en")Tweeter
        script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");

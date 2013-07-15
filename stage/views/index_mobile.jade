@@ -1,105 +1,78 @@
-!!! XML
-!!! 1.1
+doctype 5
 
-html(xmlns="http://www.w3.org/1999/xhtml")
+html(lang="en", ng-app="baby")
   head
+    meta charset="utf-8"
+    title= title
 
-    <!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> <![endif]-->
-    <!--[if lte IE 8]>
-    script(src="/javascripts/html5.js?1349778565", type="text/javascript")
+    <!--[if lt IE 9]>
+    script(src="https://html5shiv.googlecode.com/svn/trunk/html5.js")
+    // script(type="text/javascript") document.createElement('ng-view');document.createElement('ng-include');document.createElement('google-map');
     <![endif]-->
 
-    title= title
     link(rel='stylesheet', href='/stylesheets/main_mobile.css')
     link(rel='stylesheet', href='/stylesheets/main_fb_mobile.css')
-    
-    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js")
-    script(type='text/javascript', src='/faye/browser/faye-browser.js')
 
     meta( name="viewport", content="width=640")
-    
-    script(type='text/javascript', src='/javascripts/index_mgr.js')
-    
-    // script(type='text/javascript')$.backstretch("../images/main_bgrd.jpg");//stadium
-    // script(type='text/javascript')$.backstretch("../images/main_asiance_bg.jpg");
+
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js')
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js')
+
+    script(src='/javascripts/angular-faye.js')
+    script(src='/faye/browser/faye-browser-min.js')
+    script(src='/javascripts/app.js')
+    script(src='/javascripts/services.js')
+    script(src='/javascripts/controllers.js')
 
     script(type="text/javascript") var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-1115917-63']);_gaq.push(['_trackPageview']);(function(){var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();
 
-
   body
 
-    script (function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=103759093066773";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
-
-    #fb-root
-   
-    #page
-
-      #title
-        h1 LiveGameUp! Babyfoot
-
-      #panel
-        img(id="panel_img" ,src="images/grey_panel_mobile.png")
-
-      #player1.player
-        .pheader1
-          p
-        .pbody
-          #score1 
-          .photo
-
-      #player2.player
-        .pheader2
-          p
-        .pbody
-          #score2
-          .photo
-
-      #player3.player
-    
-        .pbody
-          #score3 
-          .photo
-
-        .pfooter3
-          p
-
-      #player4.player
-      
-        .pbody
-          #score4 
-          .photo
-
-        .pfooter4
-          p
+    div(ng-controller="IndexController")
 
 
-      #score_team1
+      script (function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=103759093066773";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
 
-      #score_team2
+      #fb-root
 
-
-
-      #screen
-
-        // iframe( width="434", height="276", src="http://www.ustream.tv/embed/11682769?v=3&amp;wmode=direct", scrolling="no", frameborder="0", style="border: 0px none transparent;")
-        // embed(id='stream_vid', mrl='http://192.168.0.4:3200/ideo/ts-mp4.cgi?profileid=1', name='', version='VideoLAN.VLCPlugin.2', pluginspage='http://www.videolan.org',  type='application/x-vlc-plugin' )
-
-        img(id="stream_vid", alt="Processing...", width="434", height="273", src="http://1.214.211.82:3200/video/mjpg.cgi?profileid=3")
-
-         // object( type="application/x-shockwave-flash", data="http://www.justin.tv/widgets/live_embed_player.swf?channel=asiance", id="live_embed_player_flash", height="460", width="740", bgcolor="#000000")
-         //      param(name="allowFullScreen", value="true")
-         //      param(name="allowScriptAccess", value="always")
-         //      param(name="allowNetworking", value="all")
-         //      param(name="movie", value="http://www.justin.tv/widgets/live_embed_player.swf")
-         //      param(name="flashvars", value="hostname=www.justin.tv&channel=asiance&auto_play=false&start_volume=25")
+      #page
+        #title
+          h1 LiveGameUp! - Babyfoot
+        #panel
+          img(id="panel_img" ,src="images/grey_panel_mobile.png")
+        #player1.player
+          .pheader1
+            p {{player1_name}}
+          .pbody
+            .photo
+              img(ng-src="{{player1_photo}}")
+        #player2.player
+          .pheader2
+            p {{player2_name}}
+          .pbody
+            .photo
+              img(ng-src="{{player2_photo}}")
+        #player3.player
+          .pbody
+            .photo
+              img(ng-src="{{player3_photo}}")
+          .pfooter3
+            p {{player3_name}}
+        #player4.player
+          .pbody
+            .photo 
+              img(ng-src="{{player4_photo}}")
+          .pfooter4
+            p {{player4_name}}
+        #score_team1.score-team {{score_team1}}
+        #score_team2.score-team {{score_team2}}
+        #screen
+          img(id="stream_vid", alt="Processing...", width="434", height="273", src="http://1.214.211.82:3200/video/mjpg.cgi?profileid=3")
   
-      .fb-comments(data-href="http://livegameup.asiance-dev.com:3300/", data-num-posts="7",data-colorscheme="dark")
+        .fb-comments(data-href="http://livegameup.asiance-dev.com:3300/", data-num-posts="7",data-colorscheme="dark")
 
-      #social
-       .g-plusone
-
-       script(type="text/javascript") (function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = 'https://apis.google.com/js/plusone.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();
-
-
-       a(href="https://twitter.com/share", class="twitter-share-button", data-lang="en", data-size="large")Tweeter
-       script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+        #social
+         .g-plusone
+         script(type="text/javascript") (function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = 'https://apis.google.com/js/plusone.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();
+         a(href="https://twitter.com/share", class="twitter-share-button", data-lang="en", data-size="large")Tweeter
+         script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");

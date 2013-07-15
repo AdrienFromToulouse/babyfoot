@@ -23,7 +23,8 @@ var playerSchema = new mongoose.Schema({
     email: String
   },
 
-  ready: { type: Boolean, default: true }, //set to true on start button
+  accessToken: String,
+  ready: { type: Boolean, default: true },
   logged_at: Number,
   babyId: Number,
   gameID: String,
@@ -95,14 +96,12 @@ exports.getCurrentPlayers = function (bayeux, position, babyId) {
  * param[in]: theScore - the score array.
  *
  */
-exports.getCurrentPlayersForIndex = function (bayeux, theScore) {
+exports.getCurrentPlayersForIndex = function (bayeux) {
 
   var message = [0, 0, 0, 0];
 
   db = mongoose.createConnection('localhost', 'asiance_babyfoot');
-
   var Player = db.model('Player', playerSchema);
-  var player = new Player;
 
   db.once('open', function () {
 
@@ -112,18 +111,16 @@ exports.getCurrentPlayersForIndex = function (bayeux, theScore) {
       for (i = 0 ; i < players.length ; i++) {
 
         var msg = {
-          "score": "",
-          "name": "",
+          "first_name": "",
           "picture": "",
           "position": "",
-          "babyId": ""
+          "access_token": "",
         };
 
-        msg.picture = '<img src="' + players[i].personal.picture + '">';
-        msg.name = players[i].personal.first_name;
+        msg.picture = players[i].personal.picture;
+        msg.first_name = players[i].personal.first_name;
         msg.position = players[i].position;
-        msg.babyId = players[i].babyId;
-        msg.score = theScore[msg.babyId - 1][msg.position - 1];
+        msg.access_token = players[i].accessToken;
 
         message[msg.position - 1] = msg;
       }
@@ -166,6 +163,7 @@ exports.addPlayer = function (player_logged) {
 
     player.babyId = player_logged.babyId;
     player.position = player_logged.position;
+    player.accessToken = player_logged.accessToken;
 
     if ((player_logged.position == 1) || (player_logged.position == 2)) {
       player.team = 1;
@@ -314,7 +312,6 @@ exports.isPlaying = function (req, res) {
   db = mongoose.createConnection('localhost', 'asiance_babyfoot');
 
   var Player = db.model('Player', playerSchema);
-
 
   db.once('open', function () {
 

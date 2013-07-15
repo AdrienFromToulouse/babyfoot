@@ -1,58 +1,84 @@
-!!! XML
-!!! 1.1
+doctype 5
 
-html(xmlns="http://www.w3.org/1999/xhtml")
+html(lang="en", ng-app="baby")
   head
+    meta charset="utf-8"
     title= title
-    meta(name="viewport", content="width=1024", initial-scale="1.0", maximum-scale="1.0", user-scalable="no")
-    <!--[if IE]>
-    link(href="/stylesheets/ie.css", media="screen, projection", rel="stylesheet", type="text/css")
+    meta(name="viewport", width="device-width", initial-scale="1.0", maximum-scale="1.0", user-scalable="no")
+
+    <!--[if lt IE 9]>
+    script(src="https://html5shiv.googlecode.com/svn/trunk/html5.js")
+    // script(type="text/javascript") document.createElement('ng-view');document.createElement('ng-include');document.createElement('google-map');
     <![endif]-->
-
+ 
     link(rel='stylesheet', href='/stylesheets/admin.css')
-    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js")
-    script(type='text/javascript', src='/faye/browser/faye-browser-min.js')
 
-    script(type='text/javascript', src='/javascripts/admin.js')
-    script(type='text/javascript', src='/javascripts/admin_mgr.js')
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js')
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js')
+
+    script(src='/javascripts/angular-faye.js')
+    script(src='/faye/browser/faye-browser-min.js')
+    script(src='/javascripts/app.js')
+    script(src='/javascripts/services.js')
+    script(src='/javascripts/controllers.js')
+    // script(src='/javascripts/directives.js')
+     
   body
-    #page
-        .gamepanel
-          img#gamepanel(src="../images/bg_ipad.jpg",  alt="")
+    div(ng-controller="AdminController")
 
-          #startStop
-            img#start(src="../images/btn_start.png", alt="startstop")
+      script (function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=103759093066773";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
 
-          #player1
-              .photo
-              .pname
+      #fb-root
+   
+      #page
 
-          #player2
-              .photo
-              .pname
+        // h1 LiveGameUp!
+        #panel
+          img(id="panel_img" ,src="images/grey_panel_mobile.png")
 
-          #player3
-              .photo
-              .pname
+        // img(id="stream_vid", alt="Processing...", width="460", height="284", src="http://1.214.211.82:3200/video/mjpg.cgi?profileid=3")
+  
+        #player1.player(data-fbidp="{{fbidp1}}")
+          .pheader1
+            p {{player1_name}}
+          .pbody
+            .photo
+              img(ng-src="{{player1_photo}}")
+        #player2.player(data-fbidp="{{fbidp2}}")
+          .pheader2
+            p {{player2_name}}
+          .pbody
+            .photo
+              img(ng-src="{{player2_photo}}")
+        #player3.player(data-fbidp="{{fbidp3}}")
+          .pbody
+            .photo
+              img(ng-src="{{player3_photo}}")
+          .pfooter3
+            p {{player3_name}}
+        #player4.player(data-fbidp="{{fbidp4}}")
+          .pbody
+            .photo 
+              img(ng-src="{{player4_photo}}")
+          .pfooter4
+            p {{player4_name}}
 
-          #player4
-              .photo
-              .pname
+        #score_team1.score-team {{score_team1}}
+        #score_team2.score-team {{score_team2}}
+      
+        #red_circle1.circle  
+        #blue_circle1.circle  
 
-          #scorep1.scorep
-          #scorep2.scorep
-          #scorep3.scorep
-          #scorep4.scorep
+        #red_circle2.circle  
+        #blue_circle2.circle  
 
-          #scoret1.scoret
-          #scoret2.scoret
+        #startStop 
+          img(src="../images/btn_start.png", ng-click="startStop()")
 
-          #plus1.plus(data-position="1")
-          #plus2.plus(data-position="2")
-          #plus3.plus(data-position="3")
-          #plus4.plus(data-position="4")
+        img(id="plus1", class="plus", src="/images/plus.png", data-team="1", ng-click="plus('team1')" )
+        img(id="minus1", class="minus", src="/images/minus.png", data-team="1", ng-click="minus('team1')")
 
-          #minus1.minus(data-position="1")
-          #minus2.minus(data-position="2")
-          #minus3.minus(data-position="3")
-          #minus4.minus(data-position="4")
+        img(id="plus2", class="plus", src="/images/plus.png", data-team="2", ng-click="plus('team2')")
+        img(id="minus2", class="minus", src="/images/minus.png", data-team="2", ng-click="minus('team2')")
+
+        script(type="text/javascript") (function (d) { var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0]; if (d.getElementById(id)) { return; } js = d.createElement('script'); js.id = id; js.async = true; js.src = "//connect.facebook.net/en_US/all.js"; ref.parentNode.insertBefore(js, ref);}(document));
