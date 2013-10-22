@@ -103,20 +103,20 @@ var babyLogin = {
 	    params['picture'] = 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/s160x160/554754_10150783535441532_406615437_a.jpg';
 	    params['caption'] = 'Watch me live playing Babyfoot!!';
 
-	    // FB.api('/me/feed', 'post', params, function (response) {
+	    FB.api('/me/feed', 'post', params, function (response) {
 
-	    // 	if (!response || response.error) {
+	    	if (!response || response.error) {
 
-	    // 	    var errorID = new RegExp("#506");
-	    // 	    alert("Sorry, you can't access the game. Try again later.");
-	    // 	    if (errorID.exec(response.error.message) == "#506") {
-	    // 	    }
-	    // 	} else {
-	    // 	    // /* thanks to the facebook delay the player has enough time to be saved before the redirect*/
-	    // 	    // window.location = "/admin?babyId=" + babyId + "&position=" + position + "&fbId=" + response.id;
+	    	    var errorID = new RegExp("#506");
+	    	    alert("Sorry, you can't access the game. Try again later.");
+	    	    if (errorID.exec(response.error.message) == "#506") {
+	    	    }
+	    	} else {
+	    	    // /* thanks to the facebook delay the player has enough time to be saved before the redirect*/
+	    	    // window.location = "/admin?babyId=" + babyId + "&position=" + position + "&fbId=" + response.id;
 
-	    // 	}
-	    // });
+	    	}
+	    });
 	});
     }
 }

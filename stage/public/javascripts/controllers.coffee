@@ -95,6 +95,7 @@ angular.module('baby').controller 'AdminController', ($scope, Faye, $http) ->
       players.push($($.find(".player")[3]).attr("data-fbidp"))
 
       $("#startStop").find("img").attr("src", "../images/btn_stop.png")
+     
       $http.post("/startStopGame"
         data: {cmd: "start", players: players}
       ).success((data, status) ->
@@ -106,11 +107,12 @@ angular.module('baby').controller 'AdminController', ($scope, Faye, $http) ->
       players.push($($.find(".player")[1]).attr("data-fbidp"))
       players.push($($.find(".player")[2]).attr("data-fbidp"))
       players.push($($.find(".player")[3]).attr("data-fbidp"))
-
+   
       $("#startStop").find("img").attr("src", "../images/btn_start.png")
       $http.post("/startStopGame"
         data: {cmd: "stop", players: players, score: {score_team1: $scope.score_team1, score_team2: $scope.score_team2}}
       ).success((data, status) ->
+        
         $scope.score_team1 = 0
         $scope.score_team2 = 0
         $scope.player1_name = ""   
@@ -125,8 +127,8 @@ angular.module('baby').controller 'AdminController', ($scope, Faye, $http) ->
         $scope.fbidp2 = ""
         $scope.fbidp3 = ""
         $scope.fbidp4 = ""
-                        	
         $scope.gameStarted = false
+
       ).error (data, status) ->
 
   $scope.plus = (team) ->

@@ -36,7 +36,7 @@ html(lang="en", ng-app="baby")
         #panel
           img(id="panel_img" ,src="images/grey_panel_mobile.png")
 
-        // img(id="stream_vid", alt="Processing...", width="460", height="284", src="http://1.214.211.82:3200/video/mjpg.cgi?profileid=3")
+          img(id="stream_vid", alt="Processing...", width="460", height="284", src="http://1.214.211.82:3200/video/mjpg.cgi?profileid=3")
   
         #player1.player(data-fbidp="{{fbidp1}}")
           .pheader1
@@ -73,8 +73,8 @@ html(lang="en", ng-app="baby")
         #blue_circle2.circle  
 
         #startStop 
-          img(src="../images/btn_start.png", ng-click="startStop()")
-
+          img(id="startstopbut", src="../images/btn_start.png", ng-click="startStop()")
+    
         img(id="plus1", class="plus", src="/images/plus.png", data-team="1", ng-click="plus('team1')" )
         img(id="minus1", class="minus", src="/images/minus.png", data-team="1", ng-click="minus('team1')")
 
