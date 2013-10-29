@@ -1,0 +1,74 @@
+doctype 5
+
+html(lang="en", ng-app="baby")
+  head
+    meta charset="utf-8"
+    title= title
+    meta(name="viewport", content="width=640,maximum-scale=1.0")
+
+    <!--[if lt IE 9]>
+    script(src="https://html5shiv.googlecode.com/svn/trunk/html5.js")
+    // script(type="text/javascript") document.createElement('ng-view');document.createElement('ng-include');document.createElement('google-map');
+    <![endif]-->
+ 
+    link(rel='stylesheet', href='/stylesheets/admin.css')
+
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js')
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js')
+
+
+    script(src='/bower_components/angular-faye/build/angular-faye.js')
+    script(src='/faye/browser/faye-browser-min.js')
+    script(src='/javascripts/app.js')
+    script(src='/javascripts/services.js')
+    script(src='/javascripts/controllers.js')
+    // script(src='/javascripts/directives.js')
+     
+  body
+    div(ng-controller="AdminController")
+
+      script (function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=103759093066773";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
+      #fb-root
+
+      #page
+        #video.center  
+          iframe(width='640', height='315', src='http://www.youtube.com/embed/FNkqskaUs8E?wmode=transparent&modestbranding=1&showinfo=0&rel=0', frameborder='0', allowfullscreen='allowfullscreen')
+
+        .mainboard.center
+
+          .team1    
+            #player1.player(data-fbidp="{{fbidp1}}")
+              .pbody
+                .photo
+                  img(ng-src="{{player1_photo}}")
+            #player2.player(data-fbidp="{{fbidp2}}")
+              .pbody
+                .photo
+                  img(ng-src="{{player2_photo}}")
+
+          .score-panel
+            #score_team1.score-team {{score_team1}}
+            #score_team2.score-team {{score_team2}}
+
+          .team2
+            #player3.player(data-fbidp="{{fbidp3}}")
+              .pbody
+                .photo
+                  img(ng-src="{{player3_photo}}")
+            #player4.player(data-fbidp="{{fbidp4}}")
+              .pbody
+                .photo 
+                  img(ng-src="{{player4_photo}}")
+
+        .maincontrol.center    
+
+          .ctrlteam1
+            div(id="minus1", class="minus", data-team="1", ng-click="minus('team1')")
+            div(id="plus1", class="plus", data-team="1", ng-click="plus('team1')" ) 
+ 
+          .ctrlteam2
+            div(id="minus2", class="minus", data-team="2", ng-click="minus('team2')")
+            div(id="plus2", class="plus", data-team="2", ng-click="plus('team2')")
+   
+         div.btnstst      
+           .start.center(ng-click="startStop()")

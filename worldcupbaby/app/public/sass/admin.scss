@@ -1,0 +1,202 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/support";
+@import "compass/utilities/general/hacks";
+@import "compass/utilities/general/clearfix";
+@import "compass/utilities/sprites/sprite-img";
+@import "animate";
+
+$ui-layout: smart;
+@import "../images/ui/*.png";
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  *behavior: url(../js/libs/boxsizing.htc);
+}
+
+@font-face {
+  font-family: 'Interstate-Bold';
+  src: url('../fonts/Interstate-Bold.otf'),
+  url('../fonts/Interstate-Bold.ttf'),
+  url('../fonts/Interstate-Bold.oet'),
+  url('../fonts/Interstate-Bold.svg');
+}
+@font-face {
+  font-family: 'jd_led3';
+  src: url('../fonts/jd_led3.eot'),
+  url('../fonts/jd_led3.ttf'),
+  url('../fonts/jd_led3.svg'),
+  url('../fonts/jd_led3.otf');
+}
+body, #page{
+  @include background-image(image-url('../images/bg-pattern.jpg'));
+  margin: 0 auto;
+  width: 640px;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
+  position: relative;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.center {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+body {
+
+  .mainboard {
+    margin-top: 3em;
+    .score-panel {
+      display: inline-block;  
+      position: absolute;
+      left: 2.4em;
+      top: 4.3em;
+      font: {
+        family: "jd_led3";
+        size: 6em;
+      }
+      @include text-shadow(0 0 40px rgb(240, 121, 34), 0 0 70px rgb(240, 121, 34), 0 0 80px rgb(240, 121, 34));
+      color: rgb(240, 121, 34);
+      #score_team1 {
+        width: 90px;
+        height: 66px;
+        display: inline-block;
+        padding-right: 50px;
+      }
+      #score_team2 {
+        width: 90px;
+        height: 66px;
+        display: inline-block;
+        padding-left: 50px;
+      }
+    }
+    .team1, .team2 {
+      display: inline-block;
+      #player1, #player3 {
+        margin-bottom: 1.5em;
+      }
+      .player {
+        .footer1, .footer2, .pfooter3, .pfooter4 {
+          @include text-shadow(rgba(black, 0.2) 1px 1px 0, rgba(black, 0.2) 2px 2px 0, rgba(black, 0.2) 3px 3px 0);
+        }
+        .photo img {
+          width: 88px;
+          height: 88px;
+        }
+        .pbody {
+          width: 98px;
+        }
+      }
+    }
+    .team1 {
+      margin-right: 300px;
+    }
+  }
+  .maincontrol {
+    margin-top: 3em;
+    .ctrlteam1 {
+      margin-right: 2.5em;
+    }
+    .minus {
+      margin-right: 0.8em;
+      display: inline-block;
+      width: ui-sprite-height(minus);
+      height: ui-sprite-height(minus);
+      @include ui-sprite(minus);
+    }
+    .plus {
+      display: inline-block;
+      width: ui-sprite-height(plus);
+      height: ui-sprite-height(plus);
+      @include ui-sprite(plus);
+    }
+    .ctrlteam1, .ctrlteam2 {
+      display: inline-block;
+    }
+  }
+  .btnstst {
+    margin-top: 2em;
+    .start {
+      width: ui-sprite-height(btn_start);
+      height: ui-sprite-height(btn_start);
+      @include ui-sprite(btn_start);
+    }
+    .stop {
+      width: ui-sprite-height(btn_stop);
+      height: ui-sprite-height(btn_stop);
+      @include ui-sprite(btn_stop);
+    }
+  }
+}
+
+/*   #plus1, #plus2, #minus1, #minus2{ */
+/*     position: absolute; */
+/*     top: 53%; */
+/*     width: 19%; */
+/*     /\* No background, just iOS:*\/ */
+/*     -webkit-tap-highlight-color: transparent; */
+/*     /\* No background iOS + Android:  *\/ */
+/*     -webkit-tap-highlight-color: rgba(0, 0, 0, 0); */
+/*   } */
+/*   #plus1{ */
+/*     left: 47px; */
+/*   } */
+/*   #minus1{ */
+/*     left: 177px; */
+/*   } */
+/*   #plus2{ */
+/*     left: 335px; */
+/*   } */
+/*   #minus2{ */
+/*     left: 465px; */
+/*   } */
+/*   .circle{ */
+/*     position: absolute; */
+/*     top: 53%; */
+/*     width: 122px; */
+/*     height: 122px; */
+/*     @include border-radius(50%); */
+/*   } */
+/*   #red_circle1{ */
+/*     background: rgb(138, 20, 25); */
+/*     left: 47px; */
+/*   } */
+/*   #blue_circle1{ */
+/*     background: rgb(28, 90, 133); */
+/*     left: 335px; */
+/*   } */
+/*   #red_circle2{ */
+/*     background: rgb(138, 20, 25); */
+/*     left: 176px; */
+/*   } */
+/*   #blue_circle2{ */
+/*     background: rgb(28, 90, 133); */
+/*     left: 465px; */
+/*   } */
+/*   #startStop img { */
+/*     position: absolute; */
+/*     width: 150px; */
+/*     left: 38%; */
+/*     top: 61%; */
+/*   } */
+/*   .score-team{ */
+/*     text-align: center; */
+/*     font: { */
+/*       family: "jd_led3"; */
+/*       size: 6em; */
+/*     } */
+/*     @include text-shadow(0 0 40px rgb(240, 121, 34), 0 0 70px rgb(240, 121, 34), 0 0 80px rgb(240, 121, 34)); */
+/*     color: rgb(240, 121, 34); */
+/*   } */
+/* } */

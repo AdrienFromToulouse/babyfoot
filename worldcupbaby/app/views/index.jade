@@ -1,0 +1,52 @@
+include header_index
+
+block body
+
+  div(ng-controller="IndexController")
+
+    script (function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=103759093066773";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
+
+    #fb-root
+           
+    #page
+      #title
+        h1 LiveGameUp! - Babyfoot
+      #panel
+        img(src="images/grey_panel.png")
+      #player1.player
+        .pheader1
+          p {{player1_name}}
+        .pbody
+          .photo
+            img(ng-src="{{player1_photo}}")
+      #player2.player
+        .pheader2
+          p {{player2_name}}
+        .pbody
+          .photo
+            img(ng-src="{{player2_photo}}")
+      #player3.player
+        .pbody
+          .photo
+            img(ng-src="{{player3_photo}}")
+        .pfooter3
+          p {{player3_name}}
+      #player4.player
+        .pbody
+          .photo 
+            img(ng-src="{{player4_photo}}")
+        .pfooter4
+          p {{player4_name}}
+      #score_team1.score-team {{score_team1}}
+      #score_team2.score-team {{score_team2}}
+      #screen
+        iframe(width='434', height='276', src='http://www.youtube.com/embed/sn9xLnIZWLI', frameborder='0', allowfullscreen='allowfullscreen')
+
+      //   img(id="stream_vid", alt="Processing...", width="434", height="276", src="http://1.214.211.82:3200/video/mjpg.cgi?profileid=3")
+   
+      .fb-comments(data-href="http://livegameup.asiance-dev.com:3300/", data-num-posts="7",data-colorscheme="dark")
+      #social
+       .g-plusone(data-size="medium")
+       script(type="text/javascript") (function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = 'https://apis.google.com/js/plusone.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();
+       a(href="https://twitter.com/share", class="twitter-share-button", data-lang="en") Tweeter
+       script !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");

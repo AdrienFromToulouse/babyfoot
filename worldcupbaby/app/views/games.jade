@@ -1,0 +1,43 @@
+doctype 5
+
+html(lang="en", ng-app="baby")
+  head
+    meta charset="utf-8"
+    title= title
+    meta(name="viewport", content="width=640,maximum-scale=1.0")
+
+    <!--[if lt IE 9]>
+    script(src="https://html5shiv.googlecode.com/svn/trunk/html5.js")
+    // script(type="text/javascript") document.createElement('ng-view');document.createElement('ng-include');document.createElement('google-map');
+    <![endif]-->
+    link(href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css', rel='stylesheet')
+    
+    link(rel='stylesheet', href='/stylesheets/games.css')
+
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js')
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js')
+
+    script(src='/bower_components/angular-faye/build/angular-faye.js')
+    script(src='/faye/browser/faye-browser-min.js')
+    script(src='/javascripts/app.js')
+    script(src='/javascripts/services.js')
+    script(src='/javascripts/controllers.js')
+    // script(src='/javascripts/directives.js')
+     
+  body
+
+    div(ng-controller="GamesController")
+             
+      .container
+        .page-header
+          h1 LivegameUp! - Babyfoot
+        
+        div.games-list.center
+          table.table.table-striped
+            tr(ng-repeat='game in games')
+              td {{game.score_team1}}
+              td {{game.score_team2}}
+              td(ng-repeat='player in game.players')
+                div team: {{player.team}}   
+                img(ng-src="{{player.personal.picture}}", height='80', width='80') 
+   
