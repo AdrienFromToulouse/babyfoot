@@ -4,6 +4,8 @@ var babyLogin = {
 
   position: "",
 
+  isFirstSession: true,
+
   /**
    * Start validation after FB login.
    *
@@ -31,6 +33,9 @@ var babyLogin = {
     posting.done(function(data) {
       $(".start").remove();
       $('.logbutton').append("<img id='hf' src='"+data.personal.picture+"' alt='have_fun'><div><p  class='gluck'>Good luck!</p><p class='guestname'>"+data.personal.name+"</p></div>");
+ 
+      babyLogin.isFirstSession = false;
+
     });
   },
 
@@ -153,9 +158,10 @@ window.fbAsyncInit = function () {
     babyLogin.accessToken = response.authResponse.accessToken;
 
     if (response.status == "connected") {
-
-      babyLogin.savePlayerNPost(response);
-      babyLogin.readyOrNot();
+      if ( babyLogin.isFirstSession === true ){
+        babyLogin.savePlayerNPost(response);
+        babyLogin.readyOrNot();
+      }
     }
   });
 };
